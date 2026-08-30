@@ -221,4 +221,6 @@ __marimo__/
 
 # Project-local generated tooling and caches
 /.agents/skills/speckit-*/
+/.specify/feature.json
+/.specify/extensions/*/local-config.yml
 /.cache/uv/

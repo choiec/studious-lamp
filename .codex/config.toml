@@ -1,3 +1,43 @@
 [memories]
 use_memories = false
 generate_memories = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-analyze/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-checklist/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-clarify/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-constitution/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-converge/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-implement/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-plan/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-specify/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-tasks/SKILL.md"
+enabled = false
+
+[[skills.config]]
+path = "../.agents/skills/speckit-taskstoissues/SKILL.md"
+enabled = false

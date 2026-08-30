@@ -1,0 +1,139 @@
+{
+  "contract": "candidate-content",
+  "synthetic_only": true,
+  "cases": [
+    {
+      "id": "private-profile",
+      "expected": "reject",
+      "document": {"private_profile": "synthetic-placeholder"}
+    },
+    {
+      "id": "raw-provenance",
+      "expected": "reject",
+      "document": {"raw_provenance": "synthetic-placeholder"}
+    },
+    {
+      "id": "credential-field",
+      "expected": "reject",
+      "document": {"credential": "synthetic-placeholder"}
+    },
+    {
+      "id": "unsafe-backslash-path",
+      "expected": "reject",
+      "document": {"path": "payload\\synthetic-object.bin"}
+    },
+    {
+      "id": "missing-payload-path",
+      "expected": "reject",
+      "document": {"payload": {"media_type": "application/octet-stream"}}
+    },
+    {
+      "id": "absolute-payload-path",
+      "expected": "reject",
+      "document": {"path": "/payload/synthetic-object.bin"}
+    },
+    {
+      "id": "escaping-payload-path",
+      "expected": "reject",
+      "document": {"path": "payload/../synthetic-object.bin"}
+    },
+    {
+      "id": "non-normalized-payload-path",
+      "expected": "reject",
+      "document": {"path": "payload//synthetic-object.bin"}
+    },
+    {
+      "id": "mutable-selector",
+      "expected": "reject",
+      "document": {"selector": "mutable"}
+    },
+    {
+      "id": "latest-selector",
+      "expected": "reject",
+      "document": {"selector": "latest"}
+    },
+    {
+      "id": "range-selector",
+      "expected": "reject",
+      "document": {"selector": ">=0.1.0"}
+    },
+    {
+      "id": "missing-artifact",
+      "expected": "reject",
+      "artifacts": ["candidate.schema.json", "semantic-content.schema.json", "provenance.schema.json"]
+    },
+    {
+      "id": "extra-artifact",
+      "expected": "reject",
+      "artifacts": [
+        "candidate.schema.json",
+        "semantic-content.schema.json",
+        "provenance.schema.json",
+        "processing-profile.schema.json",
+        "evidence.json"
+      ]
+    },
+    {
+      "id": "duplicate-artifact",
+      "expected": "reject",
+      "artifacts": [
+        "candidate.schema.json",
+        "candidate.schema.json",
+        "semantic-content.schema.json",
+        "provenance.schema.json",
+        "processing-profile.schema.json"
+      ]
+    },
+    {
+      "id": "fifth-normative-artifact",
+      "expected": "reject",
+      "artifacts": [
+        "candidate.schema.json",
+        "semantic-content.schema.json",
+        "provenance.schema.json",
+        "processing-profile.schema.json",
+        "representation.schema.json"
+      ]
+    },
+    {
+      "id": "evidence-as-content",
+      "expected": "reject",
+      "artifacts": ["candidate-content.manifest.json"]
+    },
+    {
+      "id": "retired-extractor-protocol",
+      "expected": "reject",
+      "document": {"protocol": "retired-extractor-protocol"}
+    },
+    {
+      "id": "retired-extractor-form",
+      "expected": "reject",
+      "document": {"extractor": {"source": "synthetic-placeholder"}}
+    },
+    {
+      "id": "wrong-dialect",
+      "expected": "reject",
+      "document": {"dialect": "synthetic-dialect"}
+    },
+    {
+      "id": "wrong-version",
+      "expected": "reject",
+      "document": {"version": "synthetic-version"}
+    },
+    {
+      "id": "wrong-size",
+      "expected": "reject",
+      "document": {"size": 1, "bytes": "synthetic-placeholder"}
+    },
+    {
+      "id": "wrong-digest",
+      "expected": "reject",
+      "document": {"sha256": "synthetic-digest"}
+    },
+    {
+      "id": "malformed-bytes",
+      "expected": "reject",
+      "document": {"bytes": "synthetic-malformed-placeholder"}
+    }
+  ]
+}

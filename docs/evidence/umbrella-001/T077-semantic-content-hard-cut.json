@@ -1,0 +1,348 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "T043",
+  "umbrella_task_id": "T077",
+  "owner_repository": "repo:studious-lamp",
+  "observed_at": "2026-08-31T02:33:24+09:00",
+  "result": "PASS",
+  "claim": "Schema-level semantic-content hard cut GREEN against the unmodified T042 oracle, with exactly four normative Candidate-content schemas. This owner input does not complete the central Umbrella T077 ledger or establish a release, Core reference validation, admission or publication.",
+  "execution_context": {
+    "environment_mode": "Local",
+    "project_checkout": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+    "verified_root": "/tmp/studious-lamp-T042-T043-worktree",
+    "existing_worktree_reused": true,
+    "new_worktree_created": false,
+    "git_common_directory": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp/.git",
+    "base_branch": "main",
+    "base_revision": "0c44385cf9995c178160d3a707db05070d0d04e1",
+    "base_tree": "167d47035142a1159e2aedcf243542664f1366f7",
+    "task_branch": "codex/T043-semantic-content-green",
+    "starting_index_state": "clean",
+    "starting_worktree_state": "clean",
+    "overlapping_user_changes": [],
+    "other_active_owner_writers_observed": 0,
+    "preserved_project_branch": "codex/global-skills-environment-config",
+    "preserved_project_revision": "d767483cf19c8c7cbd890d3e13e7377b500e2fa4",
+    "python": "3.14.4",
+    "uv": "0.11.32",
+    "task_commit": null,
+    "integration_merge": null,
+    "commit_reference_policy": "Following the existing owner evidence convention, this file does not embed its future task/merge hashes or its own digest. Resolve the unique commit adding this path with Spec-Kit-Task: T043; require its parent to equal base_revision and its contract subtree/files to equal source_binding. The final integration report supplies the exact task revision, full Git tree, merge parents and evidence digest."
+  },
+  "authority": {
+    "source_revision": "0c44385cf9995c178160d3a707db05070d0d04e1",
+    "t042_commit": "2995c59a82b6fe46d178a1a39c28ef239f0b0789",
+    "files": [
+      {
+        "path": "specs/001-product-runtime/spec.md",
+        "size_bytes": 26416,
+        "sha256": "179ab1095bcca11ac1f89c2c806fb2efcb7a115438c753fb4ac4f91c9cb9f2cd"
+      },
+      {
+        "path": "specs/001-product-runtime/plan.md",
+        "size_bytes": 20616,
+        "sha256": "ef91c4314b3cd10087e8cebdae3981df6ba61b52092d7fc6cb31bba1ecd7d0f9"
+      },
+      {
+        "path": "specs/001-product-runtime/data-model.md",
+        "size_bytes": 22125,
+        "sha256": "012601235396107f2151219ad68f97c53d056f73640cf2fc6cc6bda7d27cfe84"
+      },
+      {
+        "path": "specs/001-product-runtime/contracts/candidate-content.md",
+        "size_bytes": 10442,
+        "sha256": "16c1c0b970f125b324e08e8c235a2ea295b28db33018aa1e4a00594347587472"
+      },
+      {
+        "path": ".specify/memory/constitution.md",
+        "size_bytes": 3544,
+        "sha256": "29084b09f6c4059ba49fee52f5623da5a37e448b075c7649b86338bc8b6c1481"
+      }
+    ],
+    "umbrella_revision": "d5e697f534130943cf52cbafa2ef06eeff83df24",
+    "umbrella_tree": "2378f5602fd6b8a3ade56dd1db925d7bdae261d4",
+    "umbrella_files": [
+      {
+        "path": "specs/001-product-compute-boundaries/spec.md",
+        "sha256": "be6f02ce5929897ad156d85bae0ec0065059208eeb387a39ad8a26f955a2a733"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/plan.md",
+        "sha256": "99c38095aa00a6ab5ab3c44e398fc0a9921458960c259c6dbfd1bcb46e1488ca"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/tasks.md",
+        "sha256": "6e4af5e76768368265213dc549b330a763cd829d0ffd5900a771d38cf85a3426"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/codex-project-routing.md",
+        "sha256": "be09194ef400896e0f865fb93431ae233cdaf5c5c10df5a9c5557a13e38ce860"
+      },
+      {
+        "path": ".specify/memory/constitution.md",
+        "sha256": "17db5e96effa669f1712a4f34b2d6e360982ac2fb7699cf0151ce59f98108697"
+      },
+      {
+        "path": "governance/traceability.json",
+        "sha256": "714ad82764072938d9f8da8260bafb9ac7a67f98f71414681326a26fb4c7f38e"
+      }
+    ]
+  },
+  "source_binding": {
+    "scope": "Exact four normative sources, two frozen conformance files and the frozen test oracle; baseline revision is not claimed as the new schema source.",
+    "contract_tree_path": "contracts/candidate-content",
+    "contract_git_tree": "59d457ab520f0a57b7771891c2a8500393ba64dc",
+    "manifest_path": "docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json",
+    "manifest_json_pointer": "/source_binding/files",
+    "manifest_serialization": "UTF-8 json.dumps(files, sort_keys=True, separators=(comma, colon), ensure_ascii=False), no trailing newline",
+    "manifest_sha256": "09b052ec85f54496c9c41bdcfe43f7f6a7e92b17ae6806d11f6eb588bba55bfa",
+    "files": [
+      {
+        "path": "contracts/candidate-content/candidate.schema.json",
+        "size_bytes": 2944,
+        "sha256": "f767aee0d5ba7e7fbd80f926ca1731dcb83350d5c40fc08c975e15b6d1230ed8",
+        "git_blob": "3d62c41788a3674d5df440e2c48f2fb1d398ba5c"
+      },
+      {
+        "path": "contracts/candidate-content/semantic-content.schema.json",
+        "size_bytes": 30130,
+        "sha256": "9942ded28a21b92000d3a91309c7d8a58029b85ff67080ec2be1ab4cf099416e",
+        "git_blob": "4032448a6826a77e4a5b52d7acccdc2878430da9"
+      },
+      {
+        "path": "contracts/candidate-content/provenance.schema.json",
+        "size_bytes": 438,
+        "sha256": "72018c2417efb4e409a869395f6dc4f7a2601c725ccb3c931091ee205fe5b188",
+        "git_blob": "0b1e244d146418a4a824d2abe861e518e2023f43"
+      },
+      {
+        "path": "contracts/candidate-content/processing-profile.schema.json",
+        "size_bytes": 507,
+        "sha256": "ccdea8f4aef0fcaee23a3e44076373180f3ff9727e8b909980257e7733e5745e",
+        "git_blob": "d8329259cb0fb4a4d93f3cf39ef369276987116c"
+      },
+      {
+        "path": "contracts/candidate-content/conformance/positive.json",
+        "size_bytes": 40485,
+        "sha256": "6bb0f2fc16b4b7c9722d4127b82e185bed3a6ecb33b23f15aeb12669b589815e",
+        "git_blob": "c479f6a2150d057948e3e55cc60dd296c501862d"
+      },
+      {
+        "path": "contracts/candidate-content/conformance/negative.json",
+        "size_bytes": 22714,
+        "sha256": "03730476df3312b32f26905b5931309429f7bef1bc75027cdf8ad5d2ac134752",
+        "git_blob": "4933bd64e616ef2ce36d8e487e714210cff4cda0"
+      },
+      {
+        "path": "tests/contracts/test_candidate_content.py",
+        "size_bytes": 25479,
+        "sha256": "db886b7db8f2d180cda0121931857e82ac838b7c5d8d3fdb525dd1e636cc5d08",
+        "git_blob": "99bf35a5494f4d4b874b6b93dd409aabc57d497f"
+      }
+    ],
+    "task_commit_locator": "git log --diff-filter=A --format=%H -- docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json",
+    "required_commit_trailer": "Spec-Kit-Task: T043"
+  },
+  "candidate_content": {
+    "target_version": "0.1.0",
+    "target_tag": "contract-v0.1.0",
+    "dialect": "https://json-schema.org/draft/2020-12/schema",
+    "normative_count": 4,
+    "changed_normative_paths": [
+      "contracts/candidate-content/semantic-content.schema.json"
+    ],
+    "resource_shape_count": 1,
+    "item_shape_count": 1,
+    "interaction_types": [
+      "choice",
+      "reference_choice",
+      "inline_mark_choice",
+      "sentence_mark_choice",
+      "blank_choice",
+      "order_choice",
+      "position_choice",
+      "summary_pair_choice",
+      "inline_choice_set",
+      "token_order",
+      "text_entry",
+      "edit_response"
+    ],
+    "declaration_alternatives": [
+      "single/identifier",
+      "ordered/identifier",
+      "single/string",
+      "single/record"
+    ],
+    "legacy_schema_value": "rejected",
+    "all_data_objects_closed": true,
+    "frozen_test_and_fixtures_unchanged": true,
+    "schema_rejection_cases": 50,
+    "future_core_rejection_cases": 28
+  },
+  "validation": [
+    {
+      "id": "baseline_expected_red",
+      "command": "UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider --tb=no",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "FAIL",
+      "exit_code": 1,
+      "result": "95 failed, 19 passed; all failures are t042_schema expected assertions against the old schema."
+    },
+    {
+      "id": "baseline_unrelated",
+      "command": "UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider -k 'not t042_schema' --tb=short",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": "19 passed, 95 deselected"
+    },
+    {
+      "id": "green_contracts",
+      "command": "UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q tests/contracts/test_candidate_content.py",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": "108 passed"
+    },
+    {
+      "id": "green_full",
+      "command": "UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": "114 passed"
+    },
+    {
+      "id": "green_plan_full",
+      "command": "UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider --tb=no",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": "114 passed"
+    },
+    {
+      "id": "green_plan_unrelated",
+      "command": "UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider -k 'not t042_schema' --tb=short",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": "19 passed, 95 deselected"
+    },
+    {
+      "id": "static_checks",
+      "command": "/tmp/studious-t042-venv/bin/python /tmp/studious-t043-static-check.py",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": "strict JSON; exact four schemas; all schema nodes supported and references resolved; whole Candidate accepted; forbidden schema forms absent; ID/digest/path/media boundaries; Korean instruction flags; replacement overlay and exclusive targets; frozen oracle and historical T010 unchanged"
+    },
+    {
+      "id": "working_diff",
+      "command": "git diff --check",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+      "status": "PASS",
+      "exit_code": 0,
+      "result": "No whitespace errors"
+    }
+  ],
+  "validation_notes": {
+    "preflight_sandbox_attempt": {
+      "status": "FAIL",
+      "exit_code": 2,
+      "reason": "Existing uv cache lock creation denied by read-only sandbox before pytest started; pytest NOT RUN on that attempt.",
+      "resolution": "Exact locked/offline command retried with require_escalated after explicit follow-up; approved. No cache mirror, environment/dependency creation, network access or global configuration change."
+    },
+    "supplemental_check_correction": {
+      "initial_status": "FAIL",
+      "reason": "One-off checker incorrectly listed a/.b as valid although the existing Candidate safe-path grammar requires alphanumeric component starts.",
+      "resolution": "Moved that input to the rejection list; corrected supplemental check PASS. Normative schema and frozen tests/fixtures were not relaxed."
+    },
+    "supplemental_script": {
+      "path": "/tmp/studious-t043-static-check.py",
+      "size_bytes": 4769,
+      "sha256": "7e1f63ca45ee41fd394b7855166ddd4d7148789fbbfe35fce6c1f2b0e3d4e75d"
+    },
+    "supplemental_script_retention": "Temporary local verification script; primary reproducible oracle is the committed frozen test/fixture inventory.",
+    "oracle_limit": "Fail-closed test-only subset fixed in plan.md, not a complete Draft 2020-12 implementation or production validator; format is annotation-only."
+  },
+  "validation_ownership": {
+    "T043_schema": {
+      "status": "PASS",
+      "scope": [
+        "required fields, primitive types and numeric/string bounds",
+        "closed objects, enums and discriminated oneOf alternatives",
+        "metadata/extension separation and local Korean instruction flags",
+        "target-owner alternatives and local digest/offset shape",
+        "declaration local shapes and answer exclusion from interactions"
+      ]
+    },
+    "Core_T017_T018": {
+      "status": "NOT RUN",
+      "scope": [
+        "cross-array identities and uniqueness for Resources, segments, parts, options, slots, tokens, overlays, responses and provenance",
+        "original Resource custody and duplicate authoritative text detection",
+        "original-text digest agreement, Unicode offset/range and operation-target semantics",
+        "interaction/declaration correspondence, answer domains, permutation/gap/token rules",
+        "entry normalization/length and structured edit binding/conflicts",
+        "Candidate payload/provenance identity binding before snapshot acceptance"
+      ]
+    },
+    "core_negative_catalog_note": "All 28 future-Core rejection cases remain accepted by schema for local shape only. No runtime rejection PASS is claimed."
+  },
+  "historical_evidence": {
+    "path": "docs/evidence/umbrella-001/T010-four-content-contracts.json",
+    "sha256": "e33749330c83048a30e125b907bd88386dbab18e75a7b872d98cf0cc9d757f53",
+    "unchanged": "PASS",
+    "recorded_source_revision": "8a7e362c1d9d789b53392f47aa5d432889f93dd2",
+    "scope": "Historical revision only; cannot establish the semantic-content redesign."
+  },
+  "review": {
+    "focused_schema_review": "PASS",
+    "independent_read_only_review": "PASS",
+    "reviewed_schema_sha256": "9942ded28a21b92000d3a91309c7d8a58029b85ff67080ec2be1ab4cf099416e",
+    "independent_checks": "108 frozen contract tests; 57 supplemental Korean/string checks; 308 schema nodes and 137 references audited.",
+    "secret_and_private_content": "PASS",
+    "scope_boundary": "PASS",
+    "findings": [],
+    "hook_configuration": "core.hooksPath unset; default hooks directory contains sample hooks only; no active required hook was identified. Git hooks are not bypassed."
+  },
+  "exact_changed_paths": [
+    "contracts/candidate-content/semantic-content.schema.json",
+    "docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json",
+    "specs/001-product-runtime/tasks.md"
+  ],
+  "status_by_effect": {
+    "schema_hard_cut": "PASS",
+    "exact_four_normative_source": "PASS",
+    "synthetic_conformance": "PASS",
+    "core_referential_validation": "NOT RUN",
+    "local_release_candidate_regeneration": "NOT RUN",
+    "central_umbrella_ledger_update": "NOT RUN",
+    "push": "NOT RUN",
+    "pull_request": "NOT RUN",
+    "tag": "NOT RUN",
+    "publication": "NOT RUN",
+    "remote_readback": "NOT RUN",
+    "deployment": "NOT RUN",
+    "provisioning": "NOT RUN",
+    "runtime": "NOT RUN",
+    "alpha": "NOT RUN",
+    "protected_data": "NOT RUN",
+    "real_content": "NOT RUN",
+    "restore": "NOT RUN",
+    "migration": "NOT RUN",
+    "promotion": "NOT RUN",
+    "deletion": "NOT RUN",
+    "reset": "NOT RUN",
+    "rebase": "NOT RUN",
+    "cherry_pick": "NOT RUN",
+    "production_readiness": "UNESTABLISHED"
+  },
+  "limitations": [
+    "All fixtures are synthetic; schema acceptance cannot establish disclosure approval of real source content.",
+    "No XML/QTI/LOM exporter, Usage Data store, IRT/Rasch, package or dependency was added.",
+    "No release bytes were regenerated; T009 and separately authorized publication remain subsequent tasks.",
+    "Spec/design status text remains the historical T042 checkpoint; current owner completion is recorded only in tasks.md and this evidence.",
+    "Local commit and integration are verified after this evidence is frozen and must not be inferred from test PASS alone."
+  ]
+}

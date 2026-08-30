@@ -2,18 +2,915 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "semantic-content.schema.json",
   "title": "Semantic content",
+  "$comment": "Studious-normalized Resource and Item shapes. Local schema validation does not establish cross-array integrity, disclosure approval, admission or publication.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema", "value"],
+  "required": ["schema", "resources", "items"],
   "properties": {
-    "schema": {
+    "schema": {"type": "string", "const": "semantic-content.schema.json"},
+    "resources": {
+      "type": "array",
+      "minItems": 0,
+      "items": {"$ref": "#/$defs/resource"}
+    },
+    "items": {
+      "type": "array",
+      "minItems": 0,
+      "items": {"$ref": "#/$defs/item"}
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}(?![\\s\\S])"
+    },
+    "text": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}(?![\\s\\S])"},
+    "safe_path": {
       "type": "string",
       "format": "uri-reference",
-      "enum": ["semantic-content.schema.json"]
+      "pattern": "^(?!/)(?!.*\\\\)(?!.*//)(?!\\.{1,2}(?:/|$))(?!.*\\/\\.{1,2}(?:/|$))[A-Za-z0-9][A-Za-z0-9._-]*(?:/[A-Za-z0-9][A-Za-z0-9._-]*)*(?![\\s\\S])"
     },
-    "value": {
+    "media_type": {
       "type": "string",
-      "minLength": 1
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*/[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*(?:;[A-Za-z0-9!#$&^_.+-]+=[A-Za-z0-9!#$&^_.+-]+)*(?![\\s\\S])"
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_id",
+        "revision",
+        "resource_type",
+        "language",
+        "content_blocks",
+        "assets",
+        "standard_metadata",
+        "extensions",
+        "provenance_refs"
+      ],
+      "properties": {
+        "resource_id": {"$ref": "#/$defs/id"},
+        "revision": {"$ref": "#/$defs/text"},
+        "resource_type": {
+          "type": "string",
+          "enum": ["passage", "shared_stimulus", "table", "chart", "notice", "image", "audio", "mixed"]
+        },
+        "language": {"$ref": "#/$defs/text"},
+        "content_blocks": {
+          "type": "array",
+          "minItems": 0,
+          "items": {"$ref": "#/$defs/block"}
+        },
+        "assets": {
+          "type": "array",
+          "minItems": 0,
+          "items": {"$ref": "#/$defs/asset"}
+        },
+        "standard_metadata": {"$ref": "#/$defs/standard_metadata"},
+        "extensions": {"$ref": "#/$defs/resource_extensions"},
+        "provenance_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/id"}
+        }
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["block_id", "type", "segments"],
+      "properties": {
+        "block_id": {"$ref": "#/$defs/id"},
+        "type": {"$ref": "#/$defs/text"},
+        "segments": {
+          "type": "array",
+          "minItems": 0,
+          "items": {"$ref": "#/$defs/segment"}
+        }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["segment_id", "type", "text"],
+      "properties": {
+        "segment_id": {"$ref": "#/$defs/id"},
+        "type": {"$ref": "#/$defs/text"},
+        "text": {"$ref": "#/$defs/text"},
+        "source_anchor": {"$ref": "#/$defs/source_anchor"}
+      }
+    },
+    "source_anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provenance_ref", "page", "block"],
+      "properties": {
+        "provenance_ref": {"$ref": "#/$defs/id"},
+        "page": {"type": "integer", "minimum": 1},
+        "block": {"$ref": "#/$defs/id"}
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_id", "payload_path", "media_type"],
+      "properties": {
+        "asset_id": {"$ref": "#/$defs/id"},
+        "payload_path": {"$ref": "#/$defs/safe_path"},
+        "media_type": {"$ref": "#/$defs/media_type"}
+      }
+    },
+    "standard_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "ieee_lom": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "educational": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [],
+              "properties": {
+                "difficulty": {"$ref": "#/$defs/difficulty"}
+              }
+            }
+          }
+        },
+        "oneedtech_common_cartridge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "textComplexity": {
+              "type": "array",
+              "minItems": 0,
+              "items": {"$ref": "#/$defs/measurement"}
+            }
+          }
+        }
+      }
+    },
+    "difficulty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "value"],
+      "properties": {
+        "source": {"type": "string", "const": "LOMv1.0"},
+        "value": {
+          "type": "string",
+          "enum": ["very easy", "easy", "medium", "difficult", "very difficult"]
+        }
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "version", "source", "scale", "score", "unit"],
+      "properties": {
+        "scheme": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/id"},
+        "source": {"$ref": "#/$defs/id"},
+        "scale": {"$ref": "#/$defs/text"},
+        "score": {"type": "number"},
+        "unit": {"$ref": "#/$defs/text"}
+      }
+    },
+    "resource_extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automatic_disco"],
+      "properties": {
+        "automatic_disco": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["target_audience", "language_profile"],
+          "properties": {
+            "target_audience": {
+              "type": "array",
+              "minItems": 0,
+              "items": {"$ref": "#/$defs/id"}
+            },
+            "language_profile": {"$ref": "#/$defs/language_profile"}
+          }
+        }
+      }
+    },
+    "language_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["egp_mappings", "evp_mappings"],
+      "properties": {
+        "cefr": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level", "method", "confidence"],
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["Pre-A1", "A1", "A2", "B1", "B2", "C1", "C2"]
+            },
+            "method": {"$ref": "#/$defs/id"},
+            "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        },
+        "egp_mappings": {
+          "type": "array",
+          "minItems": 0,
+          "items": {"$ref": "#/$defs/egp_ref"}
+        },
+        "evp_mappings": {
+          "type": "array",
+          "minItems": 0,
+          "items": {"$ref": "#/$defs/evp_ref"}
+        }
+      }
+    },
+    "egp_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "version", "source", "grammar_id", "relationship", "review_status"],
+      "properties": {
+        "scheme": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/id"},
+        "source": {"$ref": "#/$defs/id"},
+        "grammar_id": {"$ref": "#/$defs/id"},
+        "relationship": {
+          "type": "string",
+          "enum": ["exact", "partial", "supplemental"]
+        },
+        "review_status": {
+          "type": "string",
+          "enum": ["unreviewed", "confirmed", "rejected"]
+        }
+      }
+    },
+    "evp_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "version", "source", "profile_entry_id", "sense", "pos"],
+      "properties": {
+        "scheme": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/id"},
+        "source": {"$ref": "#/$defs/id"},
+        "profile_entry_id": {"$ref": "#/$defs/id"},
+        "sense": {"$ref": "#/$defs/id"},
+        "pos": {"$ref": "#/$defs/text"}
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "revision",
+        "resource_refs",
+        "task",
+        "content_parts",
+        "overlays",
+        "interaction",
+        "response_declarations",
+        "scoring",
+        "standard_metadata",
+        "extensions",
+        "provenance_refs"
+      ],
+      "properties": {
+        "item_id": {"$ref": "#/$defs/id"},
+        "revision": {"$ref": "#/$defs/text"},
+        "resource_refs": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["resource_id", "usage"],
+            "properties": {
+              "resource_id": {"$ref": "#/$defs/id"},
+              "usage": {"$ref": "#/$defs/text"}
+            }
+          }
+        },
+        "task": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["taxonomy_id", "type", "skill"],
+          "properties": {
+            "taxonomy_id": {"$ref": "#/$defs/id"},
+            "type": {"$ref": "#/$defs/text"},
+            "skill": {"$ref": "#/$defs/text"}
+          }
+        },
+        "content_parts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/content_part"}
+        },
+        "overlays": {
+          "type": "array",
+          "minItems": 0,
+          "items": {"$ref": "#/$defs/overlay"}
+        },
+        "interaction": {"$ref": "#/$defs/interaction"},
+        "response_declarations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/response_declaration"}
+        },
+        "scoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["strategy", "max_score"],
+          "properties": {
+            "strategy": {"$ref": "#/$defs/text"},
+            "max_score": {"type": "number", "minimum": 0}
+          }
+        },
+        "standard_metadata": {"$ref": "#/$defs/standard_metadata"},
+        "extensions": {"$ref": "#/$defs/item_extensions"},
+        "provenance_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/id"}
+        }
+      }
+    },
+    "item_extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["automatic_disco"],
+      "properties": {
+        "automatic_disco": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["difficulty_evidence"],
+          "properties": {
+            "difficulty_evidence": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["language_profile_refs", "reasoning_feature_refs", "usage_data_refs"],
+              "properties": {
+                "language_profile_refs": {
+                  "type": "array",
+                  "minItems": 0,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["resource_id"],
+                    "properties": {
+                      "resource_id": {"$ref": "#/$defs/id"}
+                    }
+                  }
+                },
+                "reasoning_feature_refs": {
+                  "type": "array",
+                  "minItems": 0,
+                  "items": {"$ref": "#/$defs/reference"}
+                },
+                "usage_data_refs": {
+                  "type": "array",
+                  "minItems": 0,
+                  "items": {"$ref": "#/$defs/reference"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "version", "entry_id", "source"],
+      "properties": {
+        "scheme": {"$ref": "#/$defs/id"},
+        "version": {"$ref": "#/$defs/id"},
+        "entry_id": {"$ref": "#/$defs/id"},
+        "source": {"$ref": "#/$defs/id"}
+      }
+    },
+    "content_part": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["part_id", "role", "content", "analysis_target"],
+      "properties": {
+        "part_id": {"$ref": "#/$defs/id"},
+        "role": {"$ref": "#/$defs/text"},
+        "content": {"$ref": "#/$defs/content"},
+        "analysis_target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["egp", "evp"],
+          "properties": {
+            "egp": {"type": "boolean"},
+            "evp": {"type": "boolean"}
+          }
+        }
+      },
+      "$comment": "Korean inline instruction parts disable both analysis flags. Resource language and cross-array relationships are validated by Core T017/T018.",
+      "not": {
+        "properties": {
+          "role": {"const": "instruction"},
+          "content": {
+            "required": ["kind", "language"],
+            "properties": {
+              "kind": {"const": "inline_text"},
+              "language": {"pattern": "^[kK][oO](?:-|$)"}
+            }
+          },
+          "analysis_target": {
+            "anyOf": [
+              {
+                "properties": {
+                  "egp": {"const": true}
+                }
+              },
+              {
+                "properties": {
+                  "evp": {"const": true}
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "content": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "language", "text"],
+          "properties": {
+            "kind": {"type": "string", "const": "inline_text"},
+            "language": {"$ref": "#/$defs/text"},
+            "text": {"$ref": "#/$defs/text"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "resource_id", "segment_ids"],
+          "properties": {
+            "kind": {"type": "string", "const": "resource_segments"},
+            "resource_id": {"$ref": "#/$defs/id"},
+            "segment_ids": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/id"}
+            }
+          }
+        }
+      ]
+    },
+    "target": {
+      "$comment": "Offsets are Unicode scalar positions in exact original text. Core validates reference ownership, full-text UTF-8 digest agreement, range bounds and operation semantics.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["resource_id", "segment_id", "start", "end", "text_sha256"],
+          "properties": {
+            "resource_id": {"$ref": "#/$defs/id"},
+            "segment_id": {"$ref": "#/$defs/id"},
+            "start": {"type": "integer", "minimum": 0},
+            "end": {"type": "integer", "minimum": 0},
+            "text_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["part_id", "start", "end", "text_sha256"],
+          "properties": {
+            "part_id": {"$ref": "#/$defs/id"},
+            "start": {"type": "integer", "minimum": 0},
+            "end": {"type": "integer", "minimum": 0},
+            "text_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        }
+      ]
+    },
+    "overlay": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["overlay_id", "operation", "target"],
+          "properties": {
+            "overlay_id": {"$ref": "#/$defs/id"},
+            "operation": {
+              "type": "string",
+              "enum": ["blank", "mark", "insert_slot", "editable"]
+            },
+            "target": {"$ref": "#/$defs/target"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["overlay_id", "operation", "target", "replacement_part_ref"],
+          "properties": {
+            "overlay_id": {"$ref": "#/$defs/id"},
+            "operation": {"type": "string", "const": "replace"},
+            "target": {"$ref": "#/$defs/target"},
+            "replacement_part_ref": {"$ref": "#/$defs/id"}
+          }
+        }
+      ]
+    },
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["option_id", "part_ref"],
+      "properties": {
+        "option_id": {"$ref": "#/$defs/id"},
+        "part_ref": {"$ref": "#/$defs/id"}
+      }
+    },
+    "interaction": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "options"],
+          "properties": {
+            "type": {"type": "string", "const": "choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "options": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/option"}
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "reference_refs", "options"],
+          "properties": {
+            "type": {"type": "string", "const": "reference_choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "reference_refs": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["resource_id", "segment_id"],
+                "properties": {
+                  "resource_id": {"$ref": "#/$defs/id"},
+                  "segment_id": {"$ref": "#/$defs/id"}
+                }
+              }
+            },
+            "options": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/option"}
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "mark_refs"],
+          "properties": {
+            "type": {"type": "string", "const": "inline_mark_choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "mark_refs": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/id"}
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "sentence_refs"],
+          "properties": {
+            "type": {"type": "string", "const": "sentence_mark_choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "sentence_refs": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["option_id", "resource_id", "segment_id"],
+                "properties": {
+                  "option_id": {"$ref": "#/$defs/id"},
+                  "resource_id": {"$ref": "#/$defs/id"},
+                  "segment_id": {"$ref": "#/$defs/id"}
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "blank_ref", "options"],
+          "properties": {
+            "type": {"type": "string", "const": "blank_choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "blank_ref": {"$ref": "#/$defs/id"},
+            "options": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/option"}
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "unit_refs", "order_options"],
+          "properties": {
+            "type": {"type": "string", "const": "order_choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "unit_refs": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/id"}
+            },
+            "order_options": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["option_id", "unit_refs"],
+                "properties": {
+                  "option_id": {"$ref": "#/$defs/id"},
+                  "unit_refs": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {"$ref": "#/$defs/id"}
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "given_part_ref", "slots"],
+          "properties": {
+            "type": {"type": "string", "const": "position_choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "given_part_ref": {"$ref": "#/$defs/id"},
+            "slots": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["slot_id", "target_ref"],
+                "properties": {
+                  "slot_id": {"$ref": "#/$defs/id"},
+                  "target_ref": {"$ref": "#/$defs/id"}
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "summary_part_ref", "gaps", "pair_options"],
+          "properties": {
+            "type": {"type": "string", "const": "summary_pair_choice"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "summary_part_ref": {"$ref": "#/$defs/id"},
+            "gaps": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["gap_id", "target_ref"],
+                "properties": {
+                  "gap_id": {"$ref": "#/$defs/id"},
+                  "target_ref": {"$ref": "#/$defs/id"}
+                }
+              }
+            },
+            "pair_options": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["option_id", "values"],
+                "properties": {
+                  "option_id": {"$ref": "#/$defs/id"},
+                  "values": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["gap_id", "part_ref"],
+                      "properties": {
+                        "gap_id": {"$ref": "#/$defs/id"},
+                        "part_ref": {"$ref": "#/$defs/id"}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "gaps"],
+          "properties": {
+            "type": {"type": "string", "const": "inline_choice_set"},
+            "gaps": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["gap_id", "target_ref", "response_id", "options"],
+                "properties": {
+                  "gap_id": {"$ref": "#/$defs/id"},
+                  "target_ref": {"$ref": "#/$defs/id"},
+                  "response_id": {"$ref": "#/$defs/id"},
+                  "options": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {"$ref": "#/$defs/option"}
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "tokens", "allow_reuse"],
+          "properties": {
+            "type": {"type": "string", "const": "token_order"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "tokens": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["token_id", "part_ref"],
+                "properties": {
+                  "token_id": {"$ref": "#/$defs/id"},
+                  "part_ref": {"$ref": "#/$defs/id"}
+                }
+              }
+            },
+            "allow_reuse": {"type": "boolean"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "entries"],
+          "properties": {
+            "type": {"type": "string", "const": "text_entry"},
+            "entries": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["entry_id", "target_ref", "response_id", "expected_length"],
+                "properties": {
+                  "entry_id": {"$ref": "#/$defs/id"},
+                  "target_ref": {"$ref": "#/$defs/id"},
+                  "response_id": {"$ref": "#/$defs/id"},
+                  "expected_length": {"type": "integer", "minimum": 1}
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "response_id", "editable_part_ref", "edit_targets", "allowed_operations"],
+          "properties": {
+            "type": {"type": "string", "const": "edit_response"},
+            "response_id": {"$ref": "#/$defs/id"},
+            "editable_part_ref": {"$ref": "#/$defs/id"},
+            "edit_targets": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["target_id", "target_ref"],
+                "properties": {
+                  "target_id": {"$ref": "#/$defs/id"},
+                  "target_ref": {"$ref": "#/$defs/id"}
+                }
+              }
+            },
+            "allowed_operations": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "enum": ["insert", "delete", "replace"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "response_declaration": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["response_id", "cardinality", "base_type", "correct_response"],
+          "properties": {
+            "response_id": {"$ref": "#/$defs/id"},
+            "cardinality": {"type": "string", "const": "single"},
+            "base_type": {"type": "string", "const": "identifier"},
+            "correct_response": {"$ref": "#/$defs/id"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["response_id", "cardinality", "base_type", "correct_response"],
+          "properties": {
+            "response_id": {"$ref": "#/$defs/id"},
+            "cardinality": {"type": "string", "const": "ordered"},
+            "base_type": {"type": "string", "const": "identifier"},
+            "correct_response": {
+              "type": "array",
+              "minItems": 1,
+              "items": {"$ref": "#/$defs/id"}
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["response_id", "cardinality", "base_type", "correct_response"],
+          "properties": {
+            "response_id": {"$ref": "#/$defs/id"},
+            "cardinality": {"type": "string", "const": "single"},
+            "base_type": {"type": "string", "const": "string"},
+            "correct_response": {"$ref": "#/$defs/text"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["response_id", "cardinality", "base_type", "correct_response"],
+          "properties": {
+            "response_id": {"$ref": "#/$defs/id"},
+            "cardinality": {"type": "string", "const": "single"},
+            "base_type": {"type": "string", "const": "record"},
+            "correct_response": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["edits"],
+              "properties": {
+                "edits": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["target_id", "operation", "text"],
+                    "properties": {
+                      "target_id": {"$ref": "#/$defs/id"},
+                      "operation": {
+                        "type": "string",
+                        "enum": ["insert", "delete", "replace"]
+                      },
+                      "text": {"type": "string"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }

@@ -5,16 +5,24 @@
 **Current state**: T001–T008 retain their historical completion evidence. T042 requirements/design
 and intentional RED are complete: 95 expected schema failures, 19 passes, no unexpected failures.
 T043 implements the semantic-content hard cut with the frozen oracle unchanged: contract tests
-108 PASS, full suite 114 PASS. T009–T041 remain unchecked (10 complete, 33 unchecked, 43 total).
+108 PASS, full suite 114 PASS. T009–T041 and T044 remain unchecked (10 complete, 34 unchecked, 44 total).
 Only the semantic-content normative schema changes; T077 records source/conformance evidence.
 Historical T010, other schemas, release bytes, runtime and Core validators remain unchanged.
+
+T009's later local attempt failed the existing release contract: normative output JSON is not JCS,
+the source digest omits required input/mode/path bindings, and verifier reuse of builder output
+does not independently enforce those rules. Same-checkout repeated bytes and 114 frozen checks
+passed, but the second-clean-environment gate is `NOT RUN`; T009 has no completion or T011 PASS.
+The five dirty generated outputs remain preserved. This planning correction adds unchecked T044
+for §§3.3, 5.1–5.5 and 7.1 conformance before T009 resumes; no tooling or release PASS is implied.
 
 **ID scope**: These are Studious owner-local task IDs. Each ID is one fresh task branch, one
 verified Conventional Commit with its task trailer, and one local `--no-ff` merge. Never combine
 two IDs in one commit.
 
 **Execution**: Tasks are listed in dependency order and intentionally use no `[P]` marker. Tests
-are written and observed failing before their implementation task. Every task names literal paths.
+are written and observed failing before their implementation task, except T044's regression and
+repair form one GREEN-only integration unit. Every task names literal paths.
 
 ## Phase 1: Setup and Foundational Boundaries
 
@@ -41,7 +49,30 @@ publication/readback as `NOT RUN`.
 - [X] T008 [US1] Run `uv run --locked pytest -q tests/contracts/test_candidate_content.py` and write exact-four source/conformance status, commands, revision, digests, and limitations to `docs/evidence/umbrella-001/T010-four-content-contracts.json` without claiming a release candidate or publication. — COMPLETED: exact-four source=PASS; synthetic conformance catalog=PASS; locked offline test=10 passed; release candidate/publication=NOT RUN.
 - [X] T042 [US1] Make the semantic-content hard-cut requirements/design authority and intentional RED conformance one atomic change in `specs/001-product-runtime/spec.md`, `specs/001-product-runtime/plan.md`, `specs/001-product-runtime/data-model.md`, `specs/001-product-runtime/contracts/candidate-content.md`, `specs/001-product-runtime/tasks.md`, `tests/contracts/test_candidate_content.py`, `contracts/candidate-content/conformance/positive.json`, and `contracts/candidate-content/conformance/negative.json`: require top-level `resources[]` plus `items[]`; `$defs` for `resource`, `item`, `content_part`, `response_declaration`, and `interaction`; immutable Resource originals with Item overlays; standard Resource metadata separated from `extensions.automatic_disco`; no `educational_measurements`; the five controlled LOM difficulty values (`very easy`, `easy`, `medium`, `difficult`, `very difficult`) plus separate `textComplexity`; content kinds `inline_text` and `resource_segments`; exactly 12 interaction types (`choice`, `reference_choice`, `inline_mark_choice`, `sentence_mark_choice`, `blank_choice`, `order_choice`, `position_choice`, `summary_pair_choice`, `inline_choice_set`, `token_order`, `text_entry`, `edit_response`); separate `response_declarations`; `additionalProperties: false` on every object; and positive/negative conformance. **RED checkpoint**: the new cases fail only because the existing `semantic-content.schema.json` does not yet implement the hard cut. XML/QTI/LOM export adapters and Usage Data/IRT/Rasch storage remain out of scope for later separate tasks. — COMPLETED: requirements/design and synthetic oracle frozen; intentional RED: 95 expected schema-dependent assertion failures, 19 passing existing/oracle/fixture checks, zero unexpected failures; unchanged normative schema bytes remain at baseline `f532b79b26c46ff2cdaf8dac9bfd14d159fb9f0b`. T043 owns GREEN/T077; Core referential validation, release regeneration, publication, runtime and Alpha are NOT RUN.
 - [X] T043 [US1] Implement only the semantic-content JSON Schema hard cut needed to pass T042 RED and perform schema-level validation in `contracts/candidate-content/semantic-content.schema.json`, `tests/contracts/test_candidate_content.py`, `contracts/candidate-content/conformance/positive.json`, `contracts/candidate-content/conformance/negative.json`, `specs/001-product-runtime/tasks.md`, and `docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json`. The schema owns directly enforceable `required`, `enum`, `oneOf`, `additionalProperties: false`, and local-shape constraints only; cross-array Resource/segment/part/option/slot/token/response ID referential integrity belongs to the later Core validator in T017/T018. **GREEN/evidence checkpoint**: record the exact Studious revision, semantic-content schema and conformance digests, commands/results, the schema-level versus later referential-validation responsibility split, and the limitation that existing `docs/evidence/umbrella-001/T010-four-content-contracts.json` remains valid only for its historical revision; do not implement XML/QTI/LOM export adapters or Usage Data/IRT/Rasch storage. — COMPLETED: semantic-content schema GREEN; exact-four inventory, frozen contract tests (108 PASS), full pytest (114 PASS), local-shape/disclosure checks and focused review PASS. T077 binds the exact contract subtree and file digests with post-commit resolution; T010 stays historical. Core T017/T018 reference validation, T009 regeneration, publication, runtime and Alpha are NOT RUN.
-- [ ] T009 [US1] After T043 PASS, reuse the T007 builder to regenerate the local release candidate from the new semantic-content source bytes by running `uv run --locked python tools/build_candidate_content_release.py` twice plus `uv run --locked python tools/verify_release.py --release build/releases/candidate-content/0.1.0`, verify tracked `LICENSE`, exact distributable inventory, applicable third-party/NOTICE inputs, and exact-byte agreement with the T043 source, and write the local-candidate-only result with `publication=NOT RUN` to `docs/evidence/umbrella-001/T011-content-release-candidate.json`.
+- [ ] T044 [US1] After T043 PASS, repair the existing Candidate-content tooling against Umbrella `specs/001-product-compute-boundaries/contracts/public-contract-release.md` §§3.3, 5.1–5.5 and 7.1 in exactly `tools/build_candidate_content_release.py`, `tools/verify_release.py`, new `tests/contracts/test_candidate_content_release.py`, and the T044 completion/current-summary fields of `specs/001-product-runtime/tasks.md`; additionally allow `pyproject.toml` and `uv.lock` only for the necessary exact-pinned standards-conforming JCS dependency identified by the survey in `plan.md` (package/version not yet selected). Preserve all frozen schemas, conformance sources, tests/fixtures, historical T010/T077 and existing five dirty generated outputs. Implement canonical released bytes separately from raw-source bindings; the exact twelve-file mode/hash/path LF inventory; independent §3.3 manifest and §5.5 provenance checks; acyclic schemas/conformance → manifest → provenance → checksums; and rejection of unproved `reproducible: true`. **GREEN-only acceptance**: unchanged 114 frozen checks plus independent release regressions all PASS, covering canonical bytes/numbers/Unicode keys, full source inventory/modes/paths, revision/raw-source/output/provenance binding, missing/extra/dirty sources, manifest fields, checksum/inventory negatives, and build/verify in task-owned temporary directories only. Do not derive the regression oracle solely from `expected_release_files`, hand-roll a general JCS algorithm, or create a separate intentional RED commit. Run `uv run --locked --offline pytest -q -p no:cacheprovider` in an isolated task environment; record exact commands and all results at completion. T044 supplies local source/output selection needed for isolated validation, but does not regenerate repository outputs, complete T009 or claim the second-environment gate. Full required PASS is mandatory before its own commit/merge.
+- [ ] T009 [US1] After T043 and T044 are integrated with required PASS, select and record one exact clean integrated source revision, then use the repaired `tools/build_candidate_content_release.py` and `tools/verify_release.py` to build/verify all eight `build/releases/candidate-content/0.1.0/` files named in T007 from that same revision in two owner-selected clean environments as specified below. Compare every output byte; bind the complete source inventory/raw-source digests and the deterministic canonical-output sizes/digests rather than requiring raw-source/output equality. Verify tracked `LICENSE`, exact distributable inventory and applicable third-party/NOTICE inputs; record actual environment identities, commands, comparison/checksum/provenance/conformance results and limitations in `docs/evidence/umbrella-001/T011-content-release-candidate.json`, with `publication=NOT RUN`. T009 alone regenerates those eight repository outputs and updates its completion/current-summary fields in `specs/001-product-runtime/tasks.md`; no PASS, completion or commit/merge without the actual second-clean-environment result and every §7.1 gate.
+
+T009 ephemeral method: before writing, resolve `<revision>` to the full selected commit hash and
+confirm that `/tmp/studious-t009-repro-a-<revision>/` and
+`/tmp/studious-t009-repro-b-<revision>/` are absent. In each root, create an independent local-only
+Git copy under `source/` with `git clone --no-hardlinks --no-checkout` from the verified owner
+repository, with no network fetch, then check out that exact revision detached. No `git worktree`
+registration is required. Verify clean tracked inputs and no shared object alternates; materialize
+separate `venv/` and `output/` paths under each root. Use `uv sync --locked --offline` with each
+fresh venv selected by `UV_PROJECT_ENVIRONMENT` and the existing
+`UV_CACHE_DIR=/home/choi-eunchang/.cache/uv`, reading the same exact-locked distribution bytes
+through the normal approved access path (`require_escalated` if needed). Do not copy/mirror the
+cache, create substitute caches, or change root/global cache structure. T044 resolves any needed
+JCS dependency through normal selection/installation; T009 first verifies that its immutable
+locked package inputs are ready offline.
+Never reuse an existing root or environment. Record both source trees, Python/uv/dependency
+identities, literal commands and byte-comparison results; exclude these ephemeral paths from
+deterministic release bytes. This is same-host clean source/venv isolation, not cross-platform
+reproducibility. Missing offline dependencies or an unexecuted environment keep the gate
+`UNESTABLISHED`/`NOT RUN`, not PASS. Do not create these paths during T044 or this planning correction.
+After both isolated builds pass, T009 may regenerate only its original repository-output scope
+from the verified bytes; the pre-existing dirty outputs remain untouched until that task owns it.
+
 - [ ] T010 [US1] Add failing Core Admission/Handoff required-field, forbidden-field, independent-version, weak-precondition, release-mismatch, exact/conflicting-replay, and implementation-agreement cases in `tests/contracts/test_core_admission.py`, `contracts/core-admission/conformance/positive.json`, and `contracts/core-admission/conformance/negative.json`.
 - [ ] T011 [US1] Select one independent pre-1.0 Core API/Handoff release version and tag, then implement the exact request/Handoff, repositoryd, and duckdbd service contracts needed to pass T010 in `contracts/core-admission/openapi.yaml`, `contracts/core-admission/handoff-reference.schema.json`, `contracts/repositoryd/openapi.yaml`, and `contracts/duckdbd/openapi.yaml`; do not reuse or infer the Candidate-content version/tag.
 - [ ] T012 [US1] Implement deterministic Core API/Handoff release generation in `tools/build_core_admission_release.py` and extend exact verification in `tools/verify_release.py`, producing the independently identified outputs `build/releases/core-admission/manifest.json`, `build/releases/core-admission/checksums.sha256`, and `build/releases/core-admission/provenance.json` with no Candidate-content bundle or alias.
@@ -138,7 +169,7 @@ integration PASS does not establish deployed E2E, recovery, or production readin
 ## Dependencies and Execution Order
 
 1. T001 → T002 → T003 → T004 establishes the package and architecture boundary.
-2. T005 → T006 → T007 → T008 → T042 → T043 → T009 completes Candidate-content source, the semantic-content hard cut, central T077 evidence, and regenerated local-candidate evidence.
+2. T005 → T006 → T007 → T008 → T042 → T043 → T044 → T009 completes Candidate-content source, the semantic-content hard cut, central T077 evidence, contract-compliant tooling, and regenerated local-candidate evidence including the second-clean-environment gate.
 3. T010 → T011 → T012 → T013 → T014 completes the independent Core API/Handoff source and initializes the two publication slots.
 4. T015 → T016 and T043 both precede T017; T017 → T018 → T019 completes controlled independent intake evidence, including Core-owned cross-array reference validation at the existing admission boundary.
 5. T020 → T021 → T022 → T023 → T024 → T025 → T026 → T027 completes lifecycle and persistence evidence.
@@ -156,7 +187,7 @@ runtime, Alpha, restore, deployment, or deletion from a planning result.
 |---|---|---|
 | T010 four contracts | T005–T008 | `docs/evidence/umbrella-001/T010-four-content-contracts.json` |
 | T077 semantic-content hard cut | T042–T043 | `docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json` |
-| T011 Candidate local candidate | T007, T043, T009 | `docs/evidence/umbrella-001/T011-content-release-candidate.json` |
+| T011 Candidate local candidate | T007, T043, T044, T009 | `docs/evidence/umbrella-001/T011-content-release-candidate.json` |
 | T012 Core API/Handoff | T010–T013 | `docs/evidence/umbrella-001/T012-core-admission-api.json` |
 | T013 two publication slots | T014, gated T032–T033 | `docs/evidence/umbrella-001/T013-release-readback.json` |
 | T017 independent intake | T015–T019 | `docs/evidence/umbrella-001/T017-independent-intake.json` |
@@ -180,18 +211,20 @@ runtime, Alpha, restore, deployment, or deletion from a planning result.
 ## Planned Task Totals
 
 - Setup/foundational: 4
-- US1 contract and publication work: 14 (including the semantic-content RED/GREEN hard cut and two separately authorized publication tasks)
+- US1 contract and publication work: 15 (including the semantic-content RED/GREEN hard cut, T044 GREEN release-tooling repair and two separately authorized publication tasks)
 - US2 intake work: 5
 - US3 lifecycle/persistence work: 8
 - US4 delivery work: 3
 - US5 fixture/Alpha work: 9 (including eight separately authorized Alpha tasks)
-- Total owner-local tasks: 43
+- Total owner-local tasks: 44
 
 T043 re-observed T042's historical expected RED (95 failed / 19 passed) and the unrelated
 19 PASS / 95 deselected before implementation, then made the unchanged complete oracle GREEN.
 Commands, exact source/conformance digests and limitations are recorded in
 `docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json`; the supported test-only subset
 remains fixed in `specs/001-product-runtime/plan.md`.
-Suggested next eligible increment: T009 only, in a subsequent authorized turn. T009 regenerated
-candidate → separately authorized T032 publication/readback remain subsequent units; neither
-is executed by T043. Core cross-array validation remains owned by T017/T018.
+Suggested next eligible increment: T044 only, in a subsequent owner session. T044 tooling GREEN
+→ T009 regenerated candidate with two clean environments → separately authorized T032
+publication/readback remain separate units; none is executed by this planning correction.
+Core cross-array validation remains owned by T017/T018; the independent Core API/Handoff and
+publication dependencies are unchanged.

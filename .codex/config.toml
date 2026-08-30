@@ -1,3 +1,28 @@
+default_permissions = "studious-owner"
+
+# Shell networking stays off by default. Grant it only to an exact task command
+# after its destinations and output paths are known.
+
+[permissions.studious-owner]
+description = "Write only Studious Lamp; keep command networking task-scoped."
+
+[permissions.studious-owner.filesystem]
+glob_scan_max_depth = 8
+":minimal" = "read"
+":tmpdir" = "write"
+":slash_tmp" = "write"
+"/home/choi-eunchang/.codex/packages/standalone/releases" = "read"
+"/home/choi-eunchang/Documents/ChatGPT/studious-lamp" = "write"
+"/home/choi-eunchang/Documents/ChatGPT/studious-lamp/.git" = "write"
+"/home/choi-eunchang/Documents/ChatGPT/studious-lamp/.codex" = "read"
+"/home/choi-eunchang/Documents/ChatGPT/studious-lamp/.agents" = "read"
+"/home/choi-eunchang/Documents/ChatGPT/studious-lamp/.env*" = "deny"
+"/home/choi-eunchang/Documents/ChatGPT/studious-lamp/**/.env" = "deny"
+"/home/choi-eunchang/Documents/ChatGPT/studious-lamp/**/.env.*" = "deny"
+
+[permissions.studious-owner.network]
+enabled = false
+
 [memories]
 use_memories = false
 generate_memories = false

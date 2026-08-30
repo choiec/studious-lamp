@@ -1,0 +1,505 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "T001",
+  "surveyed_at": "2026-08-30T15:26:03+09:00",
+  "owner": {
+    "repository_id": "repo:studious-lamp",
+    "repository_locator": "studious-lamp",
+    "verified_primary_root": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+    "task_worktree_root": "/tmp/studious-t001-owner-survey",
+    "environment_mode": "Worktree",
+    "environment_rationale": "The verified primary checkout was clean and remained on main; a task-local worktree provides the writable task boundary required by the current sandbox.",
+    "primary_write_owner": "main-agent"
+  },
+  "git": {
+    "base_branch": "main",
+    "base_revision": "e9852632dae9abfdfaa6532eacd8a9c8220b0ab1",
+    "base_tree": "7bac07c3939120ad985ccd3d39bd410c7233d159",
+    "task_branch": "codex/T001-studious-owner-survey",
+    "base_index_state": "clean",
+    "base_worktree_state": "clean",
+    "overlapping_user_changes": [],
+    "remotes": [],
+    "core_hooks_path": null,
+    "bootstrap_exception": false
+  },
+  "write_scope": {
+    "allowed_literal_paths": [
+      "docs/architecture/umbrella-001-owner-survey.json",
+      "docs/evidence/umbrella-001/T001-owner-survey.json"
+    ],
+    "prohibited_effects": [
+      "source or test implementation",
+      "contract or schema implementation",
+      "dependency installation or lock generation",
+      "tag, release, publication, or remote readback",
+      "runtime, service, storage, network, or protected-environment access",
+      "deployment, migration, backup, restore, fault injection, promotion, purge, reset, garbage collection, or deletion",
+      "push, pull request, remote merge, rebase, cherry-pick, or branch cleanup"
+    ]
+  },
+  "repository_inventory": [
+    {
+      "path": ".codex/config.toml",
+      "state": "present",
+      "git_blob": "9529f00f4428b3b7f9b62b06414c47f2fe8e4584",
+      "sha256": "9560332e8e47ffdd009d955a1fe02b39168638e56646e4cba7a8b36959dcb28e"
+    },
+    {
+      "path": ".gitignore",
+      "state": "present",
+      "git_blob": "c7fab32ea6224c0f19fc47e17834cb719f29c75c",
+      "sha256": "4eff95b2214e090e5f5e5185b54614577ec55c3309907dcb4d2a564d3476cd03"
+    },
+    {
+      "path": "LICENSE",
+      "state": "present",
+      "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "README.md",
+      "state": "present",
+      "git_blob": "2e47a64f4c62a6a17c42e3d53c94730c5eb2fd3a",
+      "sha256": "73b0839517a1bd7d509fdb0daeef9570ded8b665c3800ba017acfd04c80cd953"
+    }
+  ],
+  "instructions": {
+    "repository_agents_path": {
+      "path": "AGENTS.md",
+      "state": "absent",
+      "status": "UNESTABLISHED",
+      "reason": "No repository-local AGENTS.md is tracked at the verified base revision."
+    },
+    "repository_codex_config": {
+      "path": ".codex/config.toml",
+      "state": "present",
+      "status": "PASS",
+      "scope": "Project memory configuration only; it selects no runtime toolchain or architecture."
+    },
+    "session_inputs": [
+      {
+        "path": "AGENTS.md",
+        "repository": "repo:symmetrical-umbrella",
+        "git_state": "untracked",
+        "sha256": "cd09d6629542c52e97e96a8c1a577ff06dbaf1d2b73493986b1a8cbde4fca6f9",
+        "scope": "Applicable user-supplied session instruction; not part of the pinned integrated Umbrella tree."
+      },
+      {
+        "path": "docs/task-brief.md",
+        "repository": "repo:symmetrical-umbrella",
+        "git_state": "untracked",
+        "sha256": "2ea4d7aa51ad95037c8fc704a55d796dcdd20a11b22a90da3f5bfc2a0bbd202a",
+        "scope": "Applicable task-start template; not part of the pinned integrated Umbrella tree."
+      }
+    ],
+    "coordination_inputs": [
+      {
+        "path": ".specify/memory/constitution.md",
+        "repository": "repo:symmetrical-umbrella",
+        "sha256": "17db5e96effa669f1712a4f34b2d6e360982ac2fb7699cf0151ce59f98108697"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/codex-project-routing.md",
+        "repository": "repo:symmetrical-umbrella",
+        "sha256": "8839436f64391a332f47bf46cf37bde56aabd57edf095c97f8ecb9fc8946c491"
+      },
+      {
+        "path": "docs/task-briefs/studious-core-runtime.md",
+        "repository": "repo:symmetrical-umbrella",
+        "sha256": "6f7fce3067beda37bc399fbf9e0f3ffed034121adb7c6a97897c52e5188205ca"
+      },
+      {
+        "path": "docs/task-briefs/studious-public-contracts.md",
+        "repository": "repo:symmetrical-umbrella",
+        "sha256": "d55b30e33c7d984710a1ecaf72c3ca9ff7f397ecd1d23e6c06c075564b9322de"
+      }
+    ]
+  },
+  "umbrella_baseline": {
+    "repository_id": "repo:symmetrical-umbrella",
+    "verified_root": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+    "branch": "main",
+    "revision": "eba6fd909b3d2c3a65ec79483654be9e6a6e9f0b",
+    "tree": "163e2696ffa59a312a2f7a77bf57502b113d153e",
+    "registry": {
+      "path": "governance/traceability.json",
+      "sha256": "da85a868f92472fadb6fe8d00a07e5669780b064a18b0c9db6da3c04bb8af27e",
+      "validation_command": "UV_CACHE_DIR=\"$PWD/.tools/uv-cache\" uv run --locked --offline python tools/validate_traceability.py",
+      "validation_status": "PASS"
+    },
+    "governed_documents": [
+      {
+        "path": "specs/001-product-compute-boundaries/spec.md",
+        "sha256": "9649217fc94cebd76b8804d7061ebcbb1903c715841fd3847e30dfb21b7ff7d8"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/plan.md",
+        "sha256": "61b91ef89d7a3396f0c044ad17cc34b3d9f4794edf041b8316b819353511384d"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/research.md",
+        "sha256": "b2945345b127621fb50a14704bd2180d9f183a876eb213053ef0da9d8671217a"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/data-model.md",
+        "sha256": "ac27a490f9c0ce7529894594b42be1d3b2c240190bb07b9fcb10def746f4d04e"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/quickstart.md",
+        "sha256": "3ca32ca6db98ed7fef37944aa68dde645aafca34b3f5a2159b436ee52b07101b"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/tasks.md",
+        "sha256": "c8192ac30260ebb6d19f98bd6ffd8cfefa625a513b7ad89a359923f35a9981b2"
+      },
+      {
+        "path": "governance/traceability.json",
+        "sha256": "da85a868f92472fadb6fe8d00a07e5669780b064a18b0c9db6da3c04bb8af27e"
+      }
+    ],
+    "contracts": [
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/authority-and-role-boundaries.md",
+        "sha256": "4373bbf60f9a6ef76d7bfc55f7bc4cc91a7d43dd66297cf3a1e91c9c7949bdac"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/candidate-handoff.md",
+        "sha256": "d9746e1a87060e0594f448f0b10a19ca3528a7cc265f62e3c0ee8faa590d4c6a"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/codex-project-routing.md",
+        "sha256": "8839436f64391a332f47bf46cf37bde56aabd57edf095c97f8ecb9fc8946c491"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/deployment-and-recovery.md",
+        "sha256": "43f88d13801225d0b906d6a49a89ef5d18a293a3f644d5a9bd90e4dcb72915e9"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/public-contract-release.md",
+        "sha256": "b13aa9c67d4fd607c542fbf0394672c3a0d9078f423c23cf8fa9c16eacd0e3aa"
+      }
+    ],
+    "checklists": [
+      {
+        "path": "specs/001-product-compute-boundaries/checklists/architecture.md",
+        "sha256": "97c64db4adeae3a2e10c934517aa6a4df0c3a5fa3b5d54b2a50f7e34e6de6cd5",
+        "review_status": "UNESTABLISHED"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/checklists/requirements.md",
+        "sha256": "293dbf6e3420af1d773d0a860f6d7d790dddf9695578c207e169261d5631cc7f",
+        "review_status": "UNESTABLISHED"
+      }
+    ],
+    "task_briefs": [
+      {
+        "path": "docs/task-briefs/studious-core-runtime.md",
+        "sha256": "6f7fce3067beda37bc399fbf9e0f3ffed034121adb7c6a97897c52e5188205ca"
+      },
+      {
+        "path": "docs/task-briefs/studious-public-contracts.md",
+        "sha256": "d55b30e33c7d984710a1ecaf72c3ca9ff7f397ecd1d23e6c06c075564b9322de"
+      },
+      {
+        "path": "docs/task-briefs/automatic-private-compute.md",
+        "sha256": "6d0711c690414814d1763943aba2b21efea7b47d75f3e332c5a8d4fff641b8d9"
+      },
+      {
+        "path": "docs/task-briefs/upgraded-local-ocis-bootstrap.md",
+        "sha256": "f2825b804ed986e00e5cf572b9de0fcc3c6fdfc9fe831be7fb34a02ff9bd5916"
+      }
+    ],
+    "limitations": [
+      "The integrated main revision and tree are the pinned authority.",
+      "The Umbrella checkout contained untracked local Codex and Spec Kit setup files; they are not part of the pinned tree and do not widen this survey."
+    ]
+  },
+  "toolchain": {
+    "planning_selection": {
+      "language": "Python",
+      "python": "3.14.4",
+      "package_manager": "uv",
+      "uv": "0.11.32",
+      "git": "2.53.0",
+      "basis": "The tracked ignore policy is Python-oriented and these exact tools are available locally. T004 must pin manifests and dependencies before source work."
+    },
+    "observed_binaries": [
+      {
+        "name": "python3",
+        "path": "/usr/bin/python3",
+        "version": "3.14.4",
+        "status": "PASS"
+      },
+      {
+        "name": "uv",
+        "path": "/home/choi-eunchang/.local/bin/uv",
+        "version": "0.11.32",
+        "status": "PASS"
+      },
+      {
+        "name": "git",
+        "path": "/usr/bin/git",
+        "version": "2.53.0",
+        "status": "PASS"
+      },
+      {
+        "name": "specify",
+        "path": "/home/choi-eunchang/.local/bin/specify",
+        "version": "1.0.1",
+        "status": "PASS"
+      },
+      {
+        "name": "pytest",
+        "path": null,
+        "version": null,
+        "status": "UNESTABLISHED",
+        "reason": "No repository lock or environment exists."
+      }
+    ],
+    "repository_paths": [
+      {
+        "path": "pyproject.toml",
+        "state": "absent_planned"
+      },
+      {
+        "path": "uv.lock",
+        "state": "absent_planned"
+      },
+      {
+        "path": ".python-version",
+        "state": "absent_planned"
+      }
+    ],
+    "activation_status": "NOT RUN"
+  },
+  "spec_kit": {
+    "cli_version": "1.0.1",
+    "repository_installation_state": "absent",
+    "active_owner_features": [],
+    "superseded_owner_features": [],
+    "planned_owner_feature": "specs/001-product-runtime",
+    "planning_task": "T004",
+    "status": "UNESTABLISHED",
+    "reason": "No owner-local Spec Kit files exist before T004."
+  },
+  "release_lines": {
+    "candidate_content": {
+      "target_version": "0.1.0",
+      "target_tag": "contract-v0.1.0",
+      "source_status": "NOT RUN",
+      "release_candidate_status": "NOT RUN",
+      "publication_status": "NOT RUN"
+    },
+    "core_api_handoff": {
+      "version": null,
+      "tag": null,
+      "immutable_locator": null,
+      "digest": null,
+      "status": "UNESTABLISHED"
+    }
+  },
+  "literal_path_map": {
+    "owner_feature": [
+      "specs/001-product-runtime/spec.md",
+      "specs/001-product-runtime/plan.md",
+      "specs/001-product-runtime/tasks.md",
+      "specs/001-product-runtime/research.md",
+      "specs/001-product-runtime/data-model.md",
+      "specs/001-product-runtime/quickstart.md",
+      "specs/001-product-runtime/contracts/candidate-content.md",
+      "specs/001-product-runtime/contracts/core-admission.md",
+      "specs/001-product-runtime/checklists/requirements.md"
+    ],
+    "candidate_content_contracts": [
+      "contracts/candidate-content/candidate.schema.json",
+      "contracts/candidate-content/semantic-content.schema.json",
+      "contracts/candidate-content/provenance.schema.json",
+      "contracts/candidate-content/processing-profile.schema.json",
+      "contracts/candidate-content/conformance/positive.json",
+      "contracts/candidate-content/conformance/negative.json"
+    ],
+    "candidate_content_release_build": [
+      "tools/build_candidate_content_release.py",
+      "build/releases/candidate-content/0.1.0/candidate.schema.json",
+      "build/releases/candidate-content/0.1.0/semantic-content.schema.json",
+      "build/releases/candidate-content/0.1.0/provenance.schema.json",
+      "build/releases/candidate-content/0.1.0/processing-profile.schema.json",
+      "build/releases/candidate-content/0.1.0/manifest.json",
+      "build/releases/candidate-content/0.1.0/checksums.sha256",
+      "build/releases/candidate-content/0.1.0/provenance.json"
+    ],
+    "core_admission_contracts": [
+      "contracts/core-admission/openapi.yaml",
+      "contracts/core-admission/handoff-reference.schema.json",
+      "contracts/core-admission/conformance/positive.json",
+      "contracts/core-admission/conformance/negative.json",
+      "contracts/repositoryd/openapi.yaml",
+      "contracts/duckdbd/openapi.yaml",
+      "tools/build_core_admission_release.py",
+      "build/releases/core-admission/manifest.json",
+      "build/releases/core-admission/checksums.sha256",
+      "build/releases/core-admission/provenance.json"
+    ],
+    "core_source": [
+      "src/studious_lamp/domain/models.py",
+      "src/studious_lamp/domain/policy.py",
+      "src/studious_lamp/application/ports.py",
+      "src/studious_lamp/application/authentication.py",
+      "src/studious_lamp/application/authorization.py",
+      "src/studious_lamp/application/handoff.py",
+      "src/studious_lamp/application/admission.py",
+      "src/studious_lamp/application/lifecycle.py",
+      "src/studious_lamp/adapters/ocis.py",
+      "src/studious_lamp/adapters/snapshot.py",
+      "src/studious_lamp/adapters/repositoryd.py",
+      "src/studious_lamp/adapters/duckdbd.py",
+      "src/studious_lamp/delivery/http.py",
+      "src/studious_lamp/delivery/mcp.py",
+      "src/studious_lamp/delivery/agent_plugin.py",
+      "src/studious_lamp/composition.py"
+    ],
+    "owned_runtime_source": [
+      "src/studious_lamp/repositoryd/service.py",
+      "src/studious_lamp/duckdbd/service.py",
+      "src/studious_lamp/duckdbd/migrations/001_initial.sql"
+    ],
+    "configuration": [
+      "config/core.example.toml",
+      "config/repositoryd.example.toml",
+      "config/duckdbd.example.toml",
+      "config/quack.example.toml"
+    ],
+    "tests": [
+      "tests/test_architecture.py",
+      "tests/contracts/test_candidate_content.py",
+      "tests/contracts/test_core_admission.py",
+      "tests/core/test_authorization.py",
+      "tests/core/test_handoff_mapping.py",
+      "tests/core/test_admission.py",
+      "tests/core/test_lifecycle.py",
+      "tests/core/test_replay.py",
+      "tests/core/test_response_loss.py",
+      "tests/integration/test_ocis_intake.py",
+      "tests/integration/test_repositoryd.py",
+      "tests/integration/test_duckdbd.py",
+      "tests/delivery/test_interfaces.py"
+    ],
+    "synthetic_fixtures": [
+      "tests/fixtures/synthetic/candidate.json",
+      "tests/fixtures/synthetic/semantic-content.json",
+      "tests/fixtures/synthetic/provenance.json",
+      "tests/fixtures/synthetic/processing-profile.json",
+      "tests/fixtures/synthetic/handoff-reference.json"
+    ],
+    "release_and_validation_tools": [
+      "tools/build_candidate_content_release.py",
+      "tools/build_core_admission_release.py",
+      "tools/verify_release.py"
+    ],
+    "coordination_evidence": [
+      "docs/evidence/umbrella-001/T001-owner-survey.json",
+      "docs/evidence/umbrella-001/T004-owner-plan.json",
+      "docs/evidence/umbrella-001/T010-four-content-contracts.json",
+      "docs/evidence/umbrella-001/T011-content-release-candidate.json",
+      "docs/evidence/umbrella-001/T012-core-admission-api.json",
+      "docs/evidence/umbrella-001/T013-release-readback.json",
+      "docs/evidence/umbrella-001/T017-independent-intake.json",
+      "docs/evidence/umbrella-001/T018-core-lifecycle.json",
+      "docs/evidence/umbrella-001/T019-persistence-boundaries.json",
+      "docs/evidence/umbrella-001/T020-core-public-interface.json",
+      "docs/evidence/umbrella-001/T030-alpha-fixtures.json"
+    ]
+  },
+  "path_states": {
+    "present_paths": [
+      ".codex/config.toml",
+      ".gitignore",
+      "LICENSE",
+      "README.md"
+    ],
+    "planned_paths_state": "absent_planned",
+    "tracked_source_count": 0,
+    "tracked_test_count": 0,
+    "tracked_schema_count": 0,
+    "tracked_package_manifest_count": 0,
+    "tracked_release_artifact_count": 0,
+    "tracked_runtime_config_count": 0,
+    "tracked_ci_config_count": 0,
+    "active_retired_paths": []
+  },
+  "quality_and_delivery_surfaces": {
+    "package": {
+      "manifest_path": "pyproject.toml",
+      "lock_path": "uv.lock",
+      "planned_command": "uv build --locked",
+      "status": "NOT RUN"
+    },
+    "tests": {
+      "configuration_path": "pyproject.toml",
+      "planned_command": "uv run --locked pytest -q",
+      "status": "NOT RUN"
+    },
+    "lint": {
+      "configuration_path": "pyproject.toml",
+      "command": null,
+      "status": "UNESTABLISHED",
+      "reason": "No lint tool is selected or locked at T001."
+    },
+    "type_check": {
+      "configuration_path": "pyproject.toml",
+      "command": null,
+      "status": "UNESTABLISHED",
+      "reason": "No type checker is selected or locked at T001."
+    },
+    "ci": {
+      "configuration_path": null,
+      "command": null,
+      "status": "UNESTABLISHED",
+      "reason": "No CI system is selected; current required validation remains local."
+    }
+  },
+  "validation_commands": {
+    "current_t001": [
+      "python3 -m json.tool docs/architecture/umbrella-001-owner-survey.json",
+      "python3 -m json.tool docs/evidence/umbrella-001/T001-owner-survey.json",
+      "git diff --check",
+      "git status --short --branch"
+    ],
+    "planned_owner_feature": [
+      "uv sync --locked --dev",
+      "uv run --locked pytest -q",
+      "uv run --locked python tools/verify_release.py"
+    ],
+    "planned_owner_feature_status": "NOT RUN",
+    "planned_owner_feature_reason": "The package manifest, lock, tests, schemas, source, and release tools are T004-and-later planned paths and do not exist in T001."
+  },
+  "boundaries": {
+    "candidate_and_decision_separated": true,
+    "admission_and_recommendation_separated": true,
+    "recommendation_feature_in_scope": false,
+    "ranking_or_embedding_fields_added": false,
+    "ready_marker_allowed": false,
+    "manifest_last_required": true,
+    "automatic_implementation_in_scope": false,
+    "deployment_implementation_in_scope": false
+  },
+  "status": {
+    "survey_and_literal_path_map": "PASS",
+    "owner_feature_planning": "NOT RUN",
+    "source_implementation": "NOT RUN",
+    "contract_or_schema_implementation": "NOT RUN",
+    "release_candidate": "NOT RUN",
+    "publication_or_remote_readback": "NOT RUN",
+    "runtime_or_deployment": "NOT RUN",
+    "alpha_or_recovery": "NOT RUN",
+    "quack_production_readiness": "UNESTABLISHED"
+  },
+  "limitations": [
+    "No repository-local AGENTS.md, package manifest, dependency lock, source, tests, schemas, release tooling, runtime configuration, or CI configuration exists at the verified base.",
+    "Python and uv are selected for owner planning from current tracked and local evidence, but no dependency or runtime activation occurs in T001.",
+    "Core API/Handoff release identity, version, tag, immutable locator, and digests remain UNESTABLISHED.",
+    "Candidate-content publication, Core API/Handoff publication, live intake, storage effects, deployment, Alpha, and recovery remain NOT RUN.",
+    "The planned paths intentionally exclude recommendation scoring, DPP, calibration, clustering, PageRank, Thompson Sampling, Phoenix, CLIP, and behavior-sequence models."
+  ]
+}

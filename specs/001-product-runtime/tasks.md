@@ -16,7 +16,7 @@ are written and observed failing before their implementation task. Every task na
 
 - [X] T001 Create the minimal Python 3.14.4 package and exact uv dependency/test lock in `.python-version`, `pyproject.toml`, and `uv.lock`; record the deterministic commands `uv sync --locked --dev` and `uv run --locked pytest -q` without adding unrelated lint/type/CI tooling.
 - [X] T002 Add failing inward-dependency, sibling-import, shared-oCIS, direct-storage, post-admission-oCIS, and repositoryd-to-duckdbd architecture checks in `tests/test_architecture.py`. **RED checkpoint**: six expected assertion failures until T003 supplies the owner-local boundary modules; no implementation PASS is claimed.
-- [ ] T003 Implement the minimum owner-local domain models, policy, and technology-neutral port responsibilities required to pass T002 in `src/studious_lamp/domain/models.py`, `src/studious_lamp/domain/policy.py`, and `src/studious_lamp/application/ports.py`.
+- [X] T003 Implement the minimum owner-local domain models, policy, and technology-neutral port responsibilities required to pass T002 in `src/studious_lamp/domain/models.py`, `src/studious_lamp/domain/policy.py`, and `src/studious_lamp/application/ports.py`. **GREEN checkpoint**: all six T002 architecture tests pass; no adapters, runtime services, configuration, or operational evidence are claimed.
 - [ ] T004 Add redacted capability-only configuration examples with no real endpoint, credential, identity, resource ID, or storage binding in `config/core.example.toml`, `config/repositoryd.example.toml`, `config/duckdbd.example.toml`, and `config/quack.example.toml`.
 
 **Checkpoint**: Package commands are locked and the inward architecture is executable; no public

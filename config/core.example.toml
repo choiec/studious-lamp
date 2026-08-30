@@ -1,0 +1,15 @@
+# Capability-only example; values are inert and intentionally incomplete.
+
+[core]
+runtime_status = "NOT RUN"
+readiness = "UNESTABLISHED"
+candidate_contract_count = 4
+lifecycle_effect_count = 5
+delivery_adapter_count = 3
+admission_capability = "UNESTABLISHED"
+identity_capability = "UNESTABLISHED"
+publication_capability = "UNESTABLISHED"
+adoption_capability = "UNESTABLISHED"
+projection_capability = "UNESTABLISHED"
+post_admission_remote_reads = false
+direct_storage_access = false

@@ -1,0 +1,8 @@
+# Capability-only example; values are inert and intentionally incomplete.
+
+[repositoryd]
+runtime_status = "NOT RUN"
+readiness = "UNESTABLISHED"
+canonical_writer = true
+publication_capability = "UNESTABLISHED"
+duckdbd_calls = false

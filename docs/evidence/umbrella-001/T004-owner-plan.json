@@ -1,0 +1,496 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "T004",
+  "owner_repository": "repo:studious-lamp",
+  "observed_at": "2026-08-30T17:07:12+09:00",
+  "result": "PASS",
+  "claim": "The Studious owner-local Spec Kit feature, dependency-ordered literal-path task graph, and durable Spec Kit 1.0.1 project infrastructure were created and statically validated. No owner implementation, release, publication, runtime, E2E, Alpha, recovery, or operational effect was executed.",
+  "execution_context": {
+    "environment_mode": "Local",
+    "verified_root": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+    "base_branch": "main",
+    "base_revision": "38e6aea278db9fda98ff887b94658efcc92585a6",
+    "base_tree": "044f0a075bebf1b982932c4c97a55e80b2000da0",
+    "starting_index_state": "clean",
+    "starting_worktree_state": "clean",
+    "overlapping_user_changes": [],
+    "task_branch": "codex/T004-studious-owner-plan",
+    "worktree_created": false,
+    "primary_write_owner": "main-agent",
+    "task_commit": null,
+    "merge_commit": null,
+    "commit_reference_policy": "The evidence file cannot embed its future task or merge commit without a self-reference cycle; both commits are verified and reported after integration."
+  },
+  "umbrella_baseline": {
+    "repository": "repo:symmetrical-umbrella",
+    "verified_root": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+    "branch": "main",
+    "revision": "eba6fd909b3d2c3a65ec79483654be9e6a6e9f0b",
+    "tree": "163e2696ffa59a312a2f7a77bf57502b113d153e",
+    "tracked_state": "clean",
+    "untracked_local_setup_excluded": [
+      ".codex/",
+      ".specify/.gitignore",
+      ".specify/init-options.json",
+      ".specify/integration.json",
+      ".specify/integrations/",
+      ".specify/memory/.constitution-template.json",
+      ".specify/scripts/",
+      ".specify/templates/",
+      ".specify/workflows/",
+      "AGENTS.md",
+      "docs/task-brief.md"
+    ],
+    "constitution": {
+      "path": ".specify/memory/constitution.md",
+      "version": "0.3.0",
+      "sha256": "17db5e96effa669f1712a4f34b2d6e360982ac2fb7699cf0151ce59f98108697"
+    },
+    "governed_documents": [
+      {
+        "path": "specs/001-product-compute-boundaries/spec.md",
+        "sha256": "9649217fc94cebd76b8804d7061ebcbb1903c715841fd3847e30dfb21b7ff7d8"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/plan.md",
+        "sha256": "61b91ef89d7a3396f0c044ad17cc34b3d9f4794edf041b8316b819353511384d"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/research.md",
+        "sha256": "b2945345b127621fb50a14704bd2180d9f183a876eb213053ef0da9d8671217a"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/data-model.md",
+        "sha256": "ac27a490f9c0ce7529894594b42be1d3b2c240190bb07b9fcb10def746f4d04e"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/quickstart.md",
+        "sha256": "3ca32ca6db98ed7fef37944aa68dde645aafca34b3f5a2159b436ee52b07101b"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/tasks.md",
+        "sha256": "c8192ac30260ebb6d19f98bd6ffd8cfefa625a513b7ad89a359923f35a9981b2"
+      },
+      {
+        "path": "governance/traceability.json",
+        "sha256": "da85a868f92472fadb6fe8d00a07e5669780b064a18b0c9db6da3c04bb8af27e"
+      }
+    ],
+    "contracts": [
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/authority-and-role-boundaries.md",
+        "sha256": "4373bbf60f9a6ef76d7bfc55f7bc4cc91a7d43dd66297cf3a1e91c9c7949bdac"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/candidate-handoff.md",
+        "sha256": "d9746e1a87060e0594f448f0b10a19ca3528a7cc265f62e3c0ee8faa590d4c6a"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/codex-project-routing.md",
+        "sha256": "8839436f64391a332f47bf46cf37bde56aabd57edf095c97f8ecb9fc8946c491"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/deployment-and-recovery.md",
+        "sha256": "43f88d13801225d0b906d6a49a89ef5d18a293a3f644d5a9bd90e4dcb72915e9"
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/contracts/public-contract-release.md",
+        "sha256": "b13aa9c67d4fd607c542fbf0394672c3a0d9078f423c23cf8fa9c16eacd0e3aa"
+      }
+    ],
+    "checklists": [
+      {
+        "path": "specs/001-product-compute-boundaries/checklists/architecture.md",
+        "sha256": "97c64db4adeae3a2e10c934517aa6a4df0c3a5fa3b5d54b2a50f7e34e6de6cd5",
+        "status": "UNESTABLISHED",
+        "reason": "Reviewer-owned markers remain untouched."
+      },
+      {
+        "path": "specs/001-product-compute-boundaries/checklists/requirements.md",
+        "sha256": "293dbf6e3420af1d773d0a860f6d7d790dddf9695578c207e169261d5631cc7f",
+        "status": "UNESTABLISHED",
+        "reason": "Reviewer-owned markers remain untouched."
+      }
+    ],
+    "offline_validator": {
+      "command": "UV_CACHE_DIR=\"$PWD/.tools/uv-cache\" uv run --locked --offline python tools/validate_traceability.py",
+      "status": "PASS",
+      "result": "coordination schema and graph are valid at eba6fd909b3d2c3a65ec79483654be9e6a6e9f0b"
+    }
+  },
+  "t001_authority": {
+    "task_commit": "79a1d3c07e3fdaabb9342a76c20d8467d15910f8",
+    "integration_merge": "38e6aea278db9fda98ff887b94658efcc92585a6",
+    "survey_path": "docs/architecture/umbrella-001-owner-survey.json",
+    "survey_sha256": "827a856c79bdcec56be0c097bb78b2ae180497ac0f33eb58d3ec0ad7d65e05c8",
+    "evidence_path": "docs/evidence/umbrella-001/T001-owner-survey.json",
+    "evidence_sha256": "e257725a0329eaa7e1dd4341dcf5ede4d9242c2098ed1912546cf8d3f6c734b6",
+    "literal_owner_feature": "specs/001-product-runtime",
+    "path_map_status": "PASS"
+  },
+  "spec_kit_initialization": {
+    "version_command": "specify --version",
+    "cli_version": "1.0.1",
+    "version_status": "PASS",
+    "tool_check_command": "specify check",
+    "codex_available": true,
+    "tool_check_status": "PASS",
+    "init_command": "specify init --here --force --non-interactive --integration codex --integration-options=\"--skills\" --script sh",
+    "asset_source": "bundled",
+    "network_access": "NOT RUN",
+    "init_status": "PASS",
+    "init_options": {
+      "path": ".specify/init-options.json",
+      "sha256": "4ae3a772fd2d4aeba44d16ea79917ef354f554fb55f60d590615ebebe5af78b2",
+      "ai": "codex",
+      "integration": "codex",
+      "ai_skills": true,
+      "feature_numbering": "sequential",
+      "here": true,
+      "script": "sh",
+      "speckit_version": "1.0.1"
+    },
+    "integration": {
+      "status_command": "specify integration status",
+      "status": "PASS",
+      "default": "codex",
+      "installed": [
+        "codex"
+      ],
+      "modified_managed_files": 0,
+      "missing_managed_files": 0,
+      "invalid_manifest_paths": 0,
+      "unchecked_manifests": 0,
+      "state_path": ".specify/integration.json",
+      "state_sha256": "34ae4fe11454e4acea7f1aab039c637fd84d5c5724c687a82e692727c2ec8ecc",
+      "codex_manifest_sha256": "6319a2ffb5125d9ac1b20d84531645d8297b8339c4220b2187443e5b76ad1676",
+      "speckit_manifest_sha256": "1cc3d9e437ed26d73b2d5f7e88bda5a061e0ccbfafbc5081ac442d7b0a8c3051"
+    },
+    "memory_config": {
+      "path": ".codex/config.toml",
+      "sha256": "6f903ad0a1c5d5466840de2b867d40818ffe5f156894528030cb65b5775e96ba",
+      "use_memories": false,
+      "generate_memories": false,
+      "project_model_present": false,
+      "project_reasoning_default_present": false,
+      "default_subagent_model_present": false,
+      "provider_auth_telemetry_present": false
+    },
+    "disabled_project_generated_skills": [
+      {
+        "path_from_codex": "../.agents/skills/speckit-analyze/SKILL.md",
+        "sha256": "a84a54c4701706a711bf23c59817bc659bd6e484488fd7402a908496992af217"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-checklist/SKILL.md",
+        "sha256": "6632a53c5ddbde330c7ca3a8d19459b4de866ea5296028c2178f7b4598243d78"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-clarify/SKILL.md",
+        "sha256": "d3aa120d6b5d7718c4c6d792dd41bee66254bd4bb82f88f3067f1d1c4e9d2dc2"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-constitution/SKILL.md",
+        "sha256": "01074220f2b4bb32a92b8ad23a688358bd5e3828e18871b21a32ff8db6753358"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-converge/SKILL.md",
+        "sha256": "466e51121a590e3abd409fda063db6361c9a7e2b2cef927a75f5afb130c1eb88"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-implement/SKILL.md",
+        "sha256": "d113f4e09878a8a2e7f64b3852d698076a38394b8fc777b7426b1159c28e92fe"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-plan/SKILL.md",
+        "sha256": "b3dca1c679a2452e8e3aa84c96b42fc5cee42e8b0cb3c30fa77a60ff83db6d4d"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-specify/SKILL.md",
+        "sha256": "88d7fab201de66297f16b6c271a418a0f2c198d714456dfd707e623348ec47c1"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-tasks/SKILL.md",
+        "sha256": "1ae03ee3aac56f19cac4cba8d51c672e4f50692f5a179f8fb65a035752e71592"
+      },
+      {
+        "path_from_codex": "../.agents/skills/speckit-taskstoissues/SKILL.md",
+        "sha256": "542bf370046ecc2dbea0a539522e0628bee7a425b47b8afb0bd67ae274c01720"
+      }
+    ],
+    "generated_skill_state": {
+      "count": 10,
+      "locally_available": true,
+      "ignored": true,
+      "tracked": false,
+      "staged": false,
+      "enabled_in_project": false
+    },
+    "ignore_policy": {
+      "path": ".gitignore",
+      "sha256": "13255314a3a071c2d54d5be79584bcedc4def093e7b178c0744721cca7788457",
+      "exactly_once": [
+        "/.agents/skills/speckit-*/",
+        "/.specify/feature.json",
+        "/.specify/extensions/*/local-config.yml"
+      ],
+      "local_feature_selector": {
+        "path": ".specify/feature.json",
+        "feature_directory": "specs/001-product-runtime",
+        "ignored": true,
+        "tracked": false,
+        "staged": false
+      }
+    }
+  },
+  "durable_spec_kit_inventory": [
+    {
+      "path": ".specify/.gitignore",
+      "sha256": "8c908410d177a1ef3d0dee16d7ad55f2ac3333df3104c4d4adee1c9b82f1dbc1"
+    },
+    {
+      "path": ".specify/integrations/codex.manifest.json",
+      "sha256": "6319a2ffb5125d9ac1b20d84531645d8297b8339c4220b2187443e5b76ad1676"
+    },
+    {
+      "path": ".specify/integrations/speckit.manifest.json",
+      "sha256": "1cc3d9e437ed26d73b2d5f7e88bda5a061e0ccbfafbc5081ac442d7b0a8c3051"
+    },
+    {
+      "path": ".specify/memory/.constitution-template.json",
+      "sha256": "8fc4b39294bae0c10d59547ad7d415b6f0e890d656cbf7171dd567f4e9054711"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "sha256": "29084b09f6c4059ba49fee52f5623da5a37e448b075c7649b86338bc8b6c1481"
+    },
+    {
+      "path": ".specify/scripts/bash/check-prerequisites.sh",
+      "sha256": "d918a297a3d8f4fc864d04ad7d4f35626f2b136ff9d5a3ad13a0591253408fde"
+    },
+    {
+      "path": ".specify/scripts/bash/common.sh",
+      "sha256": "c552063e4c18818b6f6a924a0b638835a8bcb6bd166053b103cc1ef5096f6525"
+    },
+    {
+      "path": ".specify/scripts/bash/create-new-feature.sh",
+      "sha256": "fe99ea8da184380056ce8512ca5d37f67fb499ee4234835c15dcf7c4fb75451c"
+    },
+    {
+      "path": ".specify/scripts/bash/resolve-template.sh",
+      "sha256": "829e227096abc8bf0889889ec9f792f503ca5d395b7836a8a7eb739ee75214e7"
+    },
+    {
+      "path": ".specify/scripts/bash/setup-plan.sh",
+      "sha256": "061cec0c6d71f8f88008b4d3d7f5bbc2bfbdb85d734d9e73fc5f07a3c60c88a6"
+    },
+    {
+      "path": ".specify/scripts/bash/setup-tasks.sh",
+      "sha256": "0350b2def158c4dc333cd888fc5a3b10785b3d5c2cf936f93e910242ea9d507d"
+    },
+    {
+      "path": ".specify/templates/checklist-template.md",
+      "sha256": "70bbc48e884fab372ffb09e83e78ff983e28b69caebf8cd9964a02b6836683ac"
+    },
+    {
+      "path": ".specify/templates/constitution-template.md",
+      "sha256": "ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3"
+    },
+    {
+      "path": ".specify/templates/plan-template.md",
+      "sha256": "a828ad6206526574ab3fc99be6d0154588cb1c9774c5919d71b81ab5b2dbffa0"
+    },
+    {
+      "path": ".specify/templates/spec-template.md",
+      "sha256": "3945437fc35cd30a5b2bf7beea680337c3516826d3efa5a6b92c4a7eca1ba28e"
+    },
+    {
+      "path": ".specify/templates/tasks-template.md",
+      "sha256": "b0f527d41e546af0c31903e04f9b20965b6b497b573792198f663a64ce128863"
+    },
+    {
+      "path": ".specify/workflows/speckit/workflow.yml",
+      "sha256": "b9a2a3c3d1e5f022d0369be7c83802a656c64e2d95306a7870a1f59b90c0e307"
+    },
+    {
+      "path": ".specify/workflows/workflow-registry.json",
+      "sha256": "7a97180a0017976a52327aa3e07c7e4cdab54f3b8d18f61962f46c82c675bf5e"
+    }
+  ],
+  "owner_feature": {
+    "directory": "specs/001-product-runtime",
+    "artifact_inventory": [
+      {
+        "path": "specs/001-product-runtime/spec.md",
+        "sha256": "ac97caadf0c4f646e8a8dea2a3b272390ca93f32aad5fb88539810dd0dd44d99"
+      },
+      {
+        "path": "specs/001-product-runtime/plan.md",
+        "sha256": "bd3cec207ada7a2a330a5bbfd80df06f363f5397a274c9ed47140b4a6cc198ad"
+      },
+      {
+        "path": "specs/001-product-runtime/research.md",
+        "sha256": "5a0d442bb6e162f6a2b90a41d2ae9748d38303dd13f04a73bc3c2146472ac2ca"
+      },
+      {
+        "path": "specs/001-product-runtime/data-model.md",
+        "sha256": "cc2cf82cbd631832ec8e1b012011c8fdaf6853113b0436894d67fcc534920428"
+      },
+      {
+        "path": "specs/001-product-runtime/quickstart.md",
+        "sha256": "f3446adf042676697567226031b4c81ee7f186b9937cefdd89ff4c99b7afc1ce"
+      },
+      {
+        "path": "specs/001-product-runtime/tasks.md",
+        "sha256": "27b2dcf748367d93585dc4819406a7556bf5544d253c030b198fe0167d02ac0f"
+      },
+      {
+        "path": "specs/001-product-runtime/contracts/candidate-content.md",
+        "sha256": "9682d0469c599092c300a39e45d0ddc336013acf78c2a41c1bc9e67c14ea19d7"
+      },
+      {
+        "path": "specs/001-product-runtime/contracts/core-admission.md",
+        "sha256": "c6e87173efb82d8bd175474b4d7ac7769966271675d92cce3c2aafd8b1e0d5d8"
+      },
+      {
+        "path": "specs/001-product-runtime/checklists/requirements.md",
+        "sha256": "d4f137508806149cf19c78756d1caf59684d8820d85c6a515900af1e12707437"
+      }
+    ],
+    "task_graph": {
+      "count": 41,
+      "ids": "T001-T041",
+      "checked_tasks": 0,
+      "parallel_markers": 0,
+      "dependency_ordered": true,
+      "all_tasks_name_literal_paths": true,
+      "umbrella_owner_outputs_covered": [
+        "T010",
+        "T011",
+        "T012",
+        "T013",
+        "T017",
+        "T018",
+        "T019",
+        "T020",
+        "T030",
+        "AT-003",
+        "AT-009",
+        "AT-010",
+        "AT-011",
+        "AT-012",
+        "AT-013",
+        "AT-015",
+        "AT-016"
+      ]
+    },
+    "built_in_checklist": {
+      "path": "specs/001-product-runtime/checklists/requirements.md",
+      "total": 16,
+      "checked": 16,
+      "unchecked": 0,
+      "status": "PASS",
+      "scope": "Specification writing quality only; not a reviewer-owned architecture, implementation, release, runtime, Alpha, or recovery result."
+    }
+  },
+  "validation": [
+    {
+      "command": "specify --version && specify check",
+      "status": "PASS",
+      "result": "Specify 1.0.1; Codex CLI available"
+    },
+    {
+      "command": "specify integration status",
+      "status": "PASS",
+      "result": "healthy; zero modified, missing, invalid, or unchecked managed files"
+    },
+    {
+      "command": "bash -n .specify/scripts/bash/*.sh and manifest SHA-256 comparison",
+      "status": "PASS",
+      "result": "six scripts parse and every managed script/template matches the bundled 1.0.1 manifest"
+    },
+    {
+      "command": ".specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks",
+      "status": "PASS",
+      "result": "feature locator and spec/plan/research/data-model/contracts/quickstart/tasks inventory resolved"
+    },
+    {
+      "command": "owner feature Markdown, task-ID, literal-path, init-options, TOML, and ignore assertions",
+      "status": "PASS",
+      "result": "nine T001-mapped feature files present; T001-T041 unique/gap-free/unchecked; all required owner outputs literal; exact init and ten disabled skills; three ignore rules exactly once"
+    },
+    {
+      "command": "git check-ignore and tracked/staged-path assertions for .agents/skills and .specify/feature.json",
+      "status": "PASS",
+      "result": "generated skills and local selector are available locally, ignored, untracked, and unstaged"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    },
+    {
+      "command": "UV_CACHE_DIR=\"$PWD/.tools/uv-cache\" uv run --locked --offline python tools/validate_traceability.py",
+      "working_directory": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+      "status": "PASS",
+      "result": "coordination schema and graph are valid at eba6fd909b3d2c3a65ec79483654be9e6a6e9f0b"
+    }
+  ],
+  "status_by_effect": {
+    "spec_kit_initialization": "PASS",
+    "owner_feature_planning": "PASS",
+    "source_test_contract_or_schema_implementation": "NOT RUN",
+    "dependency_lock_or_install": "NOT RUN",
+    "candidate_content_release_candidate": "NOT RUN",
+    "core_api_handoff_identity": "UNESTABLISHED",
+    "core_api_handoff_release_candidate": "NOT RUN",
+    "tag_publication_or_remote_readback": "NOT RUN",
+    "intake_lifecycle_repositoryd_duckdbd_or_interfaces": "NOT RUN",
+    "runtime_or_e2e": "NOT RUN",
+    "deployment_migration_backup_restore_fault_or_deletion": "NOT RUN",
+    "alpha_or_production_promotion": "NOT RUN",
+    "quack_production_readiness": "UNESTABLISHED"
+  },
+  "unresolved_items": [
+    {
+      "item": "Exact project dependency set and uv.lock",
+      "status": "UNESTABLISHED",
+      "resolver": "Owner-local T001 in specs/001-product-runtime/tasks.md"
+    },
+    {
+      "item": "Core Admission API/Handoff release version, tag, exact inventory, locators, and digests",
+      "status": "UNESTABLISHED",
+      "resolver": "Owner-local T010-T013"
+    },
+    {
+      "item": "Snapshot persistence mechanism and physical custody binding",
+      "status": "UNESTABLISHED",
+      "resolver": "Owner-local T017-T019 plus later Upgraded binding evidence"
+    },
+    {
+      "item": "Exact HTTP, MCP, Agent Plugin, oCIS, repositoryd, DuckDB, and Quack versions and runtime bindings",
+      "status": "UNESTABLISHED",
+      "resolver": "Owner-local implementation tasks and later owner/deployment evidence"
+    },
+    {
+      "item": "Candidate-content and Core API/Handoff immutable publication/readback",
+      "status": "NOT RUN",
+      "resolver": "Separately authorized owner-local T032 and T033"
+    },
+    {
+      "item": "Runtime, E2E, Alpha scenarios, clean-target recovery, performance, and production readiness",
+      "status": "NOT RUN",
+      "resolver": "Later separately authorized owner, Upgraded, and Umbrella tasks"
+    }
+  ],
+  "review": {
+    "level": "main-agent focused full artifact and diff review",
+    "unrelated_tracked_overwrite": "PASS",
+    "owner_scope": "PASS",
+    "literal_paths_and_dependencies": "PASS",
+    "status_honesty": "PASS",
+    "hard_cut_and_ponytail": "PASS",
+    "secret_private_content_and_pii": "PASS",
+    "findings": []
+  },
+  "self_reference_policy": "This evidence file omits its own SHA-256. Its exact committed blob and task/merge commits are verified after local integration."
+}

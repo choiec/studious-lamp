@@ -2,8 +2,10 @@
 
 **Input**: Design documents in `specs/001-product-runtime/`
 
-**Current state**: Owner plan only. All tasks below are unchecked; source, tests, contracts,
-release candidates, publication, runtime, E2E, Alpha, and recovery are not implemented or run.
+**Current state**: T001–T008 are complete and retain their recorded evidence below; T009–T043
+remain unchecked. This ledger update plans the semantic-content hard cut only and does not change
+schemas, tests, conformance data, requirement/design documents, source, build outputs, or evidence
+files.
 
 **ID scope**: These are Studious owner-local task IDs. Each ID is one fresh task branch, one
 verified Conventional Commit with its task trailer, and one local `--no-ff` merge. Never combine
@@ -35,7 +37,9 @@ publication/readback as `NOT RUN`.
 - [X] T006 [US1] Implement the four and only four normative Candidate-content schemas needed to pass T005 in `contracts/candidate-content/candidate.schema.json`, `contracts/candidate-content/semantic-content.schema.json`, `contracts/candidate-content/provenance.schema.json`, and `contracts/candidate-content/processing-profile.schema.json`. — COMPLETED: four Draft 2020-12 schemas only; locked-offline full pytest 16 passed (T005 10, architecture 6), strict JSON/schema/reference/conformance/path/disclosure/scope checks PASS; release/publication/runtime/Alpha NOT RUN.
 - [X] T007 [US1] Implement deterministic Candidate-content generation and exact-byte verification in `tools/build_candidate_content_release.py` and `tools/verify_release.py`, producing only `build/releases/candidate-content/0.1.0/candidate.schema.json`, `build/releases/candidate-content/0.1.0/semantic-content.schema.json`, `build/releases/candidate-content/0.1.0/provenance.schema.json`, `build/releases/candidate-content/0.1.0/processing-profile.schema.json`, `build/releases/candidate-content/0.1.0/candidate-content.manifest.json`, `build/releases/candidate-content/0.1.0/candidate-content.conformance.jsonl`, `build/releases/candidate-content/0.1.0/candidate-content.provenance.intoto.jsonl`, and `build/releases/candidate-content/0.1.0/SHA256SUMS`. — COMPLETED: local_candidate=PASS; tag=NOT RUN; publication=NOT RUN; readback=NOT RUN; runtime=NOT RUN; Alpha=NOT RUN; remote effects=NOT RUN.
 - [X] T008 [US1] Run `uv run --locked pytest -q tests/contracts/test_candidate_content.py` and write exact-four source/conformance status, commands, revision, digests, and limitations to `docs/evidence/umbrella-001/T010-four-content-contracts.json` without claiming a release candidate or publication. — COMPLETED: exact-four source=PASS; synthetic conformance catalog=PASS; locked offline test=10 passed; release candidate/publication=NOT RUN.
-- [ ] T009 [US1] Run `uv run --locked python tools/build_candidate_content_release.py` twice plus `uv run --locked python tools/verify_release.py --release build/releases/candidate-content/0.1.0`, verify tracked `LICENSE`, exact distributable inventory, and applicable third-party/NOTICE inputs, and write the local-candidate-only result with `publication=NOT RUN` to `docs/evidence/umbrella-001/T011-content-release-candidate.json`.
+- [ ] T042 [US1] Make the semantic-content hard-cut requirements/design authority and intentional RED conformance one atomic change in `specs/001-product-runtime/spec.md`, `specs/001-product-runtime/plan.md`, `specs/001-product-runtime/data-model.md`, `specs/001-product-runtime/contracts/candidate-content.md`, `specs/001-product-runtime/tasks.md`, `tests/contracts/test_candidate_content.py`, `contracts/candidate-content/conformance/positive.json`, and `contracts/candidate-content/conformance/negative.json`: require top-level `resources[]` plus `items[]`; `$defs` for `resource`, `item`, `content_part`, `response_declaration`, and `interaction`; immutable Resource originals with Item overlays; standard Resource metadata separated from `extensions.automatic_disco`; no `educational_measurements`; the five controlled LOM difficulty values (`very easy`, `easy`, `medium`, `difficult`, `very difficult`) plus separate `textComplexity`; content kinds `inline_text` and `resource_segments`; exactly 12 interaction types (`choice`, `reference_choice`, `inline_mark_choice`, `sentence_mark_choice`, `blank_choice`, `order_choice`, `position_choice`, `summary_pair_choice`, `inline_choice_set`, `token_order`, `text_entry`, `edit_response`); separate `response_declarations`; `additionalProperties: false` on every object; and positive/negative conformance. **RED checkpoint**: the new cases fail only because the existing `semantic-content.schema.json` does not yet implement the hard cut. XML/QTI/LOM export adapters and Usage Data/IRT/Rasch storage remain out of scope for later separate tasks.
+- [ ] T043 [US1] Implement only the semantic-content JSON Schema hard cut needed to pass T042 RED and perform schema-level validation in `contracts/candidate-content/semantic-content.schema.json`, `tests/contracts/test_candidate_content.py`, `contracts/candidate-content/conformance/positive.json`, `contracts/candidate-content/conformance/negative.json`, `specs/001-product-runtime/tasks.md`, and `docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json`. The schema owns directly enforceable `required`, `enum`, `oneOf`, `additionalProperties: false`, and local-shape constraints only; cross-array Resource/segment/part/option/slot/token/response ID referential integrity belongs to the later Core validator in T017/T018. **GREEN/evidence checkpoint**: record the exact Studious revision, semantic-content schema and conformance digests, commands/results, the schema-level versus later referential-validation responsibility split, and the limitation that existing `docs/evidence/umbrella-001/T010-four-content-contracts.json` remains valid only for its historical revision; do not implement XML/QTI/LOM export adapters or Usage Data/IRT/Rasch storage.
+- [ ] T009 [US1] After T043 PASS, reuse the T007 builder to regenerate the local release candidate from the new semantic-content source bytes by running `uv run --locked python tools/build_candidate_content_release.py` twice plus `uv run --locked python tools/verify_release.py --release build/releases/candidate-content/0.1.0`, verify tracked `LICENSE`, exact distributable inventory, applicable third-party/NOTICE inputs, and exact-byte agreement with the T043 source, and write the local-candidate-only result with `publication=NOT RUN` to `docs/evidence/umbrella-001/T011-content-release-candidate.json`.
 - [ ] T010 [US1] Add failing Core Admission/Handoff required-field, forbidden-field, independent-version, weak-precondition, release-mismatch, exact/conflicting-replay, and implementation-agreement cases in `tests/contracts/test_core_admission.py`, `contracts/core-admission/conformance/positive.json`, and `contracts/core-admission/conformance/negative.json`.
 - [ ] T011 [US1] Select one independent pre-1.0 Core API/Handoff release version and tag, then implement the exact request/Handoff, repositoryd, and duckdbd service contracts needed to pass T010 in `contracts/core-admission/openapi.yaml`, `contracts/core-admission/handoff-reference.schema.json`, `contracts/repositoryd/openapi.yaml`, and `contracts/duckdbd/openapi.yaml`; do not reuse or infer the Candidate-content version/tag.
 - [ ] T012 [US1] Implement deterministic Core API/Handoff release generation in `tools/build_core_admission_release.py` and extend exact verification in `tools/verify_release.py`, producing the independently identified outputs `build/releases/core-admission/manifest.json`, `build/releases/core-admission/checksums.sha256`, and `build/releases/core-admission/provenance.json` with no Candidate-content bundle or alias.
@@ -55,8 +59,8 @@ requires snapshot readback; later behavior works with oCIS unavailable.
 
 - [ ] T015 [US2] Add failing authentication/authorization-before-intake and Export-Receipt-to-released-request mapping cases in `tests/core/test_authorization.py`, `tests/core/test_handoff_mapping.py`, and `tests/fixtures/synthetic/handoff-reference.json`.
 - [ ] T016 [US2] Implement owner-local request authentication, operation-specific authorization, and authorized receipt-value mapping needed to pass T015 in `src/studious_lamp/application/authentication.py`, `src/studious_lamp/application/authorization.py`, and `src/studious_lamp/application/handoff.py`.
-- [ ] T017 [US2] Add failing conditional manifest, before/after inventory, size/digest, missing/extra/duplicate/unsafe/malformed/mutation, snapshot failure/readback, exact/conflicting replay, and no-post-admission-oCIS cases in `tests/core/test_admission.py` and `tests/integration/test_ocis_intake.py`.
-- [ ] T018 [US2] Implement the independent Core oCIS intake adapter, immutable snapshot adapter, and admission use case needed to pass T017 in `src/studious_lamp/adapters/ocis.py`, `src/studious_lamp/adapters/snapshot.py`, and `src/studious_lamp/application/admission.py`.
+- [ ] T017 [US2] Add failing conditional manifest, before/after inventory, size/digest, missing/extra/duplicate/unsafe/malformed/mutation, snapshot failure/readback, exact/conflicting replay, no-post-admission-oCIS, and independent cross-array Resource/segment/part/option/slot/token/response ID referential-integrity cases in `tests/core/test_admission.py` and `tests/integration/test_ocis_intake.py`; retain the current admission boundary and require rejection before snapshot acceptance or any later product effect.
+- [ ] T018 [US2] Implement the independent Core oCIS intake adapter, immutable snapshot adapter, and admission use case needed to pass T017 in `src/studious_lamp/adapters/ocis.py`, `src/studious_lamp/adapters/snapshot.py`, and `src/studious_lamp/application/admission.py`, including Core-owned Resource/segment/part/option/slot/token/response ID referential-integrity validation at the existing admission boundary before acceptance; do not move cross-array integrity into the JSON Schema or an adapter.
 - [ ] T019 [US2] Run `uv run --locked pytest -q tests/core/test_authorization.py tests/core/test_handoff_mapping.py tests/core/test_admission.py tests/integration/test_ocis_intake.py` and write exact independent-reader, full-verification, mutation, snapshot, denial, mapping, replay, and no-post-admission-read results to `docs/evidence/umbrella-001/T017-independent-intake.json` without claiming live oCIS, deployed intake, or E2E PASS.
 
 **Checkpoint**: Controlled synthetic tests can establish intake behavior only; live Handoff and
@@ -104,7 +108,7 @@ without executing protected or operational scenarios.
 **Independent test**: Every fixture is deterministic and synthetic-only; every command and output
 path is literal; every unexecuted result stays `NOT RUN` or `UNESTABLISHED`.
 
-- [ ] T031 [US5] Freeze disclosure-reviewed synthetic contract/Handoff/Core/storage fixtures in `tests/fixtures/synthetic/candidate.json`, `tests/fixtures/synthetic/semantic-content.json`, `tests/fixtures/synthetic/provenance.json`, `tests/fixtures/synthetic/processing-profile.json`, and `tests/fixtures/synthetic/handoff-reference.json`, then write exact digests, commands, limitations, and `NOT RUN` Alpha status to `docs/evidence/umbrella-001/T030-alpha-fixtures.json`.
+- [ ] T031 [US5] Freeze disclosure-reviewed synthetic contract/Handoff/Core/storage fixtures in `tests/fixtures/synthetic/candidate.json`, `tests/fixtures/synthetic/semantic-content.json`, `tests/fixtures/synthetic/provenance.json`, `tests/fixtures/synthetic/processing-profile.json`, and `tests/fixtures/synthetic/handoff-reference.json`, with the semantic-content fixture covering all 12 interaction types (`choice`, `reference_choice`, `inline_mark_choice`, `sentence_mark_choice`, `blank_choice`, `order_choice`, `position_choice`, `summary_pair_choice`, `inline_choice_set`, `token_order`, `text_entry`, `edit_response`), then write exact digests, commands, limitations, and `NOT RUN` Alpha status to `docs/evidence/umbrella-001/T030-alpha-fixtures.json`.
 
 ## Phase 7: Separately Authorized Immutable Publication and Readback
 
@@ -132,9 +136,9 @@ integration PASS does not establish deployed E2E, recovery, or production readin
 ## Dependencies and Execution Order
 
 1. T001 → T002 → T003 → T004 establishes the package and architecture boundary.
-2. T005 → T006 → T007 → T008 → T009 completes Candidate-content source and local-candidate evidence.
+2. T005 → T006 → T007 → T008 → T042 → T043 → T009 completes Candidate-content source, the semantic-content hard cut, central T077 evidence, and regenerated local-candidate evidence.
 3. T010 → T011 → T012 → T013 → T014 completes the independent Core API/Handoff source and initializes the two publication slots.
-4. T015 → T016 → T017 → T018 → T019 completes controlled independent intake evidence.
+4. T015 → T016 and T043 both precede T017; T017 → T018 → T019 completes controlled independent intake evidence, including Core-owned cross-array reference validation at the existing admission boundary.
 5. T020 → T021 → T022 → T023 → T024 → T025 → T026 → T027 completes lifecycle and persistence evidence.
 6. T028 → T029 → T030 completes Core delivery-interface evidence.
 7. T031 freezes synthetic fixtures and exact scenario commands.
@@ -149,7 +153,8 @@ runtime, Alpha, restore, deployment, or deletion from a planning result.
 | Umbrella acceptance work | Owner-local tasks | Exact evidence output |
 |---|---|---|
 | T010 four contracts | T005–T008 | `docs/evidence/umbrella-001/T010-four-content-contracts.json` |
-| T011 Candidate local candidate | T007, T009 | `docs/evidence/umbrella-001/T011-content-release-candidate.json` |
+| T077 semantic-content hard cut | T042–T043 | `docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json` |
+| T011 Candidate local candidate | T007, T043, T009 | `docs/evidence/umbrella-001/T011-content-release-candidate.json` |
 | T012 Core API/Handoff | T010–T013 | `docs/evidence/umbrella-001/T012-core-admission-api.json` |
 | T013 two publication slots | T014, gated T032–T033 | `docs/evidence/umbrella-001/T013-release-readback.json` |
 | T017 independent intake | T015–T019 | `docs/evidence/umbrella-001/T017-independent-intake.json` |
@@ -173,12 +178,13 @@ runtime, Alpha, restore, deployment, or deletion from a planning result.
 ## Planned Task Totals
 
 - Setup/foundational: 4
-- US1 contract and publication work: 12 (including two separately authorized publication tasks)
+- US1 contract and publication work: 14 (including the semantic-content RED/GREEN hard cut and two separately authorized publication tasks)
 - US2 intake work: 5
 - US3 lifecycle/persistence work: 8
 - US4 delivery work: 3
 - US5 fixture/Alpha work: 9 (including eight separately authorized Alpha tasks)
-- Total owner-local tasks: 41
+- Total owner-local tasks: 43
 
-Suggested first executable increment after T004: T001 only. No source task is complete in this
-planning commit.
+Suggested next executable increment after completed T008: T042 only. This planning-ledger commit
+does not execute T042 or change any implementation, contract, test, conformance, build, or evidence
+artifact.

@@ -1,0 +1,46 @@
+{
+  "contract": "candidate-content",
+  "expected": "accept",
+  "normative_schemas": [
+    "candidate.schema.json",
+    "semantic-content.schema.json",
+    "provenance.schema.json",
+    "processing-profile.schema.json"
+  ],
+  "synthetic_only": true,
+  "candidate": {
+    "candidate_id": "candidate-synthetic-001",
+    "contract": {
+      "version": "0.1.0",
+      "tag": "contract-v0.1.0",
+      "dialect": "https://json-schema.org/draft/2020-12/schema"
+    },
+    "manifest_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "payloads": [
+      {
+        "path": "payload/synthetic-object.bin",
+        "media_type": "application/octet-stream",
+        "size": 0,
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ],
+    "semantic_content": {
+      "schema": "semantic-content.schema.json",
+      "value": "synthetic-placeholder"
+    },
+    "provenance": {
+      "schema": "provenance.schema.json",
+      "value": "synthetic-placeholder"
+    },
+    "processing_profile": {
+      "schema": "processing-profile.schema.json",
+      "ref": "producer-profile-synthetic-001"
+    },
+    "representations": [
+      {
+        "path": "payload/synthetic-object.bin",
+        "media_type": "application/octet-stream"
+      }
+    ]
+  }
+}

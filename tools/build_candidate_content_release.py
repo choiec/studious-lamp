@@ -1,85 +1,57 @@
 #!/usr/bin/env python3
-"""Build the deterministic local Candidate-content 0.1.0 release."""
+"""Build Candidate-content bytes; T009 separately establishes the candidate gate."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import json
+import platform
 import re
+import stat
 import subprocess
+import tomllib
 from pathlib import Path
 from typing import Any
 
+import rfc8785
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTRACT_DIR = ROOT / "contracts" / "candidate-content"
-VECTOR_DIR = CONTRACT_DIR / "conformance"
-RELEASE_DIR = ROOT / "build" / "releases" / "candidate-content" / "0.1.0"
-
+RELEASE_DIR = ROOT / "build/releases/candidate-content/0.1.0"
 SCHEMA_NAMES = (
     "candidate.schema.json",
     "semantic-content.schema.json",
     "provenance.schema.json",
     "processing-profile.schema.json",
 )
+MANIFEST = "candidate-content.manifest.json"
+CONFORMANCE = "candidate-content.conformance.jsonl"
+PROVENANCE = "candidate-content.provenance.intoto.jsonl"
+OUTPUT_NAMES = (*SCHEMA_NAMES, MANIFEST, CONFORMANCE, PROVENANCE, "SHA256SUMS")
+CONTRACT_PATH = "contracts/candidate-content/"
+VECTOR_PATHS = tuple(CONTRACT_PATH + "conformance/" + n for n in ("positive.json", "negative.json"))
+BUILDER = "tools/build_candidate_content_release.py"
+VERIFIER = "tools/verify_release.py"
+# Generation inputs only; frozen tests are validation inputs, never release inputs.
+SOURCE_PATHS = tuple(sorted((
+    ".python-version", "LICENSE", "pyproject.toml", "uv.lock", BUILDER, VERIFIER,
+    *(CONTRACT_PATH + name for name in SCHEMA_NAMES), *VECTOR_PATHS,
+), key=lambda p: p.encode("utf-8")))
 SCHEMA_DIALECT = "https://json-schema.org/draft/2020-12/schema"
 RELEASE_VERSION = "0.1.0"
 RELEASE_TAG = "contract-v0.1.0"
-
-MEDIA_TYPES = {
-    **{name: "application/schema+json" for name in SCHEMA_NAMES},
-    "candidate-content.manifest.json": "application/json",
-    "candidate-content.conformance.jsonl": "application/jsonl",
-    "candidate-content.provenance.intoto.jsonl": "application/jsonl",
-    "SHA256SUMS": "text/plain; charset=utf-8",
+SERIALIZATION = {
+    "json": "RFC 8785 JCS; UTF-8; no BOM; no trailing newline",
+    "jsonl": "one RFC 8785 JCS object per line plus LF",
+    "checksums": "lowercase SHA-256, two spaces, unsigned UTF-8 filename order, LF",
 }
-EVIDENCE_NAMES = (
-    "candidate-content.manifest.json",
-    "candidate-content.conformance.jsonl",
-    "candidate-content.provenance.intoto.jsonl",
-    "SHA256SUMS",
-)
-OUTPUT_NAMES = SCHEMA_NAMES + EVIDENCE_NAMES
-NEGATIVE_CASE_IDS = (
-    "private-profile",
-    "raw-provenance",
-    "credential-field",
-    "unsafe-backslash-path",
-    "missing-payload-path",
-    "absolute-payload-path",
-    "escaping-payload-path",
-    "non-normalized-payload-path",
-    "mutable-selector",
-    "latest-selector",
-    "range-selector",
-    "missing-artifact",
-    "extra-artifact",
-    "duplicate-artifact",
-    "fifth-normative-artifact",
-    "evidence-as-content",
-    "retired-extractor-protocol",
-    "retired-extractor-form",
-    "wrong-dialect",
-    "wrong-version",
-    "wrong-size",
-    "wrong-digest",
-    "malformed-bytes",
-)
-HEX_DIGEST = re.compile(r"^[0-9a-f]{64}$")
-REVISION = re.compile(r"^[0-9a-f]{40,64}$")
+RETIRED_FORMS = ["retired-extractor-protocol", "retired-extractor-form", "mutable-selector", "range-selector"]
+LICENSE_SHA256 = "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+REVISION = re.compile(r"(?:[0-9a-f]{40}|[0-9a-f]{64})")
 FORBIDDEN_SCHEMA_TERMS = (
-    "extractor",
-    "private_profile",
-    "raw_provenance",
-    "credential",
-    "selector",
-    "latest",
-    "local_path",
-    "sync_path",
-    "endpoint",
-    "principal",
-    "binding",
+    "extractor", "private_profile", "raw_provenance", "credential", "selector",
+    "latest", "local_path", "sync_path", "endpoint", "principal", "binding",
 )
 
 
@@ -92,7 +64,7 @@ def _reject_constant(value: str) -> None:
 
 
 def _unique_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
-    result: dict[str, Any] = {}
+    result = {}
     for key, value in pairs:
         if key in result:
             raise ReleaseError(f"duplicate JSON object key {key!r}")
@@ -104,377 +76,256 @@ def parse_json_bytes(raw: bytes, *, label: str) -> Any:
     if raw.startswith(b"\xef\xbb\xbf"):
         raise ReleaseError(f"{label} has a UTF-8 BOM")
     try:
-        text = raw.decode("utf-8")
-        return json.loads(
-            text,
-            object_pairs_hook=_unique_pairs,
-            parse_constant=_reject_constant,
-        )
-    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise ReleaseError(f"{label} is not strict UTF-8 JSON: {exc}") from exc
+        # JCS uses binary64 numbers. Keep small integers exact for sizes/counts,
+        # but accept canonical integer spellings emitted from large JSON floats.
+        return json.loads(raw.decode("utf-8"), object_pairs_hook=_unique_pairs,
+                          parse_constant=_reject_constant,
+                          parse_int=lambda s: int(s) if abs(int(s)) < 2**53 else float(s))
+    except (UnicodeDecodeError, ValueError) as exc:
+        raise ReleaseError(f"{label} is not strict UTF-8 JSON") from exc
 
 
 def canonical_json_bytes(value: Any) -> bytes:
     try:
-        text = json.dumps(
-            value,
-            ensure_ascii=False,
-            allow_nan=False,
-            separators=(",", ":"),
-            sort_keys=True,
-        )
-    except (TypeError, ValueError) as exc:
-        raise ReleaseError(f"cannot serialize canonical JSON: {exc}") from exc
-    return text.encode("utf-8")
+        return rfc8785.dumps(value)
+    except (ValueError, UnicodeError) as exc:
+        raise ReleaseError("value is outside the supported JCS domain") from exc
 
 
 def sha256_bytes(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
-def named_bytes_digest(files: dict[str, bytes]) -> str:
-    digest = hashlib.sha256()
-    for name in sorted(files):
-        encoded_name = name.encode("utf-8")
-        digest.update(len(encoded_name).to_bytes(4, "big"))
-        digest.update(encoded_name)
-        digest.update(len(files[name]).to_bytes(8, "big"))
-        digest.update(files[name])
-    return digest.hexdigest()
-
-
-def _git(*args: str, input_bytes: bytes | None = None) -> str:
+def _git(root: Path, *args: str) -> bytes:
     try:
-        result = subprocess.run(
-            ["git", *args],
-            cwd=ROOT,
-            input=input_bytes,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            check=True,
-        )
+        return subprocess.run(["git", *args], cwd=root, stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE, check=True).stdout
     except (OSError, subprocess.CalledProcessError) as exc:
-        raise ReleaseError(f"git command failed: {' '.join(args)}") from exc
+        raise ReleaseError("cannot resolve exact Git source") from exc
+
+
+def safe_path(path: str) -> None:
+    if (not path or "\\" in path or any(c in path for c in "\x00\r\n")
+            or any(part in ("", ".", "..") for part in path.split("/"))):
+        raise ReleaseError(f"unsafe source path: {path!r}")
     try:
-        return result.stdout.decode("utf-8").strip()
-    except UnicodeDecodeError as exc:
-        raise ReleaseError(f"git command returned non-UTF-8 output: {' '.join(args)}") from exc
+        path.encode("utf-8")
+    except UnicodeError as exc:
+        raise ReleaseError("source path is not UTF-8") from exc
 
 
-def git_file_bytes(revision: str, path: str) -> bytes:
-    try:
-        result = subprocess.run(
-            ["git", "show", f"{revision}:{path}"],
-            cwd=ROOT,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            check=True,
-        )
-    except (OSError, subprocess.CalledProcessError) as exc:
-        raise ReleaseError(f"git source file is unavailable: {path}") from exc
-    return result.stdout
+def check_no_symlinks(path: Path) -> None:
+    if any(p.is_symlink() for p in (path, *path.parents)):
+        raise ReleaseError("symlink in source/output path")
 
 
-def git_revision() -> str:
-    revision = _git("rev-parse", "HEAD")
+def _read_regular(path: Path) -> bytes:
+    check_no_symlinks(path)
+    if not path.is_file():
+        raise ReleaseError(f"missing or non-regular file: {path.name!r}")
+    return path.read_bytes()
+
+
+def source_snapshot(root: Path) -> tuple[dict[str, bytes], dict[str, Any]]:
+    """Authenticate raw inputs against HEAD and index, without trusting status caches."""
+    root = root.absolute()
+    check_no_symlinks(root)
+    revision = _git(root, "rev-parse", "HEAD").decode("ascii").strip()
     if not REVISION.fullmatch(revision):
-        raise ReleaseError("source revision is not a commit digest")
-    return revision
-
-
-def git_tree(revision: str = "HEAD") -> str:
-    tree = _git("rev-parse", f"{revision}^{{tree}}")
-    if not REVISION.fullmatch(tree):
-        raise ReleaseError("source tree is not a tree digest")
-    return tree
-
-
-def _read_regular(path: Path, *, label: str) -> bytes:
-    if path.is_symlink() or not path.is_file():
-        raise ReleaseError(f"{label} is missing or is not a regular file")
+        raise ReleaseError("source revision is not an exact commit")
+    tree = _git(root, "rev-parse", f"{revision}^{{tree}}").decode("ascii").strip()
+    entries = {}
+    for entry in _git(root, "ls-tree", "-rz", "--full-tree", revision).split(b"\0"):
+        if not entry:
+            continue
+        header, path_bytes = entry.split(b"\t", 1)
+        path = path_bytes.decode("utf-8", errors="surrogateescape")
+        mode, kind, oid = header.decode("ascii").split()
+        entries[path] = (mode, kind, oid)
+    contract_paths = {p for p in SOURCE_PATHS if p.startswith(CONTRACT_PATH)}
+    if {p for p in entries if p.startswith(CONTRACT_PATH)} != contract_paths:
+        raise ReleaseError("tracked contract input inventory is not exact")
+    contract_dir = root / CONTRACT_PATH
+    check_no_symlinks(contract_dir)
+    disk_paths = set()
+    for path in contract_dir.rglob("*"):
+        check_no_symlinks(path)
+        if not path.is_dir():
+            disk_paths.add(path.relative_to(root).as_posix())
+    if disk_paths != contract_paths:
+        raise ReleaseError("working contract input inventory is not exact")
+    files, records = {}, []
+    for path in SOURCE_PATHS:
+        safe_path(path)
+        mode, kind, oid = entries.get(path, (None, None, None))
+        if mode not in ("100644", "100755") or kind != "blob":
+            raise ReleaseError(f"missing or unsafe tracked input: {path}")
+        expected_index = f"{mode} {oid} 0\t{path}\0".encode("utf-8")
+        if _git(root, "ls-files", "--stage", "-z", "--", path) != expected_index:
+            raise ReleaseError(f"dirty or untracked index input: {path}")
+        raw = _read_regular(root / path)
+        file_mode = (root / path).stat().st_mode
+        actual_mode = "100755" if file_mode & stat.S_IXUSR else "100644"
+        if actual_mode != mode or raw != _git(root, "cat-file", "blob", oid):
+            raise ReleaseError(f"dirty source bytes or mode: {path}")
+        files[path] = raw
+        records.append({"path": path, "git_mode": mode, "sha256": sha256_bytes(raw)})
+    # Tool selection cannot claim another revision's program bytes.
+    for path in (BUILDER, VERIFIER):
+        if files[path] != _read_regular(ROOT / path):
+            raise ReleaseError(f"executing tooling differs from selected source: {path}")
+    if sha256_bytes(files["LICENSE"]) != LICENSE_SHA256:
+        raise ReleaseError("tracked Apache-2.0 LICENSE bytes differ")
     try:
-        return path.read_bytes()
-    except OSError as exc:
-        raise ReleaseError(f"cannot read {label}: {exc}") from exc
+        project = tomllib.loads(files["pyproject.toml"].decode("utf-8"))["project"]
+        lock = tomllib.loads(files["uv.lock"].decode("utf-8"))
+        identity_matches = (
+            files[".python-version"].decode().strip() == platform.python_version()
+            and project["requires-python"] == "==" + platform.python_version()
+            and "rfc8785==0.1.4" in project["dependencies"]
+            and [p["version"] for p in lock["package"] if p["name"] == "rfc8785"] == ["0.1.4"]
+            and importlib.metadata.version("rfc8785") == "0.1.4"
+        )
+    except (KeyError, TypeError, ValueError, UnicodeError) as exc:
+        raise ReleaseError("malformed source tool configuration/lock") from exc
+    if not identity_matches:
+        raise ReleaseError("executing Python/JCS identity differs from source configuration/lock")
+    framed = b"".join(f"{r['git_mode']} {r['sha256']} {r['path']}\n".encode("utf-8") for r in records)
+    return files, {"revision": revision, "git_tree": tree,
+                   "source_tree_sha256": sha256_bytes(framed), "inputs": records}
 
 
 def _schema_has_forbidden_term(value: Any) -> bool:
     if isinstance(value, dict):
-        return any(
-            any(term in str(key).lower() for term in FORBIDDEN_SCHEMA_TERMS)
-            or _schema_has_forbidden_term(child)
-            for key, child in value.items()
-        )
+        return any(any(t in key.lower() for t in FORBIDDEN_SCHEMA_TERMS)
+                   or _schema_has_forbidden_term(child) for key, child in value.items())
     if isinstance(value, list):
         return any(_schema_has_forbidden_term(child) for child in value)
-    return isinstance(value, str) and any(term in value.lower() for term in FORBIDDEN_SCHEMA_TERMS)
+    return isinstance(value, str) and any(t in value.lower() for t in FORBIDDEN_SCHEMA_TERMS)
 
 
-def source_files() -> dict[str, bytes]:
-    if not CONTRACT_DIR.is_dir() or CONTRACT_DIR.is_symlink():
-        raise ReleaseError("Candidate-content contract directory is missing or unsafe")
-    actual = tuple(sorted(path.name for path in CONTRACT_DIR.glob("*.schema.json") if path.is_file()))
-    if actual != tuple(sorted(SCHEMA_NAMES)):
-        raise ReleaseError(f"normative schema inventory is not exact: {actual!r}")
-
-    files: dict[str, bytes] = {}
+def schema_bytes(source: dict[str, bytes]) -> dict[str, bytes]:
+    files = {}
     for name in SCHEMA_NAMES:
-        raw = _read_regular(CONTRACT_DIR / name, label=f"source {name}")
-        schema = parse_json_bytes(raw, label=f"source {name}")
-        if not isinstance(schema, dict):
-            raise ReleaseError(f"source {name} is not a JSON object")
-        if schema.get("$schema") != SCHEMA_DIALECT or schema.get("$id") != name:
-            raise ReleaseError(f"source {name} has the wrong JSON Schema identity")
-        if _schema_has_forbidden_term(schema):
-            raise ReleaseError(f"source {name} contains a forbidden public or private form")
-        files[name] = raw
+        value = parse_json_bytes(source[CONTRACT_PATH + name], label=name)
+        if (not isinstance(value, dict) or value.get("$schema") != SCHEMA_DIALECT
+                or value.get("$id") != name or _schema_has_forbidden_term(value)):
+            raise ReleaseError(f"wrong identity or forbidden form in {name}")
+        files[name] = canonical_json_bytes(value)
     return files
 
 
-def source_context(files: dict[str, bytes]) -> dict[str, str]:
-    revision = git_revision()
-    return {
-        "revision": revision,
-        "tree": git_tree(revision),
-        "tree_sha256": named_bytes_digest(files),
+def conformance_bytes(source: dict[str, bytes]) -> bytes:
+    # Package BOTH complete documents, including T042's semantic cases and normalization
+    # examples. This records vectors, not a schema/runtime execution verdict.
+    records = []
+    for path in VECTOR_PATHS:
+        value = parse_json_bytes(source[path], label=path)
+        if (not isinstance(value, dict) or value.get("contract") != "candidate-content"
+                or value.get("synthetic_only") is not True):
+            raise ReleaseError("conformance input is not synthetic Candidate content")
+        records.append({"source_file": path, "source_sha256": sha256_bytes(source[path]),
+                        "vectors": value})
+    return b"".join(canonical_json_bytes(record) + b"\n" for record in records)
+
+
+def binding(name: str, raw: bytes) -> dict[str, Any]:
+    return {"relative_locator": name, "byte_size": len(raw), "sha256": sha256_bytes(raw)}
+
+
+def generation_tool(source: dict[str, bytes]) -> dict[str, Any]:
+    return {**binding(BUILDER, source[BUILDER]), "canonicalizer": "rfc8785==0.1.4"}
+
+
+def expected_release_files(source: dict[str, bytes], context: dict[str, Any]) -> dict[str, bytes]:
+    files = schema_bytes(source)
+    files[CONFORMANCE] = conformance_bytes(source)
+    manifest = {
+        "manifest_format_version": "1", "release_name": "candidate-content",
+        "release_version": RELEASE_VERSION, "release_tag": RELEASE_TAG,
+        "schema_dialect": SCHEMA_DIALECT, "serialization": SERIALIZATION,
+        "digest_algorithm": "sha256", "source_revision": context["revision"],
+        "source_git_tree": context["git_tree"],
+        "source_tree_sha256": context["source_tree_sha256"], "source_inputs": context["inputs"],
+        "generation_tool_identity": generation_tool(source),
+        "compatibility_policy": "pre-1.0-hard-cut", "license": "Apache-2.0",
+        "license_source": binding("LICENSE", source["LICENSE"]),
+        "artifacts": [{"contract_name": name.removesuffix(".schema.json"),
+                       "contract_version": RELEASE_VERSION, "media_type": "application/schema+json",
+                       **binding(name, files[name])} for name in SCHEMA_NAMES],
+        "conformance": {**binding(CONFORMANCE, files[CONFORMANCE]), "record_count": 2,
+                        "scope": "complete-source-vectors; execution-not-attested"},
+        "retired_forms": RETIRED_FORMS,
     }
-
-
-def _load_vectors() -> tuple[bytes, dict[str, Any], bytes, dict[str, Any]]:
-    positive_raw = _read_regular(VECTOR_DIR / "positive.json", label="positive conformance vector")
-    negative_raw = _read_regular(VECTOR_DIR / "negative.json", label="negative conformance vector")
-    positive = parse_json_bytes(positive_raw, label="positive conformance vector")
-    negative = parse_json_bytes(negative_raw, label="negative conformance vector")
-    if not isinstance(positive, dict) or not isinstance(negative, dict):
-        raise ReleaseError("conformance vectors must be JSON objects")
-    if positive.get("expected") != "accept" or positive.get("normative_schemas") != list(SCHEMA_NAMES):
-        raise ReleaseError("positive conformance vector is not the exact four-schema vector")
-    if positive.get("synthetic_only") is not True:
-        raise ReleaseError("positive conformance vector is not synthetic-only")
-    candidate = positive.get("candidate")
-    if not isinstance(candidate, dict) or candidate.get("contract") != {
-        "version": RELEASE_VERSION,
-        "tag": RELEASE_TAG,
-        "dialect": SCHEMA_DIALECT,
-    }:
-        raise ReleaseError("positive conformance vector has the wrong contract identity")
-    if negative.get("synthetic_only") is not True or negative.get("contract") != "candidate-content":
-        raise ReleaseError("negative conformance vector is not synthetic-only Candidate content")
-    cases = negative.get("cases")
-    if not isinstance(cases, list) or tuple(case.get("id") for case in cases if isinstance(case, dict)) != NEGATIVE_CASE_IDS:
-        raise ReleaseError("negative conformance catalog is incomplete or reordered")
-    if any(not isinstance(case, dict) or case.get("expected") != "reject" for case in cases):
-        raise ReleaseError("negative conformance catalog contains a non-reject case")
-    return positive_raw, positive, negative_raw, negative
-
-
-def conformance_bytes() -> tuple[bytes, dict[str, str]]:
-    positive_raw, positive, negative_raw, negative = _load_vectors()
-    records: list[dict[str, Any]] = [
-        {
-            "case_id": "positive",
-            "source_file": "contracts/candidate-content/conformance/positive.json",
-            "source_sha256": sha256_bytes(positive_raw),
-            **positive,
-        }
-    ]
-    negative_hash = sha256_bytes(negative_raw)
-    for case in negative["cases"]:
-        records.append(
-            {
-                "case_id": case["id"],
-                "source_file": "contracts/candidate-content/conformance/negative.json",
-                "source_sha256": negative_hash,
-                **case,
-            }
-        )
-    raw = b"".join(canonical_json_bytes(record) + b"\n" for record in records)
-    return raw, {
-        "positive_sha256": sha256_bytes(positive_raw),
-        "negative_sha256": negative_hash,
-        "record_count": str(len(records)),
-    }
-
-
-def provenance_bytes(files: dict[str, bytes], context: dict[str, str]) -> bytes:
+    files[MANIFEST] = canonical_json_bytes(manifest)
+    # Unsigned SLSA v1 structure only: these owner-local URNs identify the byte
+    # transformation and local builder, not a hosted platform, level or signer.
     statement = {
         "_type": "https://in-toto.io/Statement/v1",
         "predicateType": "https://slsa.dev/provenance/v1",
-        "subject": [
-            {"name": name, "digest": {"sha256": sha256_bytes(files[name])}}
-            for name in SCHEMA_NAMES
-        ],
+        "subject": [{"name": name, "digest": {"sha256": sha256_bytes(files[name])}}
+                    for name in sorted(files)],
         "predicate": {
-            "buildType": "studious-lamp/candidate-content-release",
-            "builder": {"id": "studious-lamp/release-builder"},
-            "license": "Apache-2.0",
-            "release": {"version": RELEASE_VERSION, "tag": RELEASE_TAG},
-            "source": {
-                "revision": context["revision"],
-                "tree": context["tree"],
-                "tree_sha256": context["tree_sha256"],
+            "buildDefinition": {
+                "buildType": "urn:studious-lamp:build:candidate-content:v1",
+                "externalParameters": {
+                    "release_name": "candidate-content", "release_version": RELEASE_VERSION,
+                    "release_tag": RELEASE_TAG, "source_revision": context["revision"],
+                    "source_tree_sha256": context["source_tree_sha256"],
+                },
+                "internalParameters": {"generation_tool_identity": generation_tool(source)},
+                "resolvedDependencies": [{"name": r["path"], "digest": {"sha256": r["sha256"]}}
+                                         for r in context["inputs"]],
             },
-            "reproducible": True,
+            "runDetails": {"builder": {"id": "urn:studious-lamp:builder:local-release:v1"}},
         },
     }
-    return canonical_json_bytes(statement) + b"\n"
-
-
-def _license_record() -> dict[str, Any]:
-    tracked = _git("ls-files", "--error-unmatch", "LICENSE") == "LICENSE"
-    if not tracked:
-        raise ReleaseError("LICENSE is not tracked")
-    raw = _read_regular(ROOT / "LICENSE", label="LICENSE")
-    if b"Apache License" not in raw or b"Version 2.0" not in raw:
-        raise ReleaseError("tracked LICENSE is not Apache-2.0")
-    return {"file": "LICENSE", "spdx": "Apache-2.0", "sha256": sha256_bytes(raw)}
-
-
-def artifact_records(files: dict[str, bytes]) -> list[dict[str, Any]]:
-    return [
-        {
-            "name": name,
-            "contract_version": RELEASE_VERSION,
-            "media_type": MEDIA_TYPES[name],
-            "size": len(files[name]),
-            "sha256": sha256_bytes(files[name]),
-        }
-        for name in SCHEMA_NAMES
-    ]
-
-
-def manifest_bytes(
-    files: dict[str, bytes],
-    context: dict[str, str],
-    conformance: bytes,
-    conformance_identity: dict[str, str],
-    provenance: bytes,
-) -> bytes:
-    manifest = {
-        "contract": "candidate-content",
-        "version": RELEASE_VERSION,
-        "tag": RELEASE_TAG,
-        "schema_dialect": SCHEMA_DIALECT,
-        "serialization": {
-            "json": "RFC 8785 JCS; UTF-8; no BOM; no trailing newline",
-            "jsonl": "one RFC 8785 JCS object per line plus LF",
-            "checksums": "lowercase SHA-256, two spaces, unsigned UTF-8 filename order, LF",
-        },
-        "source": {
-            "revision": context["revision"],
-            "tree": context["tree"],
-            "tree_sha256": context["tree_sha256"],
-            "schemas": list(SCHEMA_NAMES),
-            "conformance_inputs": [
-                {
-                    "name": "contracts/candidate-content/conformance/positive.json",
-                    "sha256": conformance_identity["positive_sha256"],
-                },
-                {
-                    "name": "contracts/candidate-content/conformance/negative.json",
-                    "sha256": conformance_identity["negative_sha256"],
-                },
-            ],
-        },
-        "generation_tool": "tools/build_candidate_content_release.py",
-        "compatibility_policy": "pre-1.0-hard-cut",
-        "license": _license_record(),
-        "artifacts": artifact_records(files),
-        "evidence": [
-            {
-                "name": "candidate-content.manifest.json",
-                "classification": "release-control-evidence",
-            },
-            {
-                "name": "candidate-content.conformance.jsonl",
-                "classification": "conformance-evidence",
-                "media_type": MEDIA_TYPES["candidate-content.conformance.jsonl"],
-                "size": len(conformance),
-                "sha256": sha256_bytes(conformance),
-            },
-            {
-                "name": "candidate-content.provenance.intoto.jsonl",
-                "classification": "provenance-evidence",
-                "media_type": MEDIA_TYPES["candidate-content.provenance.intoto.jsonl"],
-                "size": len(provenance),
-                "sha256": sha256_bytes(provenance),
-            },
-            {"name": "SHA256SUMS", "classification": "integrity-evidence"},
-        ],
-        "conformance": {
-            "output": "candidate-content.conformance.jsonl",
-            "positive_sha256": conformance_identity["positive_sha256"],
-            "negative_sha256": conformance_identity["negative_sha256"],
-            "record_count": int(conformance_identity["record_count"]),
-        },
-        "retired_forms": [
-            "retired-extractor-protocol",
-            "retired-extractor-form",
-            "mutable-selector",
-            "range-selector",
-        ],
-        "classification": {
-            "normative_artifacts": "exactly-four-content-schemas",
-            "evidence": "not-normative-content",
-        },
-    }
-    return canonical_json_bytes(manifest)
-
-
-def checksum_bytes(files: dict[str, bytes]) -> bytes:
-    names = sorted(files)
-    return b"".join(
-        f"{sha256_bytes(files[name])}  {name}\n".encode("utf-8") for name in names
+    files[PROVENANCE] = canonical_json_bytes(statement) + b"\n"
+    files["SHA256SUMS"] = b"".join(
+        f"{sha256_bytes(files[name])}  {name}\n".encode("ascii") for name in sorted(files)
     )
-
-
-def expected_release_files(
-    source: dict[str, bytes], context: dict[str, str]
-) -> dict[str, bytes]:
-    conformance, identity = conformance_bytes()
-    provenance = provenance_bytes(source, context)
-    manifest = manifest_bytes(source, context, conformance, identity, provenance)
-    files = {
-        **source,
-        "candidate-content.manifest.json": manifest,
-        "candidate-content.conformance.jsonl": conformance,
-        "candidate-content.provenance.intoto.jsonl": provenance,
-    }
-    files["SHA256SUMS"] = checksum_bytes(files)
     return files
 
 
-def _check_output_directory() -> None:
-    if RELEASE_DIR.exists() and (RELEASE_DIR.is_symlink() or not RELEASE_DIR.is_dir()):
-        raise ReleaseError("release directory is unsafe")
-    RELEASE_DIR.mkdir(parents=True, exist_ok=True)
-    for child in RELEASE_DIR.iterdir():
-        if child.name not in OUTPUT_NAMES:
-            raise ReleaseError(f"release directory contains an extra artifact: {child.name!r}")
-        if child.is_symlink() or not child.is_file():
-            raise ReleaseError(f"release artifact is not a regular file: {child.name!r}")
-
-
-def build_release() -> dict[str, bytes]:
-    source = source_files()
-    context = source_context(source)
+def build_release(source_root: Path = ROOT, output: Path = RELEASE_DIR) -> dict[str, bytes]:
+    source, context = source_snapshot(source_root)
     files = expected_release_files(source, context)
-    if tuple(files) != OUTPUT_NAMES:
+    if set(files) != set(OUTPUT_NAMES):
         raise ReleaseError("builder output inventory is not exact")
-    _check_output_directory()
+    check_no_symlinks(output.absolute())
+    output = output.resolve()
+    source_root = source_root.resolve()
+    # Never write inside the source inventory or overwrite a declared input.
+    for path in SOURCE_PATHS:
+        if (source_root / path).absolute().is_relative_to(output.absolute()):
+            raise ReleaseError("output directory overlaps source inputs")
+    if output.absolute().is_relative_to((source_root / CONTRACT_PATH).absolute()):
+        raise ReleaseError("output directory is inside contract sources")
+    if output.exists():
+        if not output.is_dir():
+            raise ReleaseError("output directory is not a directory")
+        for child in output.iterdir():
+            if child.name not in OUTPUT_NAMES:
+                raise ReleaseError("output directory contains an extra file")
+            _read_regular(child)
+            if child.stat().st_nlink != 1:
+                raise ReleaseError("output file has a shared hardlink")
+    output.mkdir(parents=True, exist_ok=True)
     for name in OUTPUT_NAMES:
-        (RELEASE_DIR / name).write_bytes(files[name])
+        (output / name).write_bytes(files[name])
     return files
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.parse_args()
+    parser.add_argument("--source-root", type=Path, default=ROOT)
+    parser.add_argument("--output", type=Path, default=RELEASE_DIR)
+    args = parser.parse_args()
     try:
-        build_release()
-    except ReleaseError as exc:
+        build_release(args.source_root, args.output)
+    except (OSError, ReleaseError) as exc:
         parser.error(str(exc))
-    print("PASS: built exact Candidate-content 0.1.0 local release")
+    print("PASS: Candidate-content bytes built; second-environment/candidate gate NOT RUN")
     return 0
 
 

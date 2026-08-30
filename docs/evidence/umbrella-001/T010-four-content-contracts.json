@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "T008",
+  "owner_repository": "repo:studious-lamp",
+  "observed_at": "2026-08-30T21:02:07+09:00",
+  "result": "PASS",
+  "claim": "The owner-local Candidate-content source contains exactly four normative JSON Schema 2020-12 files, and its synthetic positive/negative conformance catalog passed the mandated locked offline contract test. No release candidate, publication, runtime, remote, or operational effect is established.",
+  "execution_context": {
+    "environment_mode": "Local",
+    "verified_root": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+    "base_branch": "main",
+    "base_revision": "8a7e362c1d9d789b53392f47aa5d432889f93dd2",
+    "base_tree": "858dfc24fa0c9fb1aa0e374a31da7dfefc13eae2",
+    "task_branch": "codex/T008-four-content-contract-evidence",
+    "starting_index_state": "clean",
+    "starting_worktree_state": "clean",
+    "overlapping_user_changes": [],
+    "task_commit": null,
+    "integration_merge": null,
+    "commit_reference_policy": "The evidence file does not embed its future task or merge commit; both are verified and reported after integration."
+  },
+  "candidate_content": {
+    "target_version": "0.1.0",
+    "target_tag": "contract-v0.1.0",
+    "normative_source": {
+      "status": "PASS",
+      "dialect": "https://json-schema.org/draft/2020-12/schema",
+      "required_count": 4,
+      "observed_count": 4,
+      "inventory": [
+        {
+          "path": "contracts/candidate-content/candidate.schema.json",
+          "size_bytes": 2944,
+          "sha256": "f767aee0d5ba7e7fbd80f926ca1731dcb83350d5c40fc08c975e15b6d1230ed8",
+          "json_syntax": "PASS",
+          "dialect": "PASS"
+        },
+        {
+          "path": "contracts/candidate-content/semantic-content.schema.json",
+          "size_bytes": 440,
+          "sha256": "e415cca9e6df66b3677026023bd4abb2c71dd345c49dbed32b300e9ddb28b9d5",
+          "json_syntax": "PASS",
+          "dialect": "PASS"
+        },
+        {
+          "path": "contracts/candidate-content/provenance.schema.json",
+          "size_bytes": 438,
+          "sha256": "72018c2417efb4e409a869395f6dc4f7a2601c725ccb3c931091ee205fe5b188",
+          "json_syntax": "PASS",
+          "dialect": "PASS"
+        },
+        {
+          "path": "contracts/candidate-content/processing-profile.schema.json",
+          "size_bytes": 507,
+          "sha256": "ccdea8f4aef0fcaee23a3e44076373180f3ff9727e8b909980257e7733e5745e",
+          "json_syntax": "PASS",
+          "dialect": "PASS"
+        }
+      ]
+    },
+    "conformance_catalog": {
+      "status": "PASS",
+      "synthetic_only": true,
+      "fixture_count": 2,
+      "inventory": [
+        {
+          "path": "contracts/candidate-content/conformance/positive.json",
+          "size_bytes": 1310,
+          "sha256": "7e2ea276413935d46ce8e0015cd1897f7db01da4a20e5ffbf98f9d111758a743",
+          "expected": "accept",
+          "json_syntax": "PASS"
+        },
+        {
+          "path": "contracts/candidate-content/conformance/negative.json",
+          "size_bytes": 3611,
+          "sha256": "955ee1f9b4d0bc0a7c71b28d2254cd82ebacdf2f13d47ea4bce621864cdd992f",
+          "expected": "reject",
+          "case_count": 23,
+          "json_syntax": "PASS"
+        }
+      ],
+      "positive_vector": {
+        "status": "PASS",
+        "normative_schemas": [
+          "candidate.schema.json",
+          "semantic-content.schema.json",
+          "provenance.schema.json",
+          "processing-profile.schema.json"
+        ],
+        "synthetic_only": true
+      },
+      "negative_vector": {
+        "status": "PASS",
+        "case_count": 23,
+        "synthetic_only": true
+      }
+    }
+  },
+  "validation": [
+    {
+      "command": "UV_CACHE_DIR=/tmp/studious-lamp-t008-uv-cache uv run --locked --offline pytest -q tests/contracts/test_candidate_content.py",
+      "working_directory": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+      "status": "PASS",
+      "result": "10 passed in 0.01s"
+    },
+    {
+      "command": "python3 -m json.tool contracts/candidate-content/candidate.schema.json >/dev/null; python3 -m json.tool contracts/candidate-content/semantic-content.schema.json >/dev/null; python3 -m json.tool contracts/candidate-content/provenance.schema.json >/dev/null; python3 -m json.tool contracts/candidate-content/processing-profile.schema.json >/dev/null; python3 -m json.tool contracts/candidate-content/conformance/positive.json >/dev/null; python3 -m json.tool contracts/candidate-content/conformance/negative.json >/dev/null",
+      "working_directory": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+      "status": "PASS",
+      "result": "All four schemas and both conformance fixtures parsed as JSON."
+    },
+    {
+      "command": "python3 -c 'assert exact four schema inventory, ordered positive normative_schemas, synthetic_only flags, and 23 negative cases'",
+      "working_directory": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+      "status": "PASS",
+      "result": "Exact source/conformance inventory and catalog consistency matched the recorded evidence."
+    },
+    {
+      "command": "python3 -m json.tool docs/evidence/umbrella-001/T010-four-content-contracts.json >/dev/null",
+      "working_directory": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+      "status": "PASS",
+      "result": "Evidence JSON syntax validated after writing."
+    }
+  ],
+  "status_by_effect": {
+    "exact_four_normative_source": "PASS",
+    "synthetic_conformance_catalog": "PASS",
+    "release_candidate": "NOT RUN",
+    "tag": "NOT RUN",
+    "publication": "NOT RUN",
+    "remote_readback": "NOT RUN",
+    "runtime": "NOT RUN",
+    "alpha": "NOT RUN",
+    "operational_effects": "NOT RUN",
+    "production_readiness": "UNESTABLISHED"
+  },
+  "review": {
+    "secret_and_private_content": "PASS",
+    "synthetic_only": "PASS",
+    "scope_boundary": "PASS",
+    "findings": []
+  },
+  "limitations": [
+    "The recorded conformance PASS is limited to the local contract test and the synthetic fixture catalog assertions; it is not a deployed consumer or runtime result.",
+    "No release-candidate build or byte-identical release verification is claimed by T008; those checks belong to T009.",
+    "No tag, publication, immutable remote locator, remote readback, runtime startup, live Handoff, Alpha execution, deployment, restore, deletion, or production promotion was run.",
+    "The evidence intentionally omits its future task-commit and merge-commit hashes to avoid a self-reference cycle; Git verification reports them after integration."
+  ]
+}

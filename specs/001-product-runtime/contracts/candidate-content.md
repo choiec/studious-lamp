@@ -4,7 +4,8 @@
 
 **Target**: `0.1.0` / `contract-v0.1.0`
 
-**Current status**: Source, local release candidate, publication, and readback `NOT RUN`
+**Current status**: T042 requirements/design and intentional RED; T043 GREEN/T077, regenerated
+T009 candidate, publication and readback are not established. Prior completion evidence is historical.
 
 ## Normative Source Inventory
 
@@ -25,8 +26,68 @@ processing-profile reference, and representation inventory.
 `provenance.schema.json` contains the disclosure-safe projection only.
 `processing-profile.schema.json` contains an opaque producer-scoped reference only.
 
-No schema contains extraction behavior, source layout, raw provenance, private profile content,
+No schema contains extraction behavior, protected source layout, raw provenance, private profile content,
 credentials, binding names, local/sync paths, runtime endpoints, or oCIS principal identity.
+
+## Semantic-Content Hard Cut (T042)
+
+FR-027–FR-039 in `specs/001-product-runtime/spec.md` and the Semantic Content Wire Model in
+`specs/001-product-runtime/data-model.md` fix the exact required fields, optional fields, types,
+identity scopes, metadata records, overlay targets, twelve payloads and declaration alternatives.
+They are the T043 implementation authority. The new root is
+`{"schema":"semantic-content.schema.json","resources":[],"items":[]}`; the old schema/value
+form is rejection-only. `$defs.resource`, `$defs.item`, `$defs.content_part`,
+`$defs.response_declaration`, `$defs.interaction` reside in that schema. Exactly one Resource
+shape, one Item shape and twelve discriminated interaction.oneOf alternatives are permitted.
+Every object is closed; no resource.schema.json, item.schema.json, fifth artifact, legacy reader
+or compatibility alias is introduced. These names/JSON metadata are Studious's normalized
+contract, not official QTI JSON field names. XML/PCI/export adapters are not implemented.
+
+Resource originals are immutable; Item-owned overlays and segment references avoid edited or
+duplicated authoritative Resource copies. Public source_anchor carries provenance_ref/page/block
+only as a reviewed public-rendition projection, never the private original page/geometry/name.
+When safe projection is unavailable, the optional anchor is absent, not a fabricated locator.
+Stable Resource/block/segment identities remain. The one existing candidate.provenance.value
+is used as an opaque public projection ID; no provenance shape change is needed. None of these
+schema shapes grants authority to publish actual private values.
+
+LOMv1.0 five-value difficulty is qualitative. textComplexity retains separate scale/score/unit
+measurements, not a CEFR-only measurement enum. Automatic language/EGP/EVP references live under
+Resource extensions; Item difficulty_evidence references profiles/reasoning/usage records and
+does not derive difficulty from EGP CEFR appearance. educational_measurements is forbidden.
+Usage Data, response-rate, IRT and Rasch stores remain separate unimplemented work.
+
+### Validation ownership and conformance matrix
+
+| Surface | Positive oracle | Rejection/limitation | Owner |
+|---|---|---|---|
+| Root / five `$defs` / closed objects | resources/items and exact four schemas | schema/value, missing fields, unknown keys/types | T043 |
+| choice, reference_choice | separate option parts and declarations | missing response/reference payload, embedded answers | T043 shape; T017/T018 links |
+| inline_mark_choice, sentence_mark_choice | mark/segment identity choices | unsupported payload and dangling refs | T043 shape; T017/T018 links |
+| blank_choice, order_choice | gap overlay; unit/order options | missing blank/unit fields; invalid permutation | T043 shape; T017/T018 relationships |
+| position_choice, summary_pair_choice | given sentence, slots, summary gaps and pair values | missing fields; invalid slot/gap correspondence | T043 shape; T017/T018 relationships |
+| inline_choice_set, token_order | per-gap declarations; ordered token IDs | missing fields; missing/reused answer targets | T043 shape; T017/T018 correspondence |
+| text_entry, edit_response | single/string and single/record | wrong declaration value shape; normalization/target mismatch | T043 shape; T017/T018 semantics |
+| Metadata/extensions | five LOM values, Lexile and other scales, EGP/EVP refs | educational_measurements, wrong source/level/relationship/confidence, copied definitions | T043 local shape; disclosure review separately |
+| Source anchors and overlays | public projection; original-text targets/digests | private locator/geometry keys; wrong digest/range or missing owner | T043 shape; T017/T018 binding and disclosure |
+| Resource originals / responses | one Resource, twelve Items, one declaration per response | duplicate IDs, authoritative inline copies, dangling IDs | T017/T018; Automatic independently validates production |
+
+`positive.json.candidate.semantic_content` contains a single shared synthetic Resource and exactly
+one Item per interaction type, including non-ASCII original text to disambiguate code-point
+offsets from UTF-8/UTF-16 units. Top-level text_entry_normalization_examples freeze NFC/LF without
+trimming, casefolding or punctuation changes. `negative.json.semantic_content_cases` contains
+50 schema-rejection and 28 future-Core-rejection mutation records:
+`id`, `owner`, `schema_expected`, optional `runtime_expected`, and `operations`. Each operation
+has `op` (add/replace/remove/copy), a typed path array, and value/from as applicable. These records
+are test data, not normative schemas. Existing negative `cases` retain the earlier boundary
+catalog. New cases have no real source data, URLs, private values or runtime bindings.
+
+Schema-owned rows must reject only after the unmodified positive baseline is accepted. Core-owned
+rows have schema_expected=accept and runtime_expected=reject: the schema oracle only confirms
+their local shapes, never executes or certifies runtime rejection. The test-only evaluator's
+supported subset and commands are fixed in `plan.md`; unsupported keywords fail closed. Original
+text/digest/range bindings are checked on the finite synthetic baseline, not implemented as a
+general Core validator. No full-suite PASS may be reported while T042 remains RED.
 
 ## Conformance Inputs
 
@@ -40,7 +101,8 @@ tests/fixtures/synthetic/processing-profile.json
 tests/contracts/test_candidate_content.py
 ```
 
-Positive inputs cover one complete exact-four Candidate. Negative inputs cover missing/fifth/
+Positive inputs cover one complete exact-four Candidate with the T042 semantic hard-cut shape.
+Negative inputs cover missing/fifth/
 unknown schemas, the retired Extractor Protocol, wrong dialect/version/size/digest, mutable
 selector, unsafe/duplicate/missing/extra payload paths, malformed bytes, private-field leakage, and
 evidence misclassified as a content contract.
@@ -95,6 +157,7 @@ authorized or executed by the owner implementation tasks that create the local c
 
 ```text
 docs/evidence/umbrella-001/T010-four-content-contracts.json
+docs/evidence/umbrella-001/T077-semantic-content-hard-cut.json
 docs/evidence/umbrella-001/T011-content-release-candidate.json
 docs/evidence/umbrella-001/T013-release-readback.json
 docs/evidence/umbrella-001/alpha/AT-003-public-contract.json
@@ -103,3 +166,9 @@ docs/evidence/umbrella-001/alpha/AT-003-public-contract.json
 T010 and T011 may report `PASS` only for their exact verified source/local-candidate scope. T013
 starts with publication/readback `NOT RUN`; AT-003 remains `NOT RUN` until separately authorized
 Alpha execution against immutable releases.
+
+T042 writes no evidence JSON. T043 later writes the new central T077 acceptance input with exact
+Studious revision, schema/conformance digests, commands/results and the schema/runtime split.
+Historical T010 evidence is valid only for its original revision, not this redesign. The sequence
+is T042 RED → T043 GREEN/T077 → T009 regenerated local candidate → separately authorized T032
+publication/readback. T007 builder implementation and immutable historical releases are preserved.

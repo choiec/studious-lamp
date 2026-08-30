@@ -2,65 +2,25 @@
   "contract": "candidate-content",
   "synthetic_only": true,
   "cases": [
-    {
-      "id": "private-profile",
-      "expected": "reject",
-      "document": {"private_profile": "synthetic-placeholder"}
-    },
-    {
-      "id": "raw-provenance",
-      "expected": "reject",
-      "document": {"raw_provenance": "synthetic-placeholder"}
-    },
-    {
-      "id": "credential-field",
-      "expected": "reject",
-      "document": {"credential": "synthetic-placeholder"}
-    },
-    {
-      "id": "unsafe-backslash-path",
-      "expected": "reject",
-      "document": {"path": "payload\\synthetic-object.bin"}
-    },
+    {"id":"private-profile","expected":"reject","document":{"private_profile":"synthetic-placeholder"}},
+    {"id":"raw-provenance","expected":"reject","document":{"raw_provenance":"synthetic-placeholder"}},
+    {"id":"credential-field","expected":"reject","document":{"credential":"synthetic-placeholder"}},
+    {"id":"unsafe-backslash-path","expected":"reject","document":{"path":"payload\\synthetic-object.bin"}},
     {
       "id": "missing-payload-path",
       "expected": "reject",
-      "document": {"payload": {"media_type": "application/octet-stream"}}
+      "document": {"payload":{"media_type":"application/octet-stream"}}
     },
-    {
-      "id": "absolute-payload-path",
-      "expected": "reject",
-      "document": {"path": "/payload/synthetic-object.bin"}
-    },
-    {
-      "id": "escaping-payload-path",
-      "expected": "reject",
-      "document": {"path": "payload/../synthetic-object.bin"}
-    },
-    {
-      "id": "non-normalized-payload-path",
-      "expected": "reject",
-      "document": {"path": "payload//synthetic-object.bin"}
-    },
-    {
-      "id": "mutable-selector",
-      "expected": "reject",
-      "document": {"selector": "mutable"}
-    },
-    {
-      "id": "latest-selector",
-      "expected": "reject",
-      "document": {"selector": "latest"}
-    },
-    {
-      "id": "range-selector",
-      "expected": "reject",
-      "document": {"selector": ">=0.1.0"}
-    },
+    {"id":"absolute-payload-path","expected":"reject","document":{"path":"/payload/synthetic-object.bin"}},
+    {"id":"escaping-payload-path","expected":"reject","document":{"path":"payload/../synthetic-object.bin"}},
+    {"id":"non-normalized-payload-path","expected":"reject","document":{"path":"payload//synthetic-object.bin"}},
+    {"id":"mutable-selector","expected":"reject","document":{"selector":"mutable"}},
+    {"id":"latest-selector","expected":"reject","document":{"selector":"latest"}},
+    {"id":"range-selector","expected":"reject","document":{"selector":">=0.1.0"}},
     {
       "id": "missing-artifact",
       "expected": "reject",
-      "artifacts": ["candidate.schema.json", "semantic-content.schema.json", "provenance.schema.json"]
+      "artifacts": ["candidate.schema.json","semantic-content.schema.json","provenance.schema.json"]
     },
     {
       "id": "extra-artifact",
@@ -95,45 +55,613 @@
         "representation.schema.json"
       ]
     },
-    {
-      "id": "evidence-as-content",
-      "expected": "reject",
-      "artifacts": ["candidate-content.manifest.json"]
-    },
-    {
-      "id": "retired-extractor-protocol",
-      "expected": "reject",
-      "document": {"protocol": "retired-extractor-protocol"}
-    },
+    {"id":"evidence-as-content","expected":"reject","artifacts":["candidate-content.manifest.json"]},
+    {"id":"retired-extractor-protocol","expected":"reject","document":{"protocol":"retired-extractor-protocol"}},
     {
       "id": "retired-extractor-form",
       "expected": "reject",
-      "document": {"extractor": {"source": "synthetic-placeholder"}}
+      "document": {"extractor":{"source":"synthetic-placeholder"}}
+    },
+    {"id":"wrong-dialect","expected":"reject","document":{"dialect":"synthetic-dialect"}},
+    {"id":"wrong-version","expected":"reject","document":{"version":"synthetic-version"}},
+    {"id":"wrong-size","expected":"reject","document":{"size":1,"bytes":"synthetic-placeholder"}},
+    {"id":"wrong-digest","expected":"reject","document":{"sha256":"synthetic-digest"}},
+    {"id":"malformed-bytes","expected":"reject","document":{"bytes":"synthetic-malformed-placeholder"}}
+  ],
+  "semantic_content_cases": [
+    {
+      "id": "legacy-schema-value",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":[],"value":{"schema":"semantic-content.schema.json","value":"synthetic-placeholder"}}]
     },
     {
-      "id": "wrong-dialect",
-      "expected": "reject",
-      "document": {"dialect": "synthetic-dialect"}
+      "id": "unsupported-interaction",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"interaction","type"],"value":"unsupported"}]
     },
     {
-      "id": "wrong-version",
-      "expected": "reject",
-      "document": {"version": "synthetic-version"}
+      "id": "resources-not-array",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["resources"],"value":{}}]
     },
     {
-      "id": "wrong-size",
-      "expected": "reject",
-      "document": {"size": 1, "bytes": "synthetic-placeholder"}
+      "id": "items-not-array",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items"],"value":{}}]
     },
     {
-      "id": "wrong-digest",
-      "expected": "reject",
-      "document": {"sha256": "synthetic-digest"}
+      "id": "missing-resources",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["resources"]}]
     },
     {
-      "id": "malformed-bytes",
-      "expected": "reject",
-      "document": {"bytes": "synthetic-malformed-placeholder"}
+      "id": "missing-items",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items"]}]
+    },
+    {
+      "id": "missing-choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",0,"interaction","response_id"]}]
+    },
+    {
+      "id": "missing-reference_choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",1,"interaction","reference_refs"]}]
+    },
+    {
+      "id": "missing-inline_mark_choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",2,"interaction","mark_refs"]}]
+    },
+    {
+      "id": "missing-sentence_mark_choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",3,"interaction","sentence_refs"]}]
+    },
+    {
+      "id": "missing-blank_choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",4,"interaction","blank_ref"]}]
+    },
+    {
+      "id": "missing-order_choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",5,"interaction","unit_refs"]}]
+    },
+    {
+      "id": "missing-position_choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",6,"interaction","given_part_ref"]}]
+    },
+    {
+      "id": "missing-summary_pair_choice-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",7,"interaction","summary_part_ref"]}]
+    },
+    {
+      "id": "missing-inline_choice_set-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",8,"interaction","gaps"]}]
+    },
+    {
+      "id": "missing-token_order-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",9,"interaction","allow_reuse"]}]
+    },
+    {
+      "id": "missing-text_entry-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",10,"interaction","entries"]}]
+    },
+    {
+      "id": "missing-edit_response-payload",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"remove","path":["items",11,"interaction","allowed_operations"]}]
+    },
+    {
+      "id": "educational-measurements-root",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"add","path":["educational_measurements"],"value":[]}]
+    },
+    {
+      "id": "educational-measurements-resource",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"add","path":["resources",0,"educational_measurements"],"value":[]}]
+    },
+    {
+      "id": "educational-measurements-item",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"add","path":["items",0,"educational_measurements"],"value":[]}]
+    },
+    {
+      "id": "unsupported-resource-type",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["resources",0,"resource_type"],"value":"unsupported"}]
+    },
+    {
+      "id": "lom-not-lexile",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"standard_metadata","ieee_lom","educational","difficulty","value"],
+          "value": "800L"
+        }
+      ]
+    },
+    {
+      "id": "lom-not-cefr",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"standard_metadata","ieee_lom","educational","difficulty","value"],
+          "value": "B1"
+        }
+      ]
+    },
+    {
+      "id": "lom-source",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"standard_metadata","ieee_lom","educational","difficulty","source"],
+          "value": "synthetic-other"
+        }
+      ]
+    },
+    {
+      "id": "complexity-score-type",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"standard_metadata","oneedtech_common_cartridge","textComplexity",0,"score"],
+          "value": "800"
+        }
+      ]
+    },
+    {
+      "id": "egp-relationship",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"extensions","automatic_disco","language_profile","egp_mappings",0,"relationship"],
+          "value": "equivalent"
+        }
+      ]
+    },
+    {
+      "id": "egp-review-status",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"extensions","automatic_disco","language_profile","egp_mappings",0,"review_status"],
+          "value": "automatic-hard"
+        }
+      ]
+    },
+    {
+      "id": "cefr-confidence",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"extensions","automatic_disco","language_profile","cefr","confidence"],
+          "value": 1.1
+        }
+      ]
+    },
+    {
+      "id": "cefr-level",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"extensions","automatic_disco","language_profile","cefr","level"],
+          "value": "hard"
+        }
+      ]
+    },
+    {
+      "id": "evp-source-required",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "remove",
+          "path": ["resources",0,"extensions","automatic_disco","language_profile","evp_mappings",0,"source"]
+        }
+      ]
+    },
+    {
+      "id": "egp-no-copied-definition",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "add",
+          "path": ["resources",0,"extensions","automatic_disco","language_profile","egp_mappings",0,"definition"],
+          "value": "synthetic-placeholder"
+        }
+      ]
+    },
+    {
+      "id": "difficulty-evidence-not-standard",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"add","path":["items",0,"standard_metadata","difficulty_evidence"],"value":{}}]
+    },
+    {
+      "id": "private-source-url",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "add",
+          "path": ["resources",0,"content_blocks",0,"segments",0,"source_anchor","source_url"],
+          "value": "synthetic-private-locator"
+        }
+      ]
+    },
+    {
+      "id": "protected-layout",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"add","path":["resources",0,"content_blocks",0,"segments",0,"source_anchor","bbox"],"value":[0,0,1,1]}]
+    },
+    {
+      "id": "answers-not-in-interaction",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"add","path":["items",0,"interaction","correct_response"],"value":"option-a"}]
+    },
+    {
+      "id": "resource-segments-no-text",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"add","path":["items",4,"content_parts",4,"content","text"],"value":"Alpha beta."}]
+    },
+    {
+      "id": "unknown-content-kind",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"content_parts",0,"content","kind"],"value":"text"}]
+    },
+    {
+      "id": "unknown-overlay-operation",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",2,"overlays",0,"operation"],"value":"paint"}]
+    },
+    {
+      "id": "negative-offset",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",2,"overlays",0,"target","start"],"value":-1}]
+    },
+    {
+      "id": "offset-unit-type",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",2,"overlays",0,"target","end"],"value":"5"}]
+    },
+    {
+      "id": "anchor-public-page-positive",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["resources",0,"content_blocks",0,"segments",0,"source_anchor","page"],"value":0}]
+    },
+    {
+      "id": "anchor-block-id-type",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["resources",0,"content_blocks",0,"segments",0,"source_anchor","block"],"value":1}]
+    },
+    {
+      "id": "unknown-cardinality",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"response_declarations",0,"cardinality"],"value":"many"}]
+    },
+    {
+      "id": "single-identifier-not-array",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"response_declarations",0,"correct_response"],"value":["option-a"]}]
+    },
+    {
+      "id": "ordered-identifier-not-scalar",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",9,"response_declarations",0,"correct_response"],"value":"token-a"}]
+    },
+    {
+      "id": "entry-string-not-record",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",10,"response_declarations",0,"correct_response"],"value":{"value":"beta"}}]
+    },
+    {
+      "id": "edit-record-not-text",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",11,"response_declarations",0,"correct_response"],"value":"replace Alfa"}]
+    },
+    {
+      "id": "edit-operation",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["items",11,"response_declarations",0,"correct_response","edits",0,"operation"],
+          "value": "paint"
+        }
+      ]
+    },
+    {
+      "id": "missing-resource",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"resource_refs",0,"resource_id"],"value":"resource-missing"}]
+    },
+    {
+      "id": "missing-segment",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",1,"interaction","reference_refs",0,"segment_id"],"value":"segment-missing"}]
+    },
+    {
+      "id": "missing-part",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"interaction","options",0,"part_ref"],"value":"part-missing"}]
+    },
+    {
+      "id": "missing-option-answer",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"response_declarations",0,"correct_response"],"value":"option-missing"}]
+    },
+    {
+      "id": "missing-slot-answer",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",6,"response_declarations",0,"correct_response"],"value":"slot-missing"}]
+    },
+    {
+      "id": "missing-token-answer",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",9,"response_declarations",0,"correct_response"],"value":["token-missing"]}]
+    },
+    {
+      "id": "missing-overlay-target",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",8,"interaction","gaps",0,"target_ref"],"value":"overlay-missing"}]
+    },
+    {
+      "id": "missing-response-declaration",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"interaction","response_id"],"value":"response-missing"}]
+    },
+    {
+      "id": "duplicate-segment-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["resources",0,"content_blocks",0,"segments",1,"segment_id"],"value":"segment-1"}]
+    },
+    {
+      "id": "duplicate-part-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"content_parts",1,"part_id"],"value":"instruction"}]
+    },
+    {
+      "id": "range-past-text",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",2,"overlays",0,"target","end"],"value":500}]
+    },
+    {
+      "id": "range-reversed",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",2,"overlays",0,"target","start"],"value":6}]
+    },
+    {
+      "id": "insert-slot-not-empty",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",6,"overlays",0,"target","end"],"value":1}]
+    },
+    {
+      "id": "wrong-text-digest",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["items",2,"overlays",0,"target","text_sha256"],
+          "value": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-authoritative-text",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["items",4,"content_parts",4,"content"],
+          "value": {"kind":"inline_text","language":"en","text":"Alpha beta."}
+        }
+      ]
+    },
+    {
+      "id": "entry-normalization-length",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",10,"response_declarations",0,"correct_response"],"value":" beta "}]
+    },
+    {
+      "id": "missing-edit-answer-target",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["items",11,"response_declarations",0,"correct_response","edits",0,"target_id"],
+          "value": "edit-missing"
+        }
+      ]
+    },
+    {
+      "id": "duplicate-resource-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"copy","from":["resources",0],"path":["resources",1]}]
+    },
+    {
+      "id": "duplicate-item-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"copy","from":["items",0],"path":["items",12]}]
+    },
+    {
+      "id": "duplicate-response-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"copy","from":["items",0,"response_declarations",0],"path":["items",0,"response_declarations",1]}]
+    },
+    {
+      "id": "duplicate-option-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"interaction","options",1,"option_id"],"value":"option-a"}]
+    },
+    {
+      "id": "duplicate-slot-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",6,"interaction","slots",1,"slot_id"],"value":"slot-a"}]
+    },
+    {
+      "id": "duplicate-token-id",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",9,"interaction","tokens",1,"token_id"],"value":"token-a"}]
+    },
+    {
+      "id": "missing-target-part",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",11,"overlays",0,"target","part_id"],"value":"part-missing"}]
+    },
+    {
+      "id": "missing-provenance-projection",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [
+        {
+          "op": "replace",
+          "path": ["resources",0,"content_blocks",0,"segments",0,"source_anchor","provenance_ref"],
+          "value": "provenance-missing"
+        }
+      ]
+    },
+    {
+      "id": "missing-asset-payload",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["resources",0,"assets",0,"payload_path"],"value":"payload/synthetic-missing.bin"}]
+    },
+    {
+      "id": "wrong-declaration-kind",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"response_declarations",0,"base_type"],"value":"string"}]
+    },
+    {
+      "id": "korean-instruction-analysis",
+      "owner": "schema",
+      "schema_expected": "reject",
+      "operations": [{"op":"replace","path":["items",0,"content_parts",0,"analysis_target","egp"],"value":true}]
+    },
+    {
+      "id": "orphan-response-declaration",
+      "owner": "core",
+      "schema_expected": "accept",
+      "runtime_expected": "reject",
+      "operations": [
+        {"op":"copy","from":["items",0,"response_declarations",0],"path":["items",0,"response_declarations",1]},
+        {"op":"replace","path":["items",0,"response_declarations",1,"response_id"],"value":"response-orphan"}
+      ]
     }
   ]
 }

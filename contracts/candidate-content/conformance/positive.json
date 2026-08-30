@@ -10,11 +10,7 @@
   "synthetic_only": true,
   "candidate": {
     "candidate_id": "candidate-synthetic-001",
-    "contract": {
-      "version": "0.1.0",
-      "tag": "contract-v0.1.0",
-      "dialect": "https://json-schema.org/draft/2020-12/schema"
-    },
+    "contract": {"version":"0.1.0","tag":"contract-v0.1.0","dialect":"https://json-schema.org/draft/2020-12/schema"},
     "manifest_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     "payloads": [
       {
@@ -26,21 +22,954 @@
     ],
     "semantic_content": {
       "schema": "semantic-content.schema.json",
-      "value": "synthetic-placeholder"
+      "resources": [
+        {
+          "resource_id": "resource-synthetic-1",
+          "revision": "1",
+          "resource_type": "passage",
+          "language": "en",
+          "content_blocks": [
+            {
+              "block_id": "block-synthetic-1",
+              "type": "paragraph",
+              "segments": [
+                {
+                  "segment_id": "segment-1",
+                  "type": "sentence",
+                  "text": "Alpha beta.",
+                  "source_anchor": {"provenance_ref":"provenance-synthetic-1","page":1,"block":"block-synthetic-1"}
+                },
+                {"segment_id":"segment-2","type":"sentence","text":"Gamma delta."},
+                {"segment_id":"segment-3","type":"sentence","text":"Aé😀éZ"}
+              ]
+            }
+          ],
+          "assets": [
+            {
+              "asset_id": "asset-synthetic-1",
+              "payload_path": "payload/synthetic-object.bin",
+              "media_type": "application/octet-stream"
+            }
+          ],
+          "standard_metadata": {
+            "ieee_lom": {"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}},
+            "oneedtech_common_cartridge": {
+              "textComplexity": [
+                {
+                  "scheme": "synthetic-text-complexity",
+                  "version": "synthetic-v1",
+                  "source": "reference-synthetic",
+                  "scale": "Lexile",
+                  "score": 800,
+                  "unit": "L"
+                }
+              ]
+            }
+          },
+          "extensions": {
+            "automatic_disco": {
+              "target_audience": ["synthetic-secondary"],
+              "language_profile": {
+                "cefr": {"level":"B1","method":"synthetic-analysis","confidence":0.75},
+                "egp_mappings": [
+                  {
+                    "scheme": "EGP",
+                    "version": "synthetic-v1",
+                    "source": "reference-synthetic",
+                    "grammar_id": "grammar-synthetic-1",
+                    "relationship": "partial",
+                    "review_status": "unreviewed"
+                  }
+                ],
+                "evp_mappings": [
+                  {
+                    "scheme": "EVP",
+                    "version": "synthetic-v1",
+                    "source": "reference-synthetic",
+                    "profile_entry_id": "entry-synthetic-1",
+                    "sense": "sense-synthetic-1",
+                    "pos": "noun"
+                  }
+                ]
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        }
+      ],
+      "items": [
+        {
+          "item_id": "item-choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-a",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Alpha."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-b",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Gamma."},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [],
+          "interaction": {
+            "type": "choice",
+            "response_id": "response-1",
+            "options": [{"option_id":"option-a","part_ref":"answer-a"},{"option_id":"option-b","part_ref":"answer-b"}]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"option-a"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-reference_choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-a",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Alpha."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-b",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Gamma."},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [],
+          "interaction": {
+            "type": "reference_choice",
+            "response_id": "response-1",
+            "reference_refs": [{"resource_id":"resource-synthetic-1","segment_id":"segment-2"}],
+            "options": [{"option_id":"option-a","part_ref":"answer-a"},{"option_id":"option-b","part_ref":"answer-b"}]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"option-a"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-inline_mark_choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [
+            {
+              "overlay_id": "mark-a",
+              "operation": "mark",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-1",
+                "start": 0,
+                "end": 5,
+                "text_sha256": "6d09c2dd9f6acb7404974f19cfc7e9036ac59abb930e505351a55e94b8b1701c"
+              }
+            },
+            {
+              "overlay_id": "mark-b",
+              "operation": "mark",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-3",
+                "start": 2,
+                "end": 3,
+                "text_sha256": "6c8c4b66850b0c3ae0a971c33db303c52f69e7e3bf7afa2ce644dab176bdd85a"
+              }
+            }
+          ],
+          "interaction": {"type":"inline_mark_choice","response_id":"response-1","mark_refs":["mark-a","mark-b"]},
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"mark-a"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-sentence_mark_choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [],
+          "interaction": {
+            "type": "sentence_mark_choice",
+            "response_id": "response-1",
+            "sentence_refs": [
+              {"option_id":"sentence-a","resource_id":"resource-synthetic-1","segment_id":"segment-1"},
+              {"option_id":"sentence-b","resource_id":"resource-synthetic-1","segment_id":"segment-2"}
+            ]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"sentence-a"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-blank_choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-a",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Alpha."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-b",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Gamma."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "gap-context",
+              "role": "stimulus",
+              "content": {"kind":"resource_segments","resource_id":"resource-synthetic-1","segment_ids":["segment-1"]},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [
+            {
+              "overlay_id": "blank-a",
+              "operation": "blank",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-1",
+                "start": 6,
+                "end": 10,
+                "text_sha256": "6d09c2dd9f6acb7404974f19cfc7e9036ac59abb930e505351a55e94b8b1701c"
+              }
+            }
+          ],
+          "interaction": {
+            "type": "blank_choice",
+            "response_id": "response-1",
+            "blank_ref": "blank-a",
+            "options": [{"option_id":"option-a","part_ref":"answer-a"},{"option_id":"option-b","part_ref":"answer-b"}]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"option-b"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-order_choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "unit-a",
+              "role": "stimulus",
+              "content": {"kind":"resource_segments","resource_id":"resource-synthetic-1","segment_ids":["segment-1"]},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "unit-b",
+              "role": "stimulus",
+              "content": {"kind":"resource_segments","resource_id":"resource-synthetic-1","segment_ids":["segment-2"]},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [],
+          "interaction": {
+            "type": "order_choice",
+            "response_id": "response-1",
+            "unit_refs": ["unit-a","unit-b"],
+            "order_options": [
+              {"option_id":"order-a","unit_refs":["unit-a","unit-b"]},
+              {"option_id":"order-b","unit_refs":["unit-b","unit-a"]}
+            ]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"order-a"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-position_choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "given",
+              "role": "given_sentence",
+              "content": {"kind":"inline_text","language":"en","text":"A synthetic bridge."},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [
+            {
+              "overlay_id": "insert-a",
+              "operation": "insert_slot",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-1",
+                "start": 0,
+                "end": 0,
+                "text_sha256": "6d09c2dd9f6acb7404974f19cfc7e9036ac59abb930e505351a55e94b8b1701c"
+              }
+            },
+            {
+              "overlay_id": "insert-b",
+              "operation": "insert_slot",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-1",
+                "start": 11,
+                "end": 11,
+                "text_sha256": "6d09c2dd9f6acb7404974f19cfc7e9036ac59abb930e505351a55e94b8b1701c"
+              }
+            }
+          ],
+          "interaction": {
+            "type": "position_choice",
+            "response_id": "response-1",
+            "given_part_ref": "given",
+            "slots": [{"slot_id":"slot-a","target_ref":"insert-a"},{"slot_id":"slot-b","target_ref":"insert-b"}]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"slot-a"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-summary_pair_choice",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "summary",
+              "role": "summary",
+              "content": {"kind":"inline_text","language":"en","text":"One ___ and two ___."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-a",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Alpha."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-b",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Gamma."},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [
+            {
+              "overlay_id": "summary-a",
+              "operation": "blank",
+              "target": {
+                "part_id": "summary",
+                "start": 4,
+                "end": 7,
+                "text_sha256": "8182c2edbb5dde746480bb339b28889cd262a724cfa4a8bae3ee1d2e3bf5dd13"
+              }
+            },
+            {
+              "overlay_id": "summary-b",
+              "operation": "blank",
+              "target": {
+                "part_id": "summary",
+                "start": 16,
+                "end": 19,
+                "text_sha256": "8182c2edbb5dde746480bb339b28889cd262a724cfa4a8bae3ee1d2e3bf5dd13"
+              }
+            }
+          ],
+          "interaction": {
+            "type": "summary_pair_choice",
+            "response_id": "response-1",
+            "summary_part_ref": "summary",
+            "gaps": [{"gap_id":"gap-a","target_ref":"summary-a"},{"gap_id":"gap-b","target_ref":"summary-b"}],
+            "pair_options": [
+              {
+                "option_id": "pair-a",
+                "values": [{"gap_id":"gap-a","part_ref":"answer-a"},{"gap_id":"gap-b","part_ref":"answer-b"}]
+              },
+              {
+                "option_id": "pair-b",
+                "values": [{"gap_id":"gap-a","part_ref":"answer-b"},{"gap_id":"gap-b","part_ref":"answer-a"}]
+              }
+            ]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"pair-a"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-inline_choice_set",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-a",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Alpha."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "answer-b",
+              "role": "option",
+              "content": {"kind":"inline_text","language":"en","text":"Gamma."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "gap-context",
+              "role": "stimulus",
+              "content": {"kind":"resource_segments","resource_id":"resource-synthetic-1","segment_ids":["segment-1"]},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [
+            {
+              "overlay_id": "gap-a",
+              "operation": "blank",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-1",
+                "start": 0,
+                "end": 5,
+                "text_sha256": "6d09c2dd9f6acb7404974f19cfc7e9036ac59abb930e505351a55e94b8b1701c"
+              }
+            },
+            {
+              "overlay_id": "gap-b",
+              "operation": "blank",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-1",
+                "start": 6,
+                "end": 10,
+                "text_sha256": "6d09c2dd9f6acb7404974f19cfc7e9036ac59abb930e505351a55e94b8b1701c"
+              }
+            }
+          ],
+          "interaction": {
+            "type": "inline_choice_set",
+            "gaps": [
+              {
+                "gap_id": "gap-1",
+                "target_ref": "gap-a",
+                "response_id": "response-1",
+                "options": [{"option_id":"gap-1-a","part_ref":"answer-a"},{"option_id":"gap-1-b","part_ref":"answer-b"}]
+              },
+              {
+                "gap_id": "gap-2",
+                "target_ref": "gap-b",
+                "response_id": "response-2",
+                "options": [{"option_id":"gap-2-a","part_ref":"answer-a"},{"option_id":"gap-2-b","part_ref":"answer-b"}]
+              }
+            ]
+          },
+          "response_declarations": [
+            {"response_id":"response-1","cardinality":"single","base_type":"identifier","correct_response":"gap-1-a"},
+            {"response_id":"response-2","cardinality":"single","base_type":"identifier","correct_response":"gap-2-b"}
+          ],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-token_order",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "token-part-a",
+              "role": "token",
+              "content": {"kind":"inline_text","language":"en","text":"Alpha"},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "token-part-b",
+              "role": "token",
+              "content": {"kind":"inline_text","language":"en","text":"beta"},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [],
+          "interaction": {
+            "type": "token_order",
+            "response_id": "response-1",
+            "tokens": [{"token_id":"token-a","part_ref":"token-part-a"},{"token_id":"token-b","part_ref":"token-part-b"}],
+            "allow_reuse": false
+          },
+          "response_declarations": [
+            {
+              "response_id": "response-1",
+              "cardinality": "ordered",
+              "base_type": "identifier",
+              "correct_response": ["token-a","token-b"]
+            }
+          ],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-text_entry",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "gap-context",
+              "role": "stimulus",
+              "content": {"kind":"resource_segments","resource_id":"resource-synthetic-1","segment_ids":["segment-1"]},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [
+            {
+              "overlay_id": "entry-a",
+              "operation": "blank",
+              "target": {
+                "resource_id": "resource-synthetic-1",
+                "segment_id": "segment-1",
+                "start": 6,
+                "end": 10,
+                "text_sha256": "6d09c2dd9f6acb7404974f19cfc7e9036ac59abb930e505351a55e94b8b1701c"
+              }
+            }
+          ],
+          "interaction": {
+            "type": "text_entry",
+            "entries": [{"entry_id":"entry-1","target_ref":"entry-a","response_id":"response-1","expected_length":4}]
+          },
+          "response_declarations": [{"response_id":"response-1","cardinality":"single","base_type":"string","correct_response":"beta"}],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        },
+        {
+          "item_id": "item-edit_response",
+          "revision": "1",
+          "resource_refs": [{"resource_id":"resource-synthetic-1","usage":"stimulus"}],
+          "task": {"taxonomy_id":"synthetic-subject-neutral-v1","type":"synthetic-task","skill":"synthetic-skill"},
+          "content_parts": [
+            {
+              "part_id": "instruction",
+              "role": "instruction",
+              "content": {"kind":"inline_text","language":"ko","text":"합성 지시문입니다."},
+              "analysis_target": {"egp":false,"evp":false}
+            },
+            {
+              "part_id": "question",
+              "role": "question",
+              "content": {"kind":"inline_text","language":"en","text":"Choose the synthetic answer."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "edit",
+              "role": "edit",
+              "content": {"kind":"inline_text","language":"en","text":"Alfa beta."},
+              "analysis_target": {"egp":true,"evp":true}
+            },
+            {
+              "part_id": "replacement",
+              "role": "edit",
+              "content": {"kind":"inline_text","language":"en","text":"Alpha"},
+              "analysis_target": {"egp":true,"evp":true}
+            }
+          ],
+          "overlays": [
+            {
+              "overlay_id": "editable-a",
+              "operation": "editable",
+              "target": {
+                "part_id": "edit",
+                "start": 0,
+                "end": 4,
+                "text_sha256": "de5f8394f397eb7e4a034774e33b05f2df378d90d01f10de9e70794d364251a6"
+              }
+            },
+            {
+              "overlay_id": "replacement-a",
+              "operation": "replace",
+              "target": {
+                "part_id": "edit",
+                "start": 0,
+                "end": 4,
+                "text_sha256": "de5f8394f397eb7e4a034774e33b05f2df378d90d01f10de9e70794d364251a6"
+              },
+              "replacement_part_ref": "replacement"
+            }
+          ],
+          "interaction": {
+            "type": "edit_response",
+            "response_id": "response-1",
+            "editable_part_ref": "edit",
+            "edit_targets": [{"target_id":"edit-a","target_ref":"editable-a"}],
+            "allowed_operations": ["replace","insert","delete"]
+          },
+          "response_declarations": [
+            {
+              "response_id": "response-1",
+              "cardinality": "single",
+              "base_type": "record",
+              "correct_response": {"edits":[{"target_id":"edit-a","operation":"replace","text":"Alpha"}]}
+            }
+          ],
+          "scoring": {"strategy":"exact_match","max_score":1},
+          "standard_metadata": {"ieee_lom":{"educational":{"difficulty":{"source":"LOMv1.0","value":"medium"}}}},
+          "extensions": {
+            "automatic_disco": {
+              "difficulty_evidence": {
+                "language_profile_refs": [{"resource_id":"resource-synthetic-1"}],
+                "reasoning_feature_refs": [
+                  {
+                    "scheme": "synthetic-reasoning",
+                    "version": "synthetic-v1",
+                    "entry_id": "reason-synthetic-1",
+                    "source": "reference-synthetic"
+                  }
+                ],
+                "usage_data_refs": []
+              }
+            }
+          },
+          "provenance_refs": ["provenance-synthetic-1"]
+        }
+      ]
     },
-    "provenance": {
-      "schema": "provenance.schema.json",
-      "value": "synthetic-placeholder"
-    },
-    "processing_profile": {
-      "schema": "processing-profile.schema.json",
-      "ref": "producer-profile-synthetic-001"
-    },
-    "representations": [
-      {
-        "path": "payload/synthetic-object.bin",
-        "media_type": "application/octet-stream"
-      }
-    ]
-  }
+    "provenance": {"schema":"provenance.schema.json","value":"provenance-synthetic-1"},
+    "processing_profile": {"schema":"processing-profile.schema.json","ref":"producer-profile-synthetic-001"},
+    "representations": [{"path":"payload/synthetic-object.bin","media_type":"application/octet-stream"}]
+  },
+  "text_entry_normalization_examples": [
+    {"input":"é","normalized":"é"},
+    {"input":"A\r\nB\rC","normalized":"A\nB\nC"},
+    {"input":" beta ","normalized":" beta "},
+    {"input":"BETA!","normalized":"BETA!"}
+  ]
 }

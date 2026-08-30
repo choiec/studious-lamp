@@ -1,0 +1,9 @@
+# Capability-only example; values are inert and intentionally incomplete.
+
+[duckdbd]
+runtime_status = "NOT RUN"
+readiness = "UNESTABLISHED"
+writable_opener = true
+adoption_capability = "UNESTABLISHED"
+projection_capability = "UNESTABLISHED"
+repositoryd_calls = false

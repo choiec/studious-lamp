@@ -1,0 +1,7 @@
+# Capability-only example; values are inert and intentionally incomplete.
+
+[quack]
+runtime_status = "NOT RUN"
+readiness = "UNESTABLISHED"
+ownership_mode = "DUCKDBD_ONLY"
+duckdbd_only = true

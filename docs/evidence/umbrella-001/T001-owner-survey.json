@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "task_id": "T001",
+  "owner_repository": "repo:studious-lamp",
+  "observed_at": "2026-08-30T15:26:03+09:00",
+  "result": "PASS",
+  "claim": "The current Studious Lamp repository, toolchain surface, exact planned paths, validation commands, boundaries, and unresolved states were surveyed without implementing source, contracts, runtime, recommendation algorithms, or operational effects.",
+  "execution_context": {
+    "environment_mode": "Worktree",
+    "verified_primary_root": "/home/choi-eunchang/Documents/ChatGPT/studious-lamp",
+    "task_worktree_root": "/tmp/studious-t001-owner-survey",
+    "base_branch": "main",
+    "base_revision": "e9852632dae9abfdfaa6532eacd8a9c8220b0ab1",
+    "base_tree": "7bac07c3939120ad985ccd3d39bd410c7233d159",
+    "task_branch": "codex/T001-studious-owner-survey",
+    "starting_index_state": "clean",
+    "starting_worktree_state": "clean"
+  },
+  "umbrella_context": {
+    "repository": "repo:symmetrical-umbrella",
+    "branch": "main",
+    "revision": "eba6fd909b3d2c3a65ec79483654be9e6a6e9f0b",
+    "tree": "163e2696ffa59a312a2f7a77bf57502b113d153e",
+    "registry_path": "governance/traceability.json",
+    "registry_sha256": "da85a868f92472fadb6fe8d00a07e5669780b064a18b0c9db6da3c04bb8af27e",
+    "registry_validation": "PASS",
+    "feature_001_next_task": "T001"
+  },
+  "outputs": [
+    {
+      "path": "docs/architecture/umbrella-001-owner-survey.json",
+      "sha256": "827a856c79bdcec56be0c097bb78b2ae180497ac0f33eb58d3ec0ad7d65e05c8",
+      "status": "PASS"
+    },
+    {
+      "path": "docs/evidence/umbrella-001/T001-owner-survey.json",
+      "sha256": null,
+      "status": "PASS",
+      "self_reference_policy": "The evidence file does not embed its own digest or future task/merge commit. Those are verified in the task completion report."
+    }
+  ],
+  "observations": {
+    "tracked_files": 4,
+    "tracked_source_files": 0,
+    "tracked_test_files": 0,
+    "tracked_schema_files": 0,
+    "tracked_package_manifests": 0,
+    "tracked_release_artifacts": 0,
+    "tracked_runtime_configs": 0,
+    "tracked_ci_configs": 0,
+    "repository_local_agents_file": "absent",
+    "remotes": [],
+    "active_retired_paths": []
+  },
+  "validation": [
+    {
+      "command": "UV_CACHE_DIR=\"$PWD/.tools/uv-cache\" uv run --locked --offline python tools/validate_traceability.py",
+      "working_directory": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+      "status": "PASS",
+      "result": "coordination schema and graph valid at eba6fd909b3d2c3a65ec79483654be9e6a6e9f0b"
+    },
+    {
+      "command": "python3 -m json.tool docs/architecture/umbrella-001-owner-survey.json",
+      "working_directory": "/tmp/studious-t001-owner-survey",
+      "status": "PASS"
+    },
+    {
+      "command": "jq -e '.task_id == \"T001\" and .owner.repository_id == \"repo:studious-lamp\" and (.write_scope.allowed_literal_paths | length == 2) and (.literal_path_map.candidate_content_contracts[0:4] == [\"contracts/candidate-content/candidate.schema.json\", \"contracts/candidate-content/semantic-content.schema.json\", \"contracts/candidate-content/provenance.schema.json\", \"contracts/candidate-content/processing-profile.schema.json\"]) and ([.literal_path_map[][]] | all(. as $p | ($p | startswith(\"/\") | not) and ($p | contains(\"<\") | not) and ($p | contains(\"*\") | not))) and .boundaries.recommendation_feature_in_scope == false and .boundaries.ready_marker_allowed == false and .status.survey_and_literal_path_map == \"PASS\"' docs/architecture/umbrella-001-owner-survey.json",
+      "working_directory": "/tmp/studious-t001-owner-survey",
+      "status": "PASS",
+      "result": "task/owner/write scope, exact four Candidate-content paths, relative placeholder-free paths, recommendation exclusion, READY prohibition, and survey status matched"
+    },
+    {
+      "command": "git diff --cached --check",
+      "working_directory": "/tmp/studious-t001-owner-survey",
+      "status": "PASS"
+    }
+  ],
+  "review": {
+    "level": "main focused diff review",
+    "secret_and_private_content": "PASS",
+    "real_educational_content_or_pii": "PASS",
+    "scope_boundary": "PASS",
+    "algorithm_scope": "PASS",
+    "findings": []
+  },
+  "status_by_effect": {
+    "survey_and_literal_path_map": "PASS",
+    "owner_feature_planning": "NOT RUN",
+    "dependency_installation_or_lock_generation": "NOT RUN",
+    "source_test_contract_or_schema_implementation": "NOT RUN",
+    "release_candidate": "NOT RUN",
+    "tag_publication_or_remote_readback": "NOT RUN",
+    "live_intake_repositoryd_or_duckdbd_effect": "NOT RUN",
+    "deployment_migration_backup_restore_or_fault": "NOT RUN",
+    "alpha_or_production_promotion": "NOT RUN",
+    "quack_production_readiness": "UNESTABLISHED"
+  },
+  "limitations": [
+    "T001 establishes a factual inventory and exact planned path ledger only; it is not T004 owner planning or any source implementation.",
+    "Python 3.14.4 and uv 0.11.32 are planning selections, but pyproject.toml, uv.lock, pytest, and all owner source paths remain absent until separately authorized task units.",
+    "No Core API/Handoff release identity, version, tag, locator, digest, publication result, live service result, or end-to-end result is established.",
+    "The integrated Umbrella tree is pinned; untracked local Umbrella setup files are excluded from the baseline.",
+    "No recommendation, DPP, calibration, clustering, PageRank, Thompson Sampling, Phoenix, CLIP, or behavior-sequence implementation is authorized by this result."
+  ]
+}

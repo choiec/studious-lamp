@@ -133,16 +133,37 @@ JSON uses UTF-8 RFC 8785 JCS with no BOM, insignificant whitespace, or trailing 
 uses one JCS object plus LF per record. `SHA256SUMS` contains lowercase SHA-256, two spaces, a safe
 relative filename, LF, unsigned UTF-8 filename order, and no self-entry.
 
+These are release-byte rules, not permission to rewrite the frozen raw source files. Bind each
+raw schema/conformance input to its exact source revision and raw-byte SHA-256, and independently
+verify the deterministic transformation to canonical released bytes with their own sizes and
+SHA-256 values. Raw-source and canonical-output digests are distinct; output equality with the
+pretty-printed T043 source is not required. The full twelve-file tracked input inventory and
+mode/hash/path LF source-tree algorithm are declared in `plan.md`, following Umbrella §5.4.
+
 The manifest records target version/tag, schema dialect, serialization, source revision/tree,
 generation tool, compatibility policy, Apache-2.0, exactly four artifact entries, conformance
 identity, and retired forms. It contains no Core API/Handoff component or invented remote value.
+
+T044 must independently enforce all required bindings from Umbrella
+`specs/001-product-compute-boundaries/contracts/public-contract-release.md` §3.3, including
+`manifest_format_version`, `digest_algorithm` and the exact release/artifact/conformance identity.
+The acyclic order is source → canonical schemas/conformance → manifest → provenance →
+SHA256SUMS: provenance binds the exact manifest, schemas, vectors, builder/build definition,
+source revision and full source-tree digest (§5.5); the manifest does not digest downstream
+provenance. Checksums bind all seven other output files. An unconditional `reproducible: true`
+is not evidence and must not be emitted before the actual second-environment result. Record that
+result in T009 owner evidence without changing the compared deterministic bundle.
 
 ## Release Gates
 
 Local release-candidate `PASS` requires:
 
-- exact clean source revision and deterministic source-tree digest;
-- two byte-identical builds;
+- exact clean source revision, complete tracked source-tree digest, and separate raw-source and
+  canonical-output byte bindings;
+- T044 tooling/regression PASS followed by two byte-identical builds of all eight files from
+  that same exact revision in two owner-selected clean environments (§5.5), with actual source
+  roots, environment/tool identities, commands and results recorded by T009; two builds in one
+  checkout/venv do not qualify, and an absent second-environment result cannot be PASS;
 - exact-four source and output inventories;
 - positive and negative conformance;
 - checksums and verified provenance;
@@ -170,5 +191,7 @@ Alpha execution against immutable releases.
 T042 writes no evidence JSON. T043 later writes the new central T077 acceptance input with exact
 Studious revision, schema/conformance digests, commands/results and the schema/runtime split.
 Historical T010 evidence is valid only for its original revision, not this redesign. The sequence
-is T042 RED → T043 GREEN/T077 → T009 regenerated local candidate → separately authorized T032
-publication/readback. T007 builder implementation and immutable historical releases are preserved.
+is T042 RED → T043 GREEN/T077 → T044 release-tooling GREEN → T009 regenerated local candidate
+with the second-clean-environment gate → separately authorized T032 publication/readback.
+T044 corrects T007 tooling without changing frozen T043 inputs, existing dirty generated outputs,
+or historical T010/T077 evidence and immutable releases.

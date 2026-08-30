@@ -109,6 +109,49 @@ Umbrella contract are `candidate-content.manifest.json`, `candidate-content.conf
 `candidate-content.provenance.intoto.jsonl`, and `SHA256SUMS`; the T001 generic planned output names
 are not retained as parallel aliases.
 
+T044 repairs the existing tooling against Umbrella
+`specs/001-product-compute-boundaries/contracts/public-contract-release.md` §§3.3, 5.1–5.5 and
+7.1 without changing that contract or the frozen T043 inputs. Tracked schema bytes are raw source
+inputs: retain their exact Git revision, mode, path and SHA-256, then parse and deterministically
+serialize the released schemas as RFC 8785 JCS. Released sizes/digests bind those canonical output
+bytes, not the raw-source digest. Verification independently checks both bindings and the
+source-to-output transformation; raw source/output byte equality is not an acceptance condition.
+
+The declared tracked release-input inventory is exactly these twelve files:
+
+```text
+.python-version
+LICENSE
+pyproject.toml
+uv.lock
+tools/build_candidate_content_release.py
+tools/verify_release.py
+contracts/candidate-content/candidate.schema.json
+contracts/candidate-content/semantic-content.schema.json
+contracts/candidate-content/provenance.schema.json
+contracts/candidate-content/processing-profile.schema.json
+contracts/candidate-content/conformance/positive.json
+contracts/candidate-content/conformance/negative.json
+```
+
+For the exact source revision, hash the concatenation of
+`<git-mode> <sha256(exact raw bytes)> <normalized POSIX relative path><LF>` records sorted by
+unsigned UTF-8 path bytes. Verify every declared input against Git, including locks, tools,
+LICENSE and both complete conformance sources; reject missing, extra, unsafe, untracked or dirty
+inputs and mode changes. Reject undeclared generation inputs, not unrelated repository documents.
+Outputs, VCS metadata, caches, timestamps and environment-local paths are not source records or
+byte-affecting inputs. Frozen test/oracle files remain validation inputs, not generation inputs.
+
+The binding order is raw sources → canonical schemas/conformance → manifest → provenance →
+SHA256SUMS. Enforce every §3.3 manifest binding, including `manifest_format_version`,
+`digest_algorithm`, release identity, exactly four artifacts and conformance. The manifest may
+name the provenance file but must not hash its downstream bytes; provenance binds the exact
+manifest, schema and conformance bytes, builder/build definition and full source identity.
+Checksums cover all seven preceding files. Neither builder nor provenance may assert
+`reproducible: true` before the second-clean-environment gate; T009 records the observed gate
+result outside the deterministic eight-file bundle, avoiding a digest cycle or environment-
+dependent artifact mutation.
+
 Core Admission uses `contracts/core-admission/openapi.yaml` and
 `contracts/core-admission/handoff-reference.schema.json`, its conformance vectors, and a separate
 build under `build/releases/core-admission/`. The task selecting its exact version/tag updates only
@@ -126,7 +169,8 @@ a shape change for T042. If later requirements exceed that projection boundary, 
 separate contract change instead of widening this task.
 
 The implementation sequence is T042 intentional RED → T043 schema GREEN plus central T077 input
-→ T009 regenerated local release candidate using T007 tooling → separately authorized T032
+→ T044 release-tooling GREEN → T009 regenerated local release candidate in two clean environments
+using the repaired T007 tooling → separately authorized T032
 publication/readback. T043 must retain the frozen oracle; no GREEN-by-weakening fixtures/checks.
 Historical T010 evidence applies only to its recorded revision and cannot establish this redesign.
 
@@ -352,6 +396,24 @@ T077 evidence, runtime state, or remote effects. XML/QTI/LOM/Common Cartridge ex
 Usage Data stores, IRT and Rasch are excluded.
 
 ### Subsequent owner-task validation
+
+T044 is one GREEN repair, with no separate RED commit. Keep the 114 frozen checks unchanged and
+add independent release regressions in `tests/contracts/test_candidate_content_release.py`:
+RFC 8785 canonical JSON/JSONL bytes (including number and Unicode-key cases), all twelve
+mode/hash/path source records, revision/raw-source/canonical-output/provenance bindings, §3.3
+manifest fields, and missing/extra/dirty source, checksum and inventory rejection. Expected bytes
+and negative verdicts must not come solely from the builder's `expected_release_files` helper.
+Build/verify only task-owned temporary outputs; preserve the five existing dirty T009 outputs.
+Current Python 3.14.4 `json.dumps` emits `1.0` and sorts keys by code point rather than JCS UTF-16
+order; the installed locked environment has no JCS package. T044 may select and exact-pin one
+standards-conforming JCS dependency in `pyproject.toml`/`uv.lock` after verifying suitability;
+package/version selection remains `UNESTABLISHED` here. Do not hand-roll a general canonicalizer,
+weaken JCS, or alter frozen sources/tests/fixtures to obtain GREEN. Only full required PASS allows
+T044 integration. T009 then materializes the same exact integrated source revision in two
+owner-selected clean source/environment roots, records their identities and actual commands,
+compares all eight output bytes, and verifies both raw-source and canonical-output digests.
+Two runs in one checkout/venv or a builder assertion cannot establish this gate; absent the
+second environment result, candidate PASS is prohibited. Publication remains `NOT RUN`.
 
 - parse all JSON and TOML/YAML where a local parser is locked;
 - run `uv run --locked pytest -q` after setup exists;

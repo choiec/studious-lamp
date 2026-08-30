@@ -16,12 +16,16 @@ adapters; then freeze synthetic fixtures and bounded evidence for the Umbrella a
 This plan is documentation only. It creates no source, dependency lock, release candidate,
 publication, runtime process, Handoff, E2E, Alpha, recovery, or operational result.
 
+**T042 update**: The original T004 planning statements describe that historical increment.
+T001–T008 are now complete at their recorded revisions. This update freezes semantic-content
+requirements and a deliberately failing test oracle only; it does not implement the hard-cut
+schema, run the release builder, write central T077 evidence or implement Core validation.
+
 ## Technical Context
 
 **Language/Version**: Python 3.14.4 selected by the T001 survey
 
-**Package Manager**: uv 0.11.32; exact project dependencies remain `UNESTABLISHED` until the setup
-task writes `pyproject.toml` and `uv.lock`
+**Package Manager**: uv with the existing T001 `pyproject.toml`/`uv.lock`; T042 adds no dependencies.
 
 **Primary Dependencies**: Python standard library first; JSON Schema, HTTP, MCP, Agent Plugin,
 oCIS, repositoryd, DuckDB, and Quack libraries must be selected and exact-pinned only by their
@@ -31,8 +35,8 @@ own implementation tasks
 duckdbd-owned DuckDB storage are separate owner boundaries; physical paths and deployed bindings
 remain `UNESTABLISHED`
 
-**Testing**: pytest is the planned test runner after it is locked; deterministic release and
-structured-evidence checks use owner-local commands named in `tasks.md`
+**Testing**: Existing locked pytest and standard-library, test-only schema/oracle checks;
+deterministic release and structured-evidence work remains in the tasks named in `tasks.md`.
 
 **Target Platform**: Python package and services for the Umbrella six-CT target; deployment,
 systemd units, endpoints, TLS, identities, mounts, and startup belong to Upgraded and are not
@@ -113,12 +117,32 @@ separate service contracts owned by Studious but not Candidate-content artifacts
 
 ### Candidate Intake and Effects
 
+T042/FR-027–FR-039 replace the semantic-content schema/value wrapper with resources/items and
+the wire model in [data-model.md](data-model.md#semantic-content-wire-model-t042-authority).
+All five principal definitions and their closed nested records remain in the existing semantic
+schema. Candidate's existing external `$ref` already reaches it; provenance.value remains one
+opaque projection identity and processing-profile stays opaque. No other normative schema needs
+a shape change for T042. If later requirements exceed that projection boundary, coordinate a
+separate contract change instead of widening this task.
+
+The implementation sequence is T042 intentional RED → T043 schema GREEN plus central T077 input
+→ T009 regenerated local release candidate using T007 tooling → separately authorized T032
+publication/readback. T043 must retain the frozen oracle; no GREEN-by-weakening fixtures/checks.
+Historical T010 evidence applies only to its recorded revision and cannot establish this redesign.
+
+T017/T018 later validate Resource/segment/part/option/slot/token/overlay/response identities,
+declaration-to-interaction correspondence, original-text ownership, digest and offset semantics,
+and typed operation/reference relationships **within the existing Core admission validation
+step**, after authorization and byte verification and before accepted snapshot custody. Automatic
+performs its own producer validation with its independent private model. No shared model import,
+new adapter authority, later product effect, or post-admission read is introduced.
+
 ```text
 released Admission Request/Handoff
   -> delivery authentication
   -> operation-specific authorization
   -> independent oCIS intake and remote precondition
-  -> complete byte/schema/inventory verification
+  -> complete byte/schema/inventory and Core reference verification
   -> Core-controlled snapshot write/readback
   -> admission record only
 
@@ -289,6 +313,46 @@ automatic effects.
 
 ## Validation Strategy
 
+### T042 bounded RED oracle
+
+`tests/contracts/test_candidate_content.py` reads the two existing conformance JSON files. The
+positive Candidate has one shared synthetic Resource and twelve Items. Schema-negative records
+mutate a valid baseline; baseline acceptance must succeed before any rejection can count, so an
+unimplemented schema cannot obtain a false negative-vector PASS. Runtime-negative records are
+required to remain schema-valid after T043, but record Core rejection as a future obligation;
+they do not run a Core validator. The matrix and finite fixture sanity checks are not a runtime
+implementation or public-release conformance certificate.
+
+Because no JSON Schema dependency is locked, a small test-only, fail-closed evaluator covers only
+the explicitly supported keywords used by these schemas. It permits exact-four local file refs
+and local `$defs`, never network resolution. Unknown validation keywords fail the check rather
+than silently passing. Self-tests exercise rejection independently of the missing hard-cut
+schema. T043 must keep within that evaluated subset or coordinate a separately authorized locked
+validator dependency; this helper is not a complete Draft 2020-12 implementation or production
+validator. JSON `format` is annotation-only in this oracle.
+
+Supported assertions are type (one type per node), properties/required/additionalProperties
+(boolean), items/minItems/maxItems/uniqueItems, enum/const, oneOf/anyOf/allOf/not,
+minLength/maxLength/pattern, minimum/maximum, and the exact local references described above.
+Annotations are $schema/$id/$defs/$comment/title/description/format. There is no implicit support
+for conditional, unevaluated, pattern-property or remote-reference vocabularies.
+
+Run from the T042 worktree, using the existing offline cache and isolated environment:
+
+```bash
+UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider --tb=no
+UV_PROJECT_ENVIRONMENT=/tmp/studious-t042-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider -k 'not t042_schema' --tb=short
+git diff --check
+```
+
+T042 completion is the observed intentional RED plus unrelated checks PASS, not full-suite PASS.
+Any failure outside the named `t042_schema` group blocks integration. T043 must make the complete
+suite GREEN; T009 independently builds/verifies new bytes. No T042 command creates release bytes,
+T077 evidence, runtime state, or remote effects. XML/QTI/LOM/Common Cartridge exporters, PCI,
+Usage Data stores, IRT and Rasch are excluded.
+
+### Subsequent owner-task validation
+
 - parse all JSON and TOML/YAML where a local parser is locked;
 - run `uv run --locked pytest -q` after setup exists;
 - run `uv run --locked python tools/verify_release.py` for deterministic local release candidates;
@@ -310,8 +374,10 @@ automatic effects.
 |---|---|---|
 | Spec Kit 1.0.1 project initialization | `PASS` | Bundled offline init, healthy Codex integration, managed hashes/syntax verified |
 | Owner feature planning | `PASS` only when T004 evidence validates | This document and its task graph are T004 outputs |
-| Dependency lock/source/tests/contracts | `NOT RUN` | Future owner-local tasks |
-| Candidate-content local release candidate | `NOT RUN` | No source/build execution exists |
+| T001–T008 lock/source/tests/contracts | Historical task-scoped results | See unchanged completion rows/evidence; no semantic hard-cut claim |
+| T042 semantic-content schema | Intentional `FAIL` (RED) | Requirements/oracle fixed; unchanged schema is missing the hard cut |
+| T043 GREEN / T077 input | `NOT RUN` | Subsequent owner-local task |
+| Post-hard-cut Candidate-content local release candidate | `NOT RUN` | T009 must regenerate after T043; historical bytes remain untouched |
 | Core API/Handoff identity | `UNESTABLISHED` | Future explicit owner decision task |
 | Core API/Handoff local release candidate | `NOT RUN` | No source/build execution exists |
 | Publication/remote readback | `NOT RUN` | Separately authorized per release |

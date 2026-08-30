@@ -6,7 +6,9 @@
 
 **Created**: 2026-08-30
 
-**Status**: Planned — implementation, release, publication, runtime, Alpha, and recovery remain unexecuted
+**Status**: T042 requirements/design and intentional RED checkpoint; semantic-content GREEN,
+new release bytes, publication, runtime, Alpha, and recovery are not established by this change.
+T001–T008 completion evidence remains scoped to its recorded historical revisions.
 
 **Input**: Umbrella Feature 001 routes all Studious-owned public-contract and product-runtime work
 to this owner-local feature at the literal paths established by T001.
@@ -55,6 +57,13 @@ conformance, and confirm publication/readback remains `NOT RUN`.
 5. **Given** a local release candidate, **When** evidence is recorded, **Then** tracked Apache-2.0,
    exact distributable inventory, and applicable third-party/NOTICE checks are scoped separately
    from publication and remote readback.
+6. **Given** the T042 semantic-content fixtures, **When** T043 validates local shapes, **Then**
+   one common Resource and Item model admits all twelve interaction payloads and rejects the
+   old `schema`/`value` wrapper, unknown fields/types, embedded answers, and
+   `educational_measurements`; exactly four normative artifacts remain.
+7. **Given** shape-valid content with a dangling/duplicate identity or invalid overlay binding,
+   **When** Core later validates admission, **Then** T017/T018 reject it independently of producer
+   claims; schema-level conformance alone never proves reference integrity or publication safety.
 
 ---
 
@@ -236,6 +245,71 @@ secret, credential, private profile, raw provenance, or real educational content
   deployment, Alpha execution, restore, migration, deletion, or production promotion.
 - **FR-026**: Pre-1.0 implementation MUST be a hard cut with no legacy reader, alias, fallback,
   dual path, version negotiation, or speculative abstraction.
+- **FR-027**: Semantic content MUST hard-cut to
+  `{"schema":"semantic-content.schema.json","resources":[],"items":[]}`. Resource, Item,
+  content_part, response_declaration, and interaction are internal `$defs` in that existing
+  artifact, not new schemas. Every data object MUST be closed with `additionalProperties: false`.
+- **FR-028**: Resources MUST retain resource_id, revision, resource_type, language, content_blocks,
+  assets, standard_metadata, extensions, and provenance_refs. resource_type is exactly passage,
+  shared_stimulus, table, chart, notice, image, audio, or mixed. Stable block_id and segment_id
+  identify typed blocks and typed text segments. Original Resource text/identity is immutable and
+  stored once; Item changes MUST be overlays, never edited Resource copies or offset-only identity.
+- **FR-029**: Optional source_anchor MUST preserve provenance_ref/page/block semantics only as a
+  disclosure-reviewed public-rendition projection, as defined in data-model.md. A private source
+  page, name, URL, path, geometry, or raw provenance MUST NOT be exported. If no safe projection
+  exists, omit the optional anchor, retain segment identity, and retain private mapping outside
+  this contract. Schema acceptance is not approval to publish real source values.
+- **FR-030**: Resource and Item qualitative difficulty MUST use
+  standard_metadata.ieee_lom.educational.difficulty with source `LOMv1.0` and exactly `very easy`,
+  `easy`, `medium`, `difficult`, `very difficult`. Scale/score/unit measurements (including synthetic
+  Lexile examples and other scales) MUST be separate in
+  standard_metadata.oneedtech_common_cartridge.textComplexity, not LOM difficulty or a CEFR-only
+  measurement field. `educational_measurements` is forbidden everywhere.
+- **FR-031**: extensions.automatic_disco MUST separate Resource target_audience/language_profile
+  from Item difficulty_evidence. Profiles retain CEFR level/method/confidence and reference-only
+  EGP/EVP mappings: EGP grammar_id, exact/partial/supplemental relationship and review_status; EVP
+  profile_entry_id, sense and POS; both retain scheme/version/source identity without copying full
+  definitions. An EGP CEFR appearance level MUST NOT be converted directly to Item difficulty.
+- **FR-032**: Every Item MUST retain item_id, revision, resource_refs (resource_id/usage), task
+  (taxonomy_id/type/skill), content_parts, overlays, interaction, response_declarations, scoring
+  (strategy/max_score), standard_metadata, extensions.automatic_disco.difficulty_evidence, and
+  provenance_refs. The common model MUST remain subject-neutral; CSAT taxonomies are references,
+  not alternative common structures.
+- **FR-033**: Each content_part MUST have part_id, role, content and analysis_target.egp/evp.
+  content.kind is exactly inline_text or resource_segments. Item-only questions, options, given
+  sentences, summaries, tokens and edits use inline_text; reused Resource text uses segment refs.
+  Korean instructions disable both analysis flags. English questions, given sentences, correct
+  and incorrect options, summaries and gap contexts MUST be independently addressable.
+- **FR-034**: Overlays MUST use blank, mark, insert_slot, editable, or replace with stable targets.
+  Resource targets bind Resource/segment identity; Item-only targets bind inline part identity.
+  Offsets are zero-based Unicode scalar positions in half-open [start,end) ranges; text_sha256
+  binds the complete exact immutable target text encoded as UTF-8 without normalization. Bounds,
+  digest agreement, empty insertion ranges and nonempty other ranges are runtime obligations.
+- **FR-035**: interaction.oneOf MUST have exactly twelve type-discriminated payloads: choice,
+  reference_choice, inline_mark_choice, sentence_mark_choice, blank_choice, order_choice,
+  position_choice, summary_pair_choice, inline_choice_set, token_order, text_entry, edit_response.
+  Exact fields, nested records and response types are fixed in data-model.md and the contract
+  oracle matrix; no thirteenth payload or generic fallback is permitted.
+- **FR-036**: Answers MUST exist only in response_declarations with response_id/cardinality/
+  base_type/correct_response. Selection is single/identifier, each inline gap has its own response,
+  token order is ordered/identifier, entry is single/string, and internal structured edit is
+  single/record. Text-entry normalization is the fixed NFC/LF rule in data-model.md, not an
+  implicit trim/casefold or an exporter rule.
+- **FR-037**: Every referenced Resource, segment, part, option, slot, token, overlay and answer
+  target MUST exist in its defined scope. Every interaction response_id has exactly one
+  declaration and no orphan declaration. No duplicate identities or duplicate authoritative
+  Resource/inline-text representation are permitted. T043 owns schema-enforceable local shapes;
+  later Core T017/T018 independently own cross-array integrity at the current admission boundary.
+  Automatic owns its independent private model and producer-side validation, not Core acceptance.
+- **FR-038**: Item difficulty_evidence MUST reference language profiles, reasoning features and
+  usage data separately. Empirical response rates, IRT and Rasch belong to separately referenced
+  records, never accumulating mutable fields on immutable Items. Their stores are not implemented.
+- **FR-039**: The twelve type names and JSON metadata are Studious-normalized contract fields,
+  not official QTI JSON field names. QTI/LOM/Common Cartridge correspondence is design context
+  only; XML exporters, PCI, Usage Data storage, IRT and Rasch implementations are out of scope.
+
+The exact T042 wire definitions and validation split below are design authority for T043, not
+a claim that the unchanged semantic-content schema already enforces FR-027–FR-039.
 
 ### Key Entities
 
@@ -281,6 +355,10 @@ secret, credential, private profile, raw provenance, or real educational content
   inputs, outputs, prerequisites, and result ceilings before it becomes executable.
 - **SC-012**: T004 evidence reports planning and static validation only; implementation, release,
   publication, runtime, E2E, Alpha, and recovery remain `NOT RUN` or `UNESTABLISHED`.
+- **SC-013**: T042 freezes twelve synthetic forms and a schema/runtime negative matrix; all new
+  schema-dependent failures are attributable to the missing hard cut and unrelated checks pass.
+  T043 must make those schema tests GREEN without weakening the oracle. T077 must bind new exact
+  source/conformance digests; historical T010 evidence does not prove this redesign.
 
 ## Assumptions and Dependencies
 
@@ -290,8 +368,8 @@ secret, credential, private profile, raw provenance, or real educational content
   survey.
 - T001 is integrated in Studious at task commit `79a1d3c07e3fdaabb9342a76c20d8467d15910f8`
   and merge `38e6aea278db9fda98ff887b94658efcc92585a6`; its literal path map is binding for this plan.
-- Python 3.14.4 and uv 0.11.32 are owner-planning selections. Dependency locks, source, tests, and
-  release tooling do not exist yet and are future owner-local tasks.
+- Python 3.14.4 and the existing uv lock are retained. T001–T008 source/tests/tooling are historical
+  completed increments; T042 adds no dependencies and does not regenerate their release bytes.
 - The Core API/Handoff release version, tag, immutable locator, and digests remain
   `UNESTABLISHED`; the plan must create a task for an explicit owner decision rather than guess.
 - Exact Quack/DuckDB versions and production readiness remain `UNESTABLISHED`; no direct-file
@@ -308,3 +386,4 @@ secret, credential, private profile, raw provenance, or real educational content
   startup, live Handoff, E2E, Alpha, failure injection, restore, deletion, or promotion.
 - Recommendation, ranking, embedding, DPP, calibration, clustering, PageRank, Thompson Sampling,
   Phoenix, CLIP, or behavior-sequence features.
+- XML/QTI/LOM/Common Cartridge export adapters, PCI, Usage Data record stores, IRT and Rasch.

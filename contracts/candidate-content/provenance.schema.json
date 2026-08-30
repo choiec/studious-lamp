@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "provenance.schema.json",
+  "title": "Disclosure-safe provenance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "value"],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "format": "uri-reference",
+      "enum": ["provenance.schema.json"]
+    },
+    "value": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

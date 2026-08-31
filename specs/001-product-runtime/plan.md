@@ -153,10 +153,108 @@ result outside the deterministic eight-file bundle, avoiding a digest cycle or e
 dependent artifact mutation.
 
 Core Admission uses `contracts/core-admission/openapi.yaml` and
-`contracts/core-admission/handoff-reference.schema.json`, its conformance vectors, and a separate
-build under `build/releases/core-admission/`. The task selecting its exact version/tag updates only
-this release line. `contracts/repositoryd/openapi.yaml` and `contracts/duckdbd/openapi.yaml` are
-separate service contracts owned by Studious but not Candidate-content artifacts.
+`contracts/core-admission/handoff-reference.schema.json`, with the complete two conformance
+documents. T011 selected `core-admission-0.2.0`, version `0.2.0`, tag target
+`core-admission-v0.2.0`; these are source metadata, not an actual tag or publication. Its
+`openapi.yaml` `x-release` fixes exactly two normative artifacts, five evidence files and LICENSE
+under `build/releases/core-admission/`; the complete literal inventory is in
+[core-admission.md](contracts/core-admission.md#deterministic-release-candidate).
+`contracts/repositoryd/openapi.yaml` and `contracts/duckdbd/openapi.yaml` are internal service
+contracts, excluded from the public Core and Candidate-content assets and normative counts.
+
+#### Core release tooling and candidate boundary (T012/T013)
+
+T012 is tooling GREEN only: `tools/build_core_admission_release.py`, `tools/verify_release.py`,
+new `tests/contracts/test_core_admission_release.py`, and its own completion/current fields in
+`specs/001-product-runtime/tasks.md`. Build/verify only temporary synthetic Git sources and
+outputs. It must not generate owner `build/releases/core-admission/` bytes or write
+`docs/evidence/umbrella-001/T012-core-admission-api.json`. Newly uncommitted tooling cannot
+authenticate itself as an accepted clean owner revision; T012 must first pass and receive its
+own verified commit and local no-fast-forward integration before T013 selects that source.
+
+Declare this eleven-file raw source inventory in the Core build sources (unsigned UTF-8 path
+order); the count follows the actual inputs, not Candidate's twelve-file fixture:
+
+```text
+.python-version
+LICENSE
+contracts/core-admission/conformance/negative.json
+contracts/core-admission/conformance/positive.json
+contracts/core-admission/handoff-reference.schema.json
+contracts/core-admission/openapi.yaml
+pyproject.toml
+tools/build_candidate_content_release.py
+tools/build_core_admission_release.py
+tools/verify_release.py
+uv.lock
+```
+
+The existing verifier imports `tools/build_candidate_content_release.py` for common parsing and
+verification support, so its exact raw bytes are an input, never a distributed Candidate asset.
+Retain that bounded reuse without monkeypatching Candidate builder globals or introducing a new
+framework/helper file. Any further genuinely imported byte-affecting helper must be declared and
+authenticated before GREEN; no hidden input or arbitrary fixed count is acceptable. Keep existing
+Candidate verifier behavior and its isolated twelve-input regression fixture working without a
+Core tool in that fixture; load Core-specific tooling only in the Core release path. Existing
+locked `rfc8785==0.1.4` suffices; no dependency or lock change is needed.
+
+Hash each selected source's exact raw Git bytes using
+`<git-mode> <sha256> <normalized POSIX relative path><LF>`, sorted by unsigned UTF-8 path bytes.
+`source_tree_sha256` is SHA-256 of the concatenation of those complete records.
+Authenticate the exact revision/tree, full inventory, index, bytes, modes, executing builder,
+verifier and imported helpers; reject missing/extra/unsafe/untracked/dirty inputs and source/output
+overlap, symlinks or shared hardlinks that could alter source or retained bytes. Outputs, caches,
+VCS metadata, host identities and timestamps are not generation inputs. Frozen tests and internal
+service contracts are validation-only inputs: if referenced in acceptance evidence, bind them
+separately by revision/path/mode/hash, never as public assets.
+
+All released JSON, including JSON-compatible `openapi.yaml`, uses RFC 8785 JCS UTF-8, no BOM and
+no trailing LF; LICENSE is the exact tracked Apache-2.0 raw file. Raw source hashes and canonical
+distribution sizes/hashes remain distinct. The acyclic order is normative artifacts, complete
+vectors and LICENSE → manifest → provenance → checksums. Manifest binds independent identity,
+exact two-artifact classification, vectors, license, declared distribution and source/tool inputs;
+it may name but must not hash downstream provenance. Provenance binds the build definition,
+builder, exact raw inputs, manifest and preceding outputs. `checksums.sha256` has exactly seven
+records, sorted by unsigned UTF-8 relative filename, lowercase SHA-256, two spaces and LF, with no
+self-entry. Do not invent recursive Handoff hashes, manifest/provenance cycles, volatile release
+fields or unsupported self-asserted reproducibility proofs. T011 source status metadata stays
+source-scoped; observed two-environment results belong only in owner acceptance evidence.
+
+T012 requires unchanged 422 frozen checks plus independent release regressions all GREEN before
+its single commit/merge. Tests cover JCS numbers/Unicode keys and raw/canonical distinctions;
+the selected full source inventory, modes, paths, revision, dirty inputs and executing-tool
+authentication; all eight outputs/two normative artifacts and both complete frozen vector
+documents; independent version/tag and exclusion of Candidate/internal assets; semantic manifest,
+provenance and checksum binding even after tampering and resealing checksums; safe source/output
+separation; and rejection of unsupported reproducibility claims. Expected bytes and verdicts must
+not come solely from builder output lists or manifest-generation logic. Use the existing isolated
+environment for `uv run --locked --offline pytest -q -p no:cacheprovider`; no separate RED commit.
+
+T013 selects one exact clean integrated revision containing T012 GREEN, then records two
+owner-selected fresh independent source clones, venvs and output directories at that same
+revision. Install locked dependencies only through the existing normal cache/approval path;
+no alternate cache, mirror, configuration change or bypass. Both environments build and verify
+all eight files with their own authenticated tools, run contract and full tests, and compare
+every output byte. Two invocations in one checkout/venv are insufficient; a same-host result
+must state that cross-host/platform reproduction is unestablished. T012 supplies explicit
+`--source-root`/`--output` builder and `--source-root`/`--release` verifier selection; T013 records
+the actual absolute roots and exact commands, revisions, modes, raw/source-tree hashes and
+canonical output sizes/hashes separately.
+
+Only after all gates PASS, including tracked root Apache-2.0 LICENSE, exact distributable and
+applicable third-party/NOTICE review, T013 materializes the entire eight-file inventory in
+`build/releases/core-admission/` and writes `docs/evidence/umbrella-001/T012-core-admission-api.json`
+plus its own completion/current task fields. Source/schema, finite conformance, replay-binding
+and implementation-agreement results are limited to the implemented source/tooling and test
+scope; they do not establish live authentication, replay/CAS, intake, snapshot/storage or runtime.
+Preserve Candidate's eight files and historical evidence at source
+`5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1`, manifest SHA-256
+`67aca6754c610d48df25836a7fd9dbef90f9a8966741aaeee5cdca0ca7c3685f`.
+Preservation uses byte comparisons and the original verifier in the pinned clean Candidate
+source, never the modified current verifier pretending to have historical tool identity.
+Tag, publication, remote readback, consumer activation and Alpha stay `NOT RUN`; immutable
+locator stays `UNESTABLISHED`. T014's two publication slots and T032/T033 stay separate and
+unchanged; no `1.0.0` promotion is authorized.
 
 ### Candidate Intake and Effects
 
@@ -440,8 +538,8 @@ second environment result, candidate PASS is prohibited. Publication remains `NO
 | T042 semantic-content schema | Intentional `FAIL` (RED) | Requirements/oracle fixed; unchanged schema is missing the hard cut |
 | T043 GREEN / T077 input | `NOT RUN` | Subsequent owner-local task |
 | Post-hard-cut Candidate-content local release candidate | `NOT RUN` | T009 must regenerate after T043; historical bytes remain untouched |
-| Core API/Handoff identity | `UNESTABLISHED` | Future explicit owner decision task |
-| Core API/Handoff local release candidate | `NOT RUN` | No source/build execution exists |
+| Core API/Handoff identity and source | `PASS` for T011 source selection/static checks | `core-admission-0.2.0` / `0.2.0` / tag target `core-admission-v0.2.0`; no tag created; frozen 422 checks PASS |
+| Core API/Handoff local release candidate | `NOT RUN` | T012 tooling GREEN must integrate before T013 builds/verifies two clean environments and materializes all eight files |
 | Publication/remote readback | `NOT RUN` | Separately authorized per release |
 | Intake/lifecycle/persistence/interfaces | `NOT RUN` | No source/runtime execution exists |
 | Quack production readiness | `UNESTABLISHED` | Exact versions and required gates absent |

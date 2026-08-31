@@ -2,9 +2,12 @@
 
 **Owner**: Studious Lamp
 
-**Release identity**: `UNESTABLISHED` pending the first owner contract implementation task
+**Release identity**: T011 selected `core-admission-0.2.0` / `0.2.0` / tag target
+`core-admission-v0.2.0` in `contracts/core-admission/openapi.yaml` `x-release`; no tag created
 
-**Current status**: Contract, implementation, release candidate, publication, and runtime `NOT RUN`
+**Current status**: T011 source selection/static conformance `PASS` (Core 156, full 422 checks).
+T012 tooling, T013 local release candidate, publication and runtime `NOT RUN`; immutable locator
+`UNESTABLISHED`. Source tests do not establish live authentication, replay, intake or storage.
 
 ## Public Contract Sources
 
@@ -19,7 +22,8 @@ contracts/duckdbd/openapi.yaml
 
 The Core Admission API and Handoff Reference form one independently versioned control-plane
 release. The repositoryd and duckdbd service contracts are separate internal owner boundaries and
-are not Candidate-content artifacts.
+are not public Core or Candidate-content artifacts. The source list includes validation inputs,
+not six public normative artifacts; only the API and Handoff are normative Core release assets.
 
 ## Handoff Reference Semantics
 
@@ -126,19 +130,60 @@ post-admission oCIS denial; direct-storage denial; and zero repositoryd-to-duckd
 
 ## Deterministic Release Candidate
 
+T012 owns tooling GREEN only in these paths and its completion/current task fields:
+
 ```text
 tools/build_core_admission_release.py
 tools/verify_release.py
-build/releases/core-admission/manifest.json
+tests/contracts/test_core_admission_release.py
+```
+
+Build/verify temporary synthetic Git sources/outputs only until all unchanged 422 checks plus
+independent release regressions pass and T012 is committed and locally integrated. No owner
+release output or `docs/evidence/umbrella-001/T012-core-admission-api.json` is written by T012.
+The exact eleven raw inputs (including the existing imported Candidate builder helper), source
+mode/path/hash framing, executing-tool authentication and independent negative-test requirements
+are defined in [the Core release plan](../plan.md#core-release-tooling-and-candidate-boundary-t012t013).
+No Candidate globals are monkeypatched; Candidate verification must work in its frozen twelve-input
+fixture without importing the absent Core tool. Keep the existing `rfc8785==0.1.4` lock unchanged.
+
+T013 owns the complete literal output inventory selected by T011 `x-release`:
+
+```text
+build/releases/core-admission/LICENSE
 build/releases/core-admission/checksums.sha256
+build/releases/core-admission/conformance/negative.json
+build/releases/core-admission/conformance/positive.json
+build/releases/core-admission/handoff-reference.schema.json
+build/releases/core-admission/manifest.json
+build/releases/core-admission/openapi.yaml
 build/releases/core-admission/provenance.json
 ```
 
-The first contract task selects the exact pre-1.0 version/tag and complete release inventory in
-the contract/build sources. Local candidate verification requires exact inventory, byte-identical
-rebuild, positive/negative conformance, implementation agreement, checksums/provenance, tracked
-Apache-2.0, and exact distributable/third-party/NOTICE checks. Publication and remote readback are
-separate and initially `NOT RUN`.
+Exactly `openapi.yaml` and `handoff-reference.schema.json` are normative; the other five JSON/
+checksum files are evidence and LICENSE is licensing. All JSON, including `openapi.yaml`, is JCS
+UTF-8 without BOM/trailing LF; LICENSE preserves tracked raw bytes. Checksums contain seven sorted
+records, no self-entry. Bind normative/vectors/LICENSE → manifest → provenance → checksums
+without recursive Handoff hashes, manifest/provenance cycles or volatile/self-asserted proofs.
+Keep raw source hashes/modes separate from canonical output sizes/hashes; complete frozen vectors
+are packaged without interpreting their future runtime obligations as executed results.
+
+After T012 GREEN integration, T013 selects one exact clean revision and two fresh independent
+source clones/venvs/output directories at that revision, using locked dependencies through the
+normal cache/approval path only. Build/verify all eight files and run contract/full tests in both;
+compare every byte and state the same-host limitation. Verify tracked root Apache-2.0 LICENSE,
+exact distributable inventory and applicable third-party/NOTICE inputs. Only after all gates PASS
+materialize the full inventory above and write `docs/evidence/umbrella-001/T012-core-admission-api.json`
+and T013 completion/current fields. Actual commands/environment identities and two-environment
+results belong in that acceptance evidence, not in deterministic release booleans. Bind any
+validation-only internal service inputs separately, never as distributed public artifacts.
+
+Preserve all Candidate bytes/evidence; historical verification must execute the original verifier
+at its pinned clean source, not substitute T012's modified verifier. Source/schema, finite
+conformance, replay-binding and implementation-agreement PASS remain bounded to source/tooling
+checks, not live authorization, replay/CAS, intake, snapshot/storage or runtime. Tag, publication,
+remote readback, consumer activation and Alpha remain `NOT RUN`; immutable locator remains
+`UNESTABLISHED`. T014 and the separately authorized T032/T033 publication tasks are unchanged.
 
 ## Evidence Outputs
 

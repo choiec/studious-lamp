@@ -1,0 +1,1070 @@
+{
+  "openapi": "3.1.1",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Studious duckdbd internal owner API",
+    "version": "0.1.0",
+    "license": {
+      "name": "Apache-2.0",
+      "identifier": "Apache-2.0"
+    },
+    "description": "Separate internal Studious service boundary. Source selection only; no live binding, runtime, publication or deployment is established. All paths are relative, internal-only and inaccessible to public clients or Automatic."
+  },
+  "x-contract-identity": {
+    "name": "duckdbd",
+    "version": "0.1.0",
+    "identity": "urn:studious-lamp:duckdbd:0.1.0",
+    "public_core_release_inclusion": "EXCLUDED",
+    "candidate_content_release_inclusion": "EXCLUDED",
+    "selection": "Independent initial internal API version, not a shared release/version train or a consumer pin to Candidate content. No internal release tag/publication is selected by T011."
+  },
+  "security": [
+    {
+      "CoreServiceMTLS": []
+    }
+  ],
+  "x-wire": {
+    "http": "HTTP/1.1 (RFC 9110 semantics; RFC 9112 framing)",
+    "tls": "TLS 1.3 with mutual certificate verification, hostname verification and service-specific peer authorization; never forwarded identity headers",
+    "media_type": "application/json",
+    "max_request_bytes": 16384,
+    "max_response_bytes": 16384,
+    "max_header_bytes": 16384,
+    "max_json_depth": 8,
+    "encoding": "Strict UTF-8 RFC 8259 JSON; no BOM, duplicate members, nonfinite numbers, lone surrogates, trailing content, unknown fields, query parameters or content coding. Reject ambiguous HTTP framing/duplicate security headers. Bound actual streamed bytes before parse/auth/dispatch."
+  },
+  "x-trust": "Authenticate a distinct approved Core local service peer through TLS 1.3 mTLS, using a protected service-specific trust binding; validate chain, clientAuth/serverAuth usage, expected peer, expiry and revocation. No anonymous mode. TLS failure closes the connection before HTTP/storage. HTTP 403 covers invalid application context or denied authority after a verified TLS channel; there is no HTTP challenge scheme or TLS-to-HTTP fallback. Resolve authenticated_request_context_id to that peer and a current Core-authorized effect; independently apply this service operation/product policy and exact policy_revision. Caller-supplied context, policy ID, digest or CoreRecord is not proof of authorization. Never accept an oCIS credential, user, forwarded principal or Handoff. Exact certificates, identities, trust roots and endpoints remain protected unestablished bindings; inability to verify fails closed. Context and grant resolution uses service-local protected authorization state bound to the authenticated peer, operation, product and policy revision, never an outbound Core lookup or an unverified body assertion.",
+  "x-order": [
+    "1. Establish verified mTLS; enforce HTTP/JSON bounds and syntax before any storage mutation.",
+    "2. Independently authenticate/allowlist Core peer and resolve current context; body handles never grant authority.",
+    "3. Validate immutable request shape, recompute all input/JCS digests and immutable in-request equality. Do not evaluate mutable new-dispatch prerequisites or projection revision here.",
+    "4. Look up durable effect_id/idempotency_key binding in this authenticated peer namespace. Compare the full retained request binding; changed key pairing, operation, policy or bytes conflicts without overwriting the record. Do not disclose original results yet.",
+    "5. Independently authorize the exact operation/product or readback under current service policy and verify the protected Core grant. Denial performs no new storage effect and does not disclose the retained result.",
+    "6. On an exact retained binding, return the independently read-back original terminal outcome or reconcile UNCERTAIN/in-progress state. Never re-evaluate old mutable prerequisites, reapply projection CAS, increment revision, reserve a new effect, or execute mutation for an exact replay.",
+    "7. Only for a new effect, atomically reserve the durable binding and check all new-dispatch prerequisites in the owning transaction/critical section, preventing concurrent key/product races. Require completed Core-held publication, matching successful local adoption for projection, and compare expected_projection_revision atomically with the projection write. A failed CAS has no projection write.",
+    "8. Execute only this new requested owner effect. Durably commit state and outcome together or retain explicit uncertainty. Independently read back stored bytes/records and result digest before SUCCEEDED; no other effect follows."
+  ],
+  "x-idempotency": {
+    "identity": "One-to-one effect_id and idempotency_key per authenticated Core peer namespace, scoped to this service; operation remains in binding so key reuse across operations conflicts.",
+    "request_binding_sha256": "SHA-256 of RFC 8785 JCS of the full request except effect_id, idempotency_key and authenticated_request_context_id. Includes operation, policy_revision, exact Core prerequisites and all requested bytes/digests. Recompute at the service; no caller-provided replay verdict.",
+    "result_sha256": "SHA-256 of RFC 8785 JCS of Result after independent owner-storage readback. Compare full input binding on replay; digest alone is not authorization.",
+    "uncertainty": "Any lost/ambiguous response after dispatch is UNCERTAIN, even without a parseable response. Core must use this service GET operation readback before retry. A missing record, partition, stale replica or timeout does not establish failure/no effect. Reconcile durably to original terminal outcome or verified absence with no pending writer before retrying the same binding. No retry with a new key to evade uncertainty, rollback claim, direct storage access or cross-service compensation.",
+    "retention": "Keep outcome/binding or conflict tombstone for the lifetime of retained product/state records across retry/restart/recovery. Never expire keys into accidental re-execution; policy/binding changes need a separate authorized new effect.",
+    "exact_replay_before_mutable_prerequisites": "After current authentication and independent operation/resource authorization, an exact retained binding returns/reconciles the original result before any mutable new-dispatch prerequisite. In particular an update_projection retry with expected_projection_revision=0 after its own successful revision 1 MUST return the original revision-1 outcome, not fail CAS or create revision 2. Atomic CAS runs only for a genuinely new effect. New keys never bypass unresolved effects; no key reset or blind redispatch."
+  },
+  "x-effect-separation": "Only duckdbd accesses its own storage. No Handoff intake, oCIS read/credential/path, public operation, Automatic caller, storage locator, cross-service call, shared writer or direct Core storage fallback. No operation triggers identity, publication, adoption or projection at any other boundary. An absent request remains NOT_ATTEMPTED; each service success/failure/uncertain outcome remains independent. Error/readback bodies expose only bounded IDs/digests/status, never bytes, private profiles, raw provenance, secrets or storage locations.",
+  "x-owner-semantics": "duckdbd alone opens writable DuckDB and owns adoption and projection transactions. adopt_product requires the independently assigned ProductIdentity and completed Core-held canonical-publication evidence specified in x-publication-prerequisite. It inserts an immutable product_id -> exact CoreRecord, CanonicalPublicationRecord and their digests, and separately records the adoption operation. Existing identical relation is reusable only with independent current authorization; changed relation is IMMUTABLE_CONFLICT. update_projection is a separate request requiring the same completed publication plus matching successful adoption_effect_id/adoption_result_sha256 in duckdbd own records and expected current projection revision (0 means no projection). For a new effect only, it atomically checks that revision and writes the product_id-keyed projection of that exact adopted CoreRecord/publication binding and increments projection revision by one; mismatch is PREREQUISITE_MISMATCH with no update. Adoption result state_revision starts at 1 for its immutable record; projection state_revision counts projection writes independently. Commit owner state and operation outcome atomically; read back before success. No arbitrary SQL, file path, extension load or cross-service call. Core supplies its verified records/evidence in this request; duckdbd never fetches them from Core, repositoryd or oCIS. Success does not create another request.",
+  "x-evidence-limit": "Normative contract only. Authentication, independent authorization, byte verification, sole-writer/opener, durable idempotency, storage readback and reconciliation are future T022-T025 implementations, NOT RUN by T011. Structural conformance and synthetic fixtures are not runtime enforcement. All x-* fields are normative owner requirements except explicitly scoped evidence/status statements; extensions must be implemented independently of OpenAPI structural validation.",
+  "paths": {
+    "/internal/duckdbd/0.1.0/adoptions": {
+      "post": {
+        "operationId": "adopt_product",
+        "summary": "adopt product",
+        "description": "One independently authorized and idempotently recorded effect only. No other effect is created on success, failure or uncertainty.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdoptRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "SUCCEEDED only after durable commit and exact owner readback; exact replay returns same result.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Succeeded"
+                    },
+                    {
+                      "properties": {
+                        "operation": {
+                          "const": "adopt_product"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNCERTAIN: reconcile through this service before retry; never success.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Uncertain"
+                    },
+                    {
+                      "properties": {
+                        "operation": {
+                          "const": "adopt_product"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "STORAGE_FAILED only with a definitive failed outcome and known no committed requested effect. Otherwise UNCERTAIN.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Failed"
+                        },
+                        {
+                          "properties": {
+                            "reason_code": {
+                              "enum": [
+                                "STORAGE_FAILED"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "operation": {
+                          "const": "adopt_product"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/HTTP400"
+          },
+          "403": {
+            "$ref": "#/components/responses/HTTP403"
+          },
+          "409": {
+            "$ref": "#/components/responses/HTTP409"
+          },
+          "413": {
+            "$ref": "#/components/responses/HTTP413"
+          },
+          "415": {
+            "$ref": "#/components/responses/HTTP415"
+          },
+          "422": {
+            "$ref": "#/components/responses/HTTP422"
+          },
+          "503": {
+            "$ref": "#/components/responses/HTTP503"
+          }
+        }
+      }
+    },
+    "/internal/duckdbd/0.1.0/projections": {
+      "post": {
+        "operationId": "update_projection",
+        "summary": "update projection",
+        "description": "One independently authorized and idempotently recorded effect only. No other effect is created on success, failure or uncertainty.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "SUCCEEDED only after durable commit and exact owner readback; exact replay returns same result.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Succeeded"
+                    },
+                    {
+                      "properties": {
+                        "operation": {
+                          "const": "update_projection"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "UNCERTAIN: reconcile through this service before retry; never success.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Uncertain"
+                    },
+                    {
+                      "properties": {
+                        "operation": {
+                          "const": "update_projection"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "STORAGE_FAILED only with a definitive failed outcome and known no committed requested effect. Otherwise UNCERTAIN.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Failed"
+                        },
+                        {
+                          "properties": {
+                            "reason_code": {
+                              "enum": [
+                                "STORAGE_FAILED"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "operation": {
+                          "const": "update_projection"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/HTTP400"
+          },
+          "403": {
+            "$ref": "#/components/responses/HTTP403"
+          },
+          "409": {
+            "$ref": "#/components/responses/HTTP409"
+          },
+          "413": {
+            "$ref": "#/components/responses/HTTP413"
+          },
+          "415": {
+            "$ref": "#/components/responses/HTTP415"
+          },
+          "422": {
+            "$ref": "#/components/responses/HTTP422"
+          },
+          "503": {
+            "$ref": "#/components/responses/HTTP503"
+          }
+        }
+      }
+    },
+    "/internal/duckdbd/0.1.0/operations/{idempotency_key}": {
+      "get": {
+        "operationId": "read_duckdbd_operation",
+        "summary": "Read back and reconcile the service-owned outcome",
+        "description": "Authenticate current Core peer and independently authorize readback for the original caller namespace, operation and product; read only this service own durable operation record and storage. Recompute result/result digest on readback. No retry or other service call. NOT_FOUND is uncertainty, never proof of no effect.",
+        "parameters": [
+          {
+            "name": "idempotency_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/StableId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authoritative terminal result readback.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Succeeded"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Failed"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Still unresolved; retain uncertainty.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Uncertain"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "NOT_FOUND: authoritative absence/no-pending-writer must still be established before retry.",
+            "headers": {
+              "Cache-Control": {
+                "$ref": "#/components/headers/NoStore"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissingRecord"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/HTTP400"
+          },
+          "403": {
+            "$ref": "#/components/responses/HTTP403"
+          },
+          "503": {
+            "$ref": "#/components/responses/HTTP503"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "CoreServiceMTLS": {
+        "type": "mutualTLS",
+        "description": "TLS 1.3 mutually verified Core service certificate plus independent exact operation/product authorization; protected deployment bindings not included."
+      }
+    },
+    "schemas": {
+      "StableId": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 128,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}(?![\\s\\S])",
+        "not": {
+          "anyOf": [
+            {
+              "pattern": "^(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Mm][Aa][Ii][Nn]|[Mm][Aa][Ss][Tt][Ee][Rr]|[Hh][Ee][Aa][Dd]|[Cc][Uu][Rr][Rr][Ee][Nn][Tt]|[Ss][Tt][Aa][Bb][Ll][Ee]|[Dd][Ee][Ff][Aa][Uu][Ll][Tt])(?![\\s\\S])"
+            },
+            {
+              "pattern": "\\.\\."
+            }
+          ]
+        },
+        "description": "Opaque, case-sensitive stable identity; never a path, URL, principal, secret or authority. No decoding, trimming, case folding, alias or mutable-selector resolution. Issuer stability and resource ownership require runtime verification."
+      },
+      "Sha256": {
+        "type": "string",
+        "minLength": 64,
+        "maxLength": 64,
+        "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+      },
+      "CoreRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "admission_record_id",
+          "admission_record_sha256",
+          "snapshot_id",
+          "snapshot_sha256",
+          "product_id",
+          "identity_record_id",
+          "identity_record_sha256"
+        ],
+        "properties": {
+          "admission_record_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "admission_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "snapshot_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "snapshot_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "product_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "identity_record_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "identity_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          }
+        },
+        "description": "Core-owned accepted-admission/snapshot and separately assigned product identity references; no Candidate intake locator or authority. Service checks consistency with the authenticated Core request and immutable local bindings. Candidate ID is never a substitute product identity."
+      },
+      "AdoptRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "effect_id",
+          "idempotency_key",
+          "authenticated_request_context_id",
+          "policy_revision",
+          "core_record",
+          "core_record_sha256",
+          "operation",
+          "publication_record",
+          "publication_record_sha256"
+        ],
+        "properties": {
+          "effect_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "idempotency_key": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "authenticated_request_context_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "policy_revision": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "core_record": {
+            "$ref": "#/components/schemas/CoreRecord"
+          },
+          "core_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "operation": {
+            "type": "string",
+            "const": "adopt_product"
+          },
+          "publication_record": {
+            "$ref": "#/components/schemas/CanonicalPublicationRecord"
+          },
+          "publication_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          }
+        }
+      },
+      "ProjectionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "effect_id",
+          "idempotency_key",
+          "authenticated_request_context_id",
+          "policy_revision",
+          "core_record",
+          "core_record_sha256",
+          "operation",
+          "adoption_effect_id",
+          "adoption_result_sha256",
+          "expected_projection_revision",
+          "publication_record",
+          "publication_record_sha256"
+        ],
+        "properties": {
+          "effect_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "idempotency_key": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "authenticated_request_context_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "policy_revision": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "core_record": {
+            "$ref": "#/components/schemas/CoreRecord"
+          },
+          "core_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "operation": {
+            "type": "string",
+            "const": "update_projection"
+          },
+          "adoption_effect_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "adoption_result_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "expected_projection_revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740990
+          },
+          "publication_record": {
+            "$ref": "#/components/schemas/CanonicalPublicationRecord"
+          },
+          "publication_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          }
+        }
+      },
+      "Result": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "product_id",
+          "core_record_sha256",
+          "state_revision",
+          "publication_record_sha256"
+        ],
+        "properties": {
+          "product_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "core_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "state_revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "publication_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          }
+        }
+      },
+      "Succeeded": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "effect_id",
+          "idempotency_key",
+          "operation",
+          "request_binding_sha256",
+          "status",
+          "reason_code",
+          "result",
+          "result_sha256"
+        ],
+        "properties": {
+          "effect_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "idempotency_key": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "adopt_product",
+              "update_projection"
+            ]
+          },
+          "request_binding_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "status": {
+            "type": "string",
+            "const": "SUCCEEDED"
+          },
+          "reason_code": {
+            "type": "string",
+            "const": "COMPLETED"
+          },
+          "result": {
+            "$ref": "#/components/schemas/Result"
+          },
+          "result_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          }
+        }
+      },
+      "Failed": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "effect_id",
+          "idempotency_key",
+          "operation",
+          "request_binding_sha256",
+          "status",
+          "reason_code"
+        ],
+        "properties": {
+          "effect_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "idempotency_key": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "adopt_product",
+              "update_projection"
+            ]
+          },
+          "request_binding_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "status": {
+            "type": "string",
+            "const": "FAILED"
+          },
+          "reason_code": {
+            "type": "string",
+            "enum": [
+              "PREREQUISITE_MISMATCH",
+              "INPUT_DIGEST_MISMATCH",
+              "IMMUTABLE_CONFLICT",
+              "STORAGE_FAILED"
+            ]
+          }
+        }
+      },
+      "Uncertain": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "effect_id",
+          "idempotency_key",
+          "operation",
+          "request_binding_sha256",
+          "status",
+          "reason_code"
+        ],
+        "properties": {
+          "effect_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "idempotency_key": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "adopt_product",
+              "update_projection"
+            ]
+          },
+          "request_binding_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "status": {
+            "type": "string",
+            "const": "UNCERTAIN"
+          },
+          "reason_code": {
+            "type": "string",
+            "const": "RECONCILIATION_REQUIRED"
+          }
+        }
+      },
+      "Denied": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "status",
+          "reason_code"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "NOT_ATTEMPTED"
+          },
+          "reason_code": {
+            "type": "string",
+            "enum": [
+              "INVALID_REQUEST",
+              "REQUEST_TOO_LARGE",
+              "UNSUPPORTED_MEDIA_TYPE",
+              "UNAUTHENTICATED",
+              "FORBIDDEN",
+              "CONTEXT_MISMATCH",
+              "POLICY_MISMATCH",
+              "IDEMPOTENCY_CONFLICT",
+              "PREREQUISITE_MISMATCH",
+              "INPUT_DIGEST_MISMATCH",
+              "IMMUTABLE_CONFLICT",
+              "UNAVAILABLE"
+            ]
+          }
+        }
+      },
+      "MissingRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "status",
+          "reason_code"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "UNCERTAIN"
+          },
+          "reason_code": {
+            "type": "string",
+            "const": "NOT_FOUND"
+          }
+        }
+      },
+      "PublicationResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "product_id",
+          "core_record_sha256",
+          "object_size_bytes",
+          "object_sha256"
+        ],
+        "properties": {
+          "product_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "core_record_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "object_size_bytes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 67108864
+          },
+          "object_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          }
+        },
+        "description": "Exact completed canonical-publication result retained by Core after repositoryd readback. Matches repositoryd 0.1.0 Result semantics without a cross-service schema reference or call. Core must independently verify these bytes/digests before making the separate adoption/projection request."
+      },
+      "CanonicalPublicationRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "publication_record_id",
+          "effect_id",
+          "idempotency_key",
+          "request_binding_sha256",
+          "status",
+          "result",
+          "result_sha256",
+          "readback_evidence_id",
+          "readback_evidence_sha256"
+        ],
+        "properties": {
+          "publication_record_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "effect_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "idempotency_key": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "request_binding_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "status": {
+            "type": "string",
+            "const": "SUCCEEDED"
+          },
+          "result": {
+            "$ref": "#/components/schemas/PublicationResult"
+          },
+          "result_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          },
+          "readback_evidence_id": {
+            "$ref": "#/components/schemas/StableId"
+          },
+          "readback_evidence_sha256": {
+            "$ref": "#/components/schemas/Sha256"
+          }
+        },
+        "description": "Immutable Core-held record of completed canonical publication plus verified repositoryd readback. Pending, failed, uncertain or missing publication is not eligible. A status string and digest are assertions, not proof: authenticate the Core authority and verify the protected grant binding and the exact record/result digest relations before mutation. No raw storage locator or outbound readback instruction is carried."
+      }
+    },
+    "headers": {
+      "NoStore": {
+        "required": true,
+        "schema": {
+          "type": "string",
+          "const": "no-store"
+        }
+      }
+    },
+    "responses": {
+      "HTTP400": {
+        "description": "INVALID_REQUEST: malformed syntax, unknown field or invalid bound.",
+        "headers": {
+          "Cache-Control": {
+            "$ref": "#/components/headers/NoStore"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Denied"
+                },
+                {
+                  "properties": {
+                    "reason_code": {
+                      "enum": [
+                        "INVALID_REQUEST"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "HTTP403": {
+        "description": "UNAUTHENTICATED, CONTEXT_MISMATCH or FORBIDDEN after a verified mTLS channel. No new storage effect and no disclosure of original result. TLS authentication failure itself closes the connection without HTTP.",
+        "headers": {
+          "Cache-Control": {
+            "$ref": "#/components/headers/NoStore"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Denied"
+                },
+                {
+                  "properties": {
+                    "reason_code": {
+                      "enum": [
+                        "UNAUTHENTICATED",
+                        "CONTEXT_MISMATCH",
+                        "FORBIDDEN"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "HTTP409": {
+        "description": "IDEMPOTENCY_CONFLICT, POLICY_MISMATCH or IMMUTABLE_CONFLICT before new mutation; original record unchanged.",
+        "headers": {
+          "Cache-Control": {
+            "$ref": "#/components/headers/NoStore"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Denied"
+                },
+                {
+                  "properties": {
+                    "reason_code": {
+                      "enum": [
+                        "IDEMPOTENCY_CONFLICT",
+                        "POLICY_MISMATCH",
+                        "IMMUTABLE_CONFLICT"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "HTTP413": {
+        "description": "REQUEST_TOO_LARGE before dispatch.",
+        "headers": {
+          "Cache-Control": {
+            "$ref": "#/components/headers/NoStore"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Denied"
+                },
+                {
+                  "properties": {
+                    "reason_code": {
+                      "enum": [
+                        "REQUEST_TOO_LARGE"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "HTTP415": {
+        "description": "UNSUPPORTED_MEDIA_TYPE: require uncompressed UTF-8 application/json.",
+        "headers": {
+          "Cache-Control": {
+            "$ref": "#/components/headers/NoStore"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Denied"
+                },
+                {
+                  "properties": {
+                    "reason_code": {
+                      "enum": [
+                        "UNSUPPORTED_MEDIA_TYPE"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "HTTP422": {
+        "description": "PREREQUISITE_MISMATCH or INPUT_DIGEST_MISMATCH before mutation; no fallback.",
+        "headers": {
+          "Cache-Control": {
+            "$ref": "#/components/headers/NoStore"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Denied"
+                },
+                {
+                  "properties": {
+                    "reason_code": {
+                      "enum": [
+                        "PREREQUISITE_MISMATCH",
+                        "INPUT_DIGEST_MISMATCH"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "HTTP503": {
+        "description": "UNAVAILABLE only when no new effect is known to have started; ambiguity is UNCERTAIN instead.",
+        "headers": {
+          "Cache-Control": {
+            "$ref": "#/components/headers/NoStore"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Denied"
+                },
+                {
+                  "properties": {
+                    "reason_code": {
+                      "enum": [
+                        "UNAVAILABLE"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-publication-prerequisite": {
+    "authority": "ProductIdentity + completed CanonicalPublication is required for adoption; ProductStateRecord + the same CanonicalPublication is required for projection (specs/001-product-runtime/data-model.md Relationships and Ownership). Independent effects do not erase these prerequisites. Neither operation requests publication or calls repositoryd.",
+    "core_preparation": "Before its separate authorized adoption/projection request, Core resolves its immutable canonical-publication record backed by successful repositoryd owner-interface readback. Bind the exact source snapshot, assigned product, request binding, publication result and readback evidence. Uncertain publication must be reconciled by Core through repositoryd in that prior effect, never inside duckdbd; absent/failed/unresolved evidence blocks dispatch.",
+    "verification": "duckdbd recomputes publication_record_sha256 from RFC 8785 JCS of publication_record and result_sha256 from RFC 8785 JCS of publication_record.result. Require status SUCCEEDED, publication_record.result.product_id == core_record.product_id and publication_record.result.core_record_sha256 == core_record_sha256. The latter binds accepted admission, snapshot and assigned identity together. Match publication record/result/readback-evidence digests and Core record digest to the current service-local protected grant for the authenticated Core peer, operation and product. No caller-supplied successful status, opaque ID or digest proves publication without that trusted Core binding. A missing/unverifiable grant or evidence binding fails closed before mutation.",
+    "recording": "For a new adoption, store the exact immutable Core publication record/digest with the adoption result. For a new projection, require its publication_record_sha256 to equal the successful adoption retained value, matching CoreRecord and adoption_effect_id/adoption_result_sha256 for that product. Check these mutable owner-state prerequisites and projection CAS atomically only on new dispatch. Exact retained replay verifies original record/digests and returns/reconciles that result without reapplying the old CAS or testing whether today state would permit a new dispatch.",
+    "replay": "Both publication fields and all nested result/readback evidence participate in the full request binding. Changed prerequisite under an existing effect/key is IDEMPOTENCY_CONFLICT, never a second mutation. Readback verifies the stored publication binding along with state and outcome without contacting repositoryd or oCIS."
+  }
+}

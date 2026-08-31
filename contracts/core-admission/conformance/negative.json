@@ -1,0 +1,1527 @@
+{
+  "synthetic_only": true,
+  "scope": "T010 static contract and finite fixture checks only; no runtime enforcement.",
+  "current_core_release_identity": "UNESTABLISHED",
+  "runtime_enforcement": "NOT RUN",
+  "shape_cases": [
+    {
+      "id": "missing-handoff_reference_contract_version",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "handoff_reference_contract_version"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-handoff_reference_contract_sha256",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "handoff_reference_contract_sha256"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-environment_id",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "environment_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-space_id",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "space_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-manifest_resource_id",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "manifest_resource_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-remote_manifest_precondition",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "remote_manifest_precondition"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-candidate_id",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "candidate_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-candidate_contract_release_id",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "candidate_contract_release_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-candidate_contract_release_manifest_sha256",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "candidate_contract_release_manifest_sha256"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-candidate_manifest_sha256",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "candidate_manifest_sha256"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-export_receipt_id",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "export_receipt_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-precondition-version_id",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "remote_manifest_precondition",
+            "version_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-precondition-readback_size_bytes",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_size_bytes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-precondition-readback_sha256",
+      "category": "required-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_sha256"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-submission_id",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "submission_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-idempotency_key",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "idempotency_key"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-authenticated_request_context_id",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "authenticated_request_context_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-operation",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "operation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-handoff_reference",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "handoff_reference"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-expected_candidate_id",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "expected_candidate_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-expected_candidate_manifest_sha256",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "expected_candidate_manifest_sha256"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-expected_candidate_contract_release_id",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "expected_candidate_contract_release_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "missing-request-requested_at",
+      "category": "required-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "remove",
+          "path": [
+            "requested_at"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forbidden-credential",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "credential"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-token",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "token"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-ocis_principal",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "ocis_principal"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-ocis_user_id",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "ocis_user_id"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-core_caller_principal",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "core_caller_principal"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-authorization_decision",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "authorization_decision"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-binding_name",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "binding_name"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-display_locator",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "display_locator"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-local_path",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "local_path"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-sync_path",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "sync_path"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-mutable_selector",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "mutable_selector"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-private_profile",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "private_profile"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-raw_provenance",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "raw_provenance"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-endpoint",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "endpoint"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-insecure_tls",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "insecure_tls"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-owner",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "owner"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-acl",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "acl"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-upload_complete",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "upload_complete"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-sync_state",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "sync_state"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-ready",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "ready"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-internal_state",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "internal_state"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-precondition-timestamp",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "remote_manifest_precondition",
+            "timestamp"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-precondition-etag",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "remote_manifest_precondition",
+            "etag"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-precondition-upload_complete",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "remote_manifest_precondition",
+            "upload_complete"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-precondition-sync_state",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "remote_manifest_precondition",
+            "sync_state"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-precondition-owner",
+      "category": "forbidden-field",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "remote_manifest_precondition",
+            "owner"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-request-ocis_principal",
+      "category": "forbidden-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "ocis_principal"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-request-credential",
+      "category": "forbidden-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "credential"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-request-binding_name",
+      "category": "forbidden-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "binding_name"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-request-authorization_decision",
+      "category": "forbidden-field",
+      "target": "request",
+      "operations": [
+        {
+          "op": "add",
+          "path": [
+            "authorization_decision"
+          ],
+          "value": "synthetic-forbidden-value"
+        }
+      ]
+    },
+    {
+      "id": "null-precondition",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition"
+          ],
+          "value": null
+        }
+      ]
+    },
+    {
+      "id": "empty-precondition",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition"
+          ],
+          "value": {}
+        }
+      ]
+    },
+    {
+      "id": "empty-version",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "version_id"
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "weak-version",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "version_id"
+          ],
+          "value": "W/\"synthetic-010\""
+        }
+      ]
+    },
+    {
+      "id": "timestamp-only-precondition",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition"
+          ],
+          "value": {
+            "timestamp": "2000-01-01T00:00:00Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "latest-version",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "version_id"
+          ],
+          "value": "latest"
+        }
+      ]
+    },
+    {
+      "id": "negative-readback-size",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_size_bytes"
+          ],
+          "value": -1
+        }
+      ]
+    },
+    {
+      "id": "fractional-readback-size",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_size_bytes"
+          ],
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "id": "boolean-readback-size",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_size_bytes"
+          ],
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "short-readback-digest",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_sha256"
+          ],
+          "value": "abc"
+        }
+      ]
+    },
+    {
+      "id": "uppercase-readback-digest",
+      "category": "weak-precondition",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_sha256"
+          ],
+          "value": "ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB"
+        }
+      ]
+    },
+    {
+      "id": "empty-environment_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "environment_id"
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "empty-space_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "space_id"
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "empty-manifest_resource_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "manifest_resource_id"
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "empty-candidate_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_id"
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "empty-export_receipt_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "export_receipt_id"
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "display-path-as-environment_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "environment_id"
+          ],
+          "value": "synthetic/display/path"
+        }
+      ]
+    },
+    {
+      "id": "display-path-as-space_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "space_id"
+          ],
+          "value": "synthetic/display/path"
+        }
+      ]
+    },
+    {
+      "id": "display-path-as-manifest_resource_id",
+      "category": "stable-identity",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "manifest_resource_id"
+          ],
+          "value": "synthetic/display/path"
+        }
+      ]
+    },
+    {
+      "id": "malformed-handoff_reference_contract_sha256",
+      "category": "malformed-digest",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "handoff_reference_contract_sha256"
+          ],
+          "value": "not-a-sha256"
+        }
+      ]
+    },
+    {
+      "id": "malformed-candidate_contract_release_manifest_sha256",
+      "category": "malformed-digest",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_contract_release_manifest_sha256"
+          ],
+          "value": "not-a-sha256"
+        }
+      ]
+    },
+    {
+      "id": "malformed-candidate_manifest_sha256",
+      "category": "malformed-digest",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_manifest_sha256"
+          ],
+          "value": "not-a-sha256"
+        }
+      ]
+    },
+    {
+      "id": "mutable-candidate-release-latest",
+      "category": "mutable-selector",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_contract_release_id"
+          ],
+          "value": "latest"
+        }
+      ]
+    },
+    {
+      "id": "mutable-candidate-release-main",
+      "category": "mutable-selector",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_contract_release_id"
+          ],
+          "value": "main"
+        }
+      ]
+    },
+    {
+      "id": "mutable-candidate-release-gteq0.1.0",
+      "category": "mutable-selector",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_contract_release_id"
+          ],
+          "value": ">=0.1.0"
+        }
+      ]
+    },
+    {
+      "id": "mutable-candidate-release-0.1.star",
+      "category": "mutable-selector",
+      "target": "handoff",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_contract_release_id"
+          ],
+          "value": "0.1.*"
+        }
+      ]
+    },
+    {
+      "id": "wrong-admission-operation",
+      "category": "operation",
+      "target": "request",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "operation"
+          ],
+          "value": "publish_product_object"
+        }
+      ]
+    }
+  ],
+  "semantic_cases": [
+    {
+      "id": "handoff-contract-digest",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "handoff_reference_contract_sha256"
+          ],
+          "value": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "violations": [
+        "handoff-contract-digest"
+      ]
+    },
+    {
+      "id": "candidate-release-id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_contract_release_id"
+          ],
+          "value": "candidate-content-synthetic-other"
+        }
+      ],
+      "violations": [
+        "candidate-release-id",
+        "expected-candidate-release-id"
+      ]
+    },
+    {
+      "id": "candidate-release-manifest",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_contract_release_manifest_sha256"
+          ],
+          "value": "2222222222222222222222222222222222222222222222222222222222222222"
+        }
+      ],
+      "violations": [
+        "candidate-release-manifest"
+      ]
+    },
+    {
+      "id": "readback-manifest-mismatch",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "remote_manifest_precondition",
+            "readback_sha256"
+          ],
+          "value": "3333333333333333333333333333333333333333333333333333333333333333"
+        }
+      ],
+      "violations": [
+        "readback-manifest-digest"
+      ]
+    },
+    {
+      "id": "candidate-manifest-mismatch",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_manifest_sha256"
+          ],
+          "value": "4444444444444444444444444444444444444444444444444444444444444444"
+        }
+      ],
+      "violations": [
+        "readback-manifest-digest",
+        "expected-candidate-manifest"
+      ]
+    },
+    {
+      "id": "candidate-id-mismatch",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_id"
+          ],
+          "value": "candidate-synthetic-other"
+        }
+      ],
+      "violations": [
+        "expected-candidate-id"
+      ]
+    }
+  ],
+  "version_cases": [
+    {
+      "id": "unsupported-exact-version",
+      "value": "0.8.0-synthetic.10"
+    },
+    {
+      "id": "coupled-candidate-version",
+      "value": "0.1.0-synthetic.1"
+    },
+    {
+      "id": "latest-handoff-version",
+      "value": "latest"
+    },
+    {
+      "id": "range-handoff-version",
+      "value": ">=0.1.0"
+    },
+    {
+      "id": "empty-handoff-version",
+      "value": ""
+    }
+  ],
+  "replay_cases": [
+    {
+      "id": "conflicting-handoff_reference_contract_sha256",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "handoff_reference_contract_sha256"
+          ],
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-environment_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "environment_id"
+          ],
+          "value": "environment-synthetic-010-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-space_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "space_id"
+          ],
+          "value": "space-synthetic-010-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-manifest_resource_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "manifest_resource_id"
+          ],
+          "value": "manifest-resource-synthetic-010-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-candidate_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "candidate_id"
+          ],
+          "value": "candidate-synthetic-010-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-candidate_contract_release_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "candidate_contract_release_id"
+          ],
+          "value": "candidate-content-synthetic-010-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-candidate_contract_release_manifest_sha256",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "candidate_contract_release_manifest_sha256"
+          ],
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-candidate_manifest_sha256",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "candidate_manifest_sha256"
+          ],
+          "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-export_receipt_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "export_receipt_id"
+          ],
+          "value": "receipt-synthetic-010-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-precondition-version_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "remote_manifest_precondition",
+            "version_id"
+          ],
+          "value": "version-synthetic-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-precondition-readback_size_bytes",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "remote_manifest_precondition",
+            "readback_size_bytes"
+          ],
+          "value": 123
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-precondition-readback_sha256",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "remote_manifest_precondition",
+            "readback_sha256"
+          ],
+          "value": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-expected_candidate_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "expected_candidate_id"
+          ],
+          "value": "candidate-synthetic-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-expected_candidate_manifest_sha256",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "expected_candidate_manifest_sha256"
+          ],
+          "value": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-expected_candidate_contract_release_id",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "expected_candidate_contract_release_id"
+          ],
+          "value": "candidate-content-synthetic-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-operation",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "operation"
+          ],
+          "value": "publish_product_object"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "reject"
+    },
+    {
+      "id": "conflicting-policy-revision",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "policy_revision"
+          ],
+          "value": "policy-synthetic-other"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "accept"
+    },
+    {
+      "id": "conflicting-handoff_reference_contract_version",
+      "operations": [
+        {
+          "op": "replace",
+          "path": [
+            "request",
+            "handoff_reference",
+            "handoff_reference_contract_version"
+          ],
+          "value": "0.8.0-synthetic.10"
+        }
+      ],
+      "expected": "reject-before-new-retrieval-or-mutation",
+      "request_shape": "reject"
+    }
+  ]
+}

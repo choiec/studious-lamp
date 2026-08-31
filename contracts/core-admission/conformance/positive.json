@@ -1,0 +1,68 @@
+{
+  "synthetic_only": true,
+  "scope": "T010 static contract and finite fixture checks only; no runtime enforcement.",
+  "current_core_release_identity": "UNESTABLISHED",
+  "runtime_enforcement": "NOT RUN",
+  "limitations": [
+    "All identifiers, timestamp, versions and bytes are synthetic; none identifies a current public release, immutable locator, remote account or production resource.",
+    "Synthetic byte strings are digest/size examples, not valid Candidate content or normative contract artifacts.",
+    "AdmissionRequest uses the owner logical field set; authenticated context is not a principal or proof of authentication.",
+    "Contract-dependent tests substitute only the independently selected Handoff version and source-byte digest in a copy. No fixture rewrite or release identity selection occurs.",
+    "Replay comparisons are finite binding/contract-input checks, not storage, reconciliation, authentication, authorization or runtime enforcement."
+  ],
+  "synthetic_bytes": {
+    "handoff_contract": "T010 synthetic Handoff contract bytes; not a schema or released artifact.",
+    "candidate_release_manifest": "T010 synthetic Candidate release manifest; not the T009 candidate.",
+    "candidate_manifest": "T010 synthetic exported manifest bytes; not a schema-valid Candidate."
+  },
+  "pins": {
+    "handoff_reference_contract_version": "0.9.0-synthetic.10",
+    "handoff_reference_contract_sha256": "06923715ade168c41b46fc08e5e808f9564477ab818a5ce6ad83b203707a2d17",
+    "candidate_contract_release_id": "candidate-content-synthetic-010",
+    "candidate_contract_release_manifest_sha256": "e88a00b2928e7b42f8f2cb5ab8ed836f958f4a907488f0b3ec7e9f18c3f2880d",
+    "candidate_content_version": "0.1.0-synthetic.1"
+  },
+  "binding": {
+    "request": {
+      "submission_id": "submission-synthetic-010",
+      "idempotency_key": "idempotency-synthetic-010",
+      "authenticated_request_context_id": "context-synthetic-010",
+      "operation": "admit_candidate",
+      "handoff_reference": {
+        "handoff_reference_contract_version": "0.9.0-synthetic.10",
+        "handoff_reference_contract_sha256": "06923715ade168c41b46fc08e5e808f9564477ab818a5ce6ad83b203707a2d17",
+        "environment_id": "environment-synthetic-010",
+        "space_id": "space-synthetic-010",
+        "manifest_resource_id": "manifest-resource-synthetic-010",
+        "remote_manifest_precondition": {
+          "version_id": "version-synthetic-010",
+          "readback_size_bytes": 69,
+          "readback_sha256": "fb1ec0defb0febb117b0aefbdd5f0f66054bdd1baa05af8dc9b90498fad91279"
+        },
+        "candidate_id": "candidate-synthetic-010",
+        "candidate_contract_release_id": "candidate-content-synthetic-010",
+        "candidate_contract_release_manifest_sha256": "e88a00b2928e7b42f8f2cb5ab8ed836f958f4a907488f0b3ec7e9f18c3f2880d",
+        "candidate_manifest_sha256": "fb1ec0defb0febb117b0aefbdd5f0f66054bdd1baa05af8dc9b90498fad91279",
+        "export_receipt_id": "receipt-synthetic-010"
+      },
+      "expected_candidate_id": "candidate-synthetic-010",
+      "expected_candidate_manifest_sha256": "fb1ec0defb0febb117b0aefbdd5f0f66054bdd1baa05af8dc9b90498fad91279",
+      "expected_candidate_contract_release_id": "candidate-content-synthetic-010",
+      "requested_at": "2000-01-01T00:00:00Z"
+    },
+    "policy_revision": "policy-synthetic-010"
+  },
+  "replay_cases": [
+    {
+      "id": "exact-replay",
+      "operations": [],
+      "expected": "return-or-reconcile-original"
+    },
+    {
+      "id": "exact-replay-key-order",
+      "operations": [],
+      "reverse_object_order": true,
+      "expected": "return-or-reconcile-original"
+    }
+  ]
+}

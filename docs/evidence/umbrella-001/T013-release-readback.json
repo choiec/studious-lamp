@@ -1,0 +1,580 @@
+{
+  "evidence_format_version": "1",
+  "owner_repository": "studious-lamp",
+  "owner_task": "T014",
+  "umbrella_task": "T013",
+  "scope": "Initialize two independent publication/readback slots only; no publication authority or executed remote result.",
+  "initialized_at": "2026-08-31T02:43:17.812014+00:00",
+  "initialization_base": {
+    "revision": "8ce35ef580d2c334bdf925e961020687828d179d",
+    "git_tree": "4d83bc972e7d6ff7258d4adca2dd315fd70aa5c9"
+  },
+  "slots": {
+    "candidate_content": {
+      "status": "NOT RUN",
+      "owner_repository": "studious-lamp",
+      "future_owner_task": "T032",
+      "release": {
+        "name": "candidate-content",
+        "version": "0.1.0",
+        "tag_target": "contract-v0.1.0",
+        "source_revision": "5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1",
+        "source_git_tree": "633151e03f1d31382c49740d1d42bf5cb3bfee7a",
+        "source_tree_sha256": "88bcdc90e94f6ea36b67fe4fc802162a60dc98dc4922ccff74a4010d01f7bc91",
+        "raw_input_count": 12,
+        "raw_input_inventory_pointer": "/source_inputs in the pinned manifest; raw Git-mode/SHA-256/path LF records sorted by unsigned UTF-8 path bytes",
+        "manifest": {
+          "path": "build/releases/candidate-content/0.1.0/candidate-content.manifest.json",
+          "byte_size": 4121,
+          "sha256": "67aca6754c610d48df25836a7fd9dbef90f9a8966741aaeee5cdca0ca7c3685f"
+        },
+        "local_output_root": "build/releases/candidate-content/0.1.0"
+      },
+      "local_candidate_prerequisites": {
+        "status": "PASS",
+        "owner_task": "T009",
+        "task_commit": "47f5a0d4b92717f8cf4c20e34b0180354f0e0a82",
+        "merge_commit": "f025c3f9077553f481ac733fe5eb602b2e1d5791",
+        "evidence": {
+          "path": "docs/evidence/umbrella-001/T011-content-release-candidate.json",
+          "byte_size": 48047,
+          "sha256": "6680381f24607626d7e66f1da9f728107c70f1210d770aa5d071415ee9e6296e"
+        },
+        "checks": {
+          "exact_clean_source_and_raw_input_binding": "PASS",
+          "two_clean_environment_byte_identical_builds": "PASS",
+          "exact_normative_and_distribution_inventory": "PASS",
+          "positive_negative_local_conformance": "PASS",
+          "canonical_bytes_manifest_checksums_verified_provenance": "PASS",
+          "tracked_license_and_scoped_notice_review": "PASS",
+          "retired_forms_and_disclosure_review": "PASS"
+        },
+        "t014_independent_local_readback": "PASS",
+        "scope": "Original local candidate PASS is bound to the pinned evidence, not re-created by T014. T014 directly re-reads Git source/modes, hashes inventories and manifest/evidence, and runs the original verifier at the retained source root. Two-environment builds are historical same-host evidence; T014 does not rerun them. No local result establishes publication, immutable remote readback or activation."
+      },
+      "inventory_counts": {
+        "total": 8,
+        "normative": 4,
+        "release_evidence": 4,
+        "license": 0
+      },
+      "inventory": [
+        {
+          "byte_size": 677,
+          "path": "build/releases/candidate-content/0.1.0/SHA256SUMS",
+          "sha256": "e83d92a1cec25f8f16494fdf73c82e235d33439eadc5f72f71d55debbdd72469",
+          "relative_locator": "SHA256SUMS",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "UTF-8 text"
+        },
+        {
+          "byte_size": 44284,
+          "path": "build/releases/candidate-content/0.1.0/candidate-content.conformance.jsonl",
+          "sha256": "fd18ce40ba3aee22b930f92adf1afa4de758bbc1da8246ec698bbf8e5b55c621",
+          "relative_locator": "candidate-content.conformance.jsonl",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "JCS JSONL with final LF"
+        },
+        {
+          "byte_size": 4121,
+          "path": "build/releases/candidate-content/0.1.0/candidate-content.manifest.json",
+          "sha256": "67aca6754c610d48df25836a7fd9dbef90f9a8966741aaeee5cdca0ca7c3685f",
+          "relative_locator": "candidate-content.manifest.json",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "JCS JSON"
+        },
+        {
+          "byte_size": 3180,
+          "path": "build/releases/candidate-content/0.1.0/candidate-content.provenance.intoto.jsonl",
+          "sha256": "1fe1dc2a679548fa2ee4ea4f985778ed04f3d056104e5ecef3a54a54323da312",
+          "relative_locator": "candidate-content.provenance.intoto.jsonl",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "JCS JSONL with final LF"
+        },
+        {
+          "byte_size": 2046,
+          "path": "build/releases/candidate-content/0.1.0/candidate.schema.json",
+          "sha256": "a8e76903a7404eebfd16238c47e4c430d62575a380fc6dfad3d7640449e1702e",
+          "relative_locator": "candidate.schema.json",
+          "classification": "candidate_content_contract",
+          "media_type": "application/schema+json",
+          "content_format": "JCS JSON",
+          "contract_version": "0.1.0",
+          "contract_name": "candidate"
+        },
+        {
+          "byte_size": 403,
+          "path": "build/releases/candidate-content/0.1.0/processing-profile.schema.json",
+          "sha256": "243a923340eaec7ba809ee45d0d12bcf328664eb9bef4e90bfbc8ba0cf0935bc",
+          "relative_locator": "processing-profile.schema.json",
+          "classification": "candidate_content_contract",
+          "media_type": "application/schema+json",
+          "content_format": "JCS JSON",
+          "contract_version": "0.1.0",
+          "contract_name": "processing-profile"
+        },
+        {
+          "byte_size": 342,
+          "path": "build/releases/candidate-content/0.1.0/provenance.schema.json",
+          "sha256": "6e023c1147ac4f13664fffe9ddd5c12401b7fc4cd0d4ae9d11215bf67935d1eb",
+          "relative_locator": "provenance.schema.json",
+          "classification": "candidate_content_contract",
+          "media_type": "application/schema+json",
+          "content_format": "JCS JSON",
+          "contract_version": "0.1.0",
+          "contract_name": "provenance"
+        },
+        {
+          "byte_size": 18448,
+          "path": "build/releases/candidate-content/0.1.0/semantic-content.schema.json",
+          "sha256": "05970859f28fa81e6d01739f3677c54c71ef97fc0be456039f8f3eb87f8f4ec2",
+          "relative_locator": "semantic-content.schema.json",
+          "classification": "candidate_content_contract",
+          "media_type": "application/schema+json",
+          "content_format": "JCS JSON",
+          "contract_version": "0.1.0",
+          "contract_name": "semantic-content"
+        }
+      ],
+      "media_type_scope": "Normative media types are literal pinned manifest declarations. Evidence/license media types are not declared in the pinned sources/evidence and remain UNESTABLISHED; content_format describes local bytes, not a selected publication Content-Type or remote observation.",
+      "license_and_distribution": {
+        "local_source_review_status": "PASS",
+        "license": "Apache-2.0",
+        "source_revision": "5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1",
+        "tracked_license": {
+          "path": "LICENSE",
+          "byte_size": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+        },
+        "readme_declaration": {
+          "path": "README.md",
+          "byte_size": 588,
+          "sha256": "73b0839517a1bd7d509fdb0daeef9570ded8b665c3800ba017acfd04c80cd953"
+        },
+        "local_review_evidence_pointer": "/license_and_distribution",
+        "local_review_evidence": {
+          "path": "docs/evidence/umbrella-001/T011-content-release-candidate.json",
+          "byte_size": 48047,
+          "sha256": "6680381f24607626d7e66f1da9f728107c70f1210d770aa5d071415ee9e6296e"
+        },
+        "selected_source_tracked_path_count": 71,
+        "tracked_license_notice_vendor_name_matches": [
+          "LICENSE"
+        ],
+        "applicable_additional_tracked_notice_inputs": [],
+        "review_scope": "Eight assets contain owner schemas, synthetic first-party vectors, and generated release metadata only. No vendored third-party code or copied EGP/EVP/LOM/QTI definitions are bundled; standard identifiers are references. rfc8785==0.1.4 is an installed Apache-2.0 build tool, not redistributed library code; pytest/transitive packages are validation tools, not release assets. No applicable additional third-party NOTICE input identified for this exact local inventory.",
+        "distribution_inventory_pointer": "/slots/candidate_content/inventory",
+        "license_in_distribution_inventory": false,
+        "publication_time_license_delivery": {
+          "status": "UNESTABLISHED",
+          "mechanism": null,
+          "immutable_locator": null,
+          "readback_status": "NOT RUN",
+          "observed_bytes": null,
+          "constraint": "Root LICENSE is bound in the twelve raw inputs and manifest license_source, but is not a ninth asset. Establish and authorize license delivery/readback without silently adding an asset or changing approved bytes."
+        },
+        "limitations": "Selected-source and exact local distribution review only, not legal advice, an exhaustive origin or dependency audit, or completed publication compliance. Tools, interpreter and dependencies are build/validation inputs, not redistributed code. Recheck applicable third-party/NOTICE and required license material for the selected publication mechanism; do not invent extra assets."
+      },
+      "authorization": {
+        "status": "NOT RUN",
+        "approval_identity_status": "UNESTABLISHED",
+        "approval_record": null,
+        "approval_actor": null,
+        "approval_text": null,
+        "approved_at": null,
+        "required_scope": "Separate explicit human authorization for T032, naming this exact release/version/tag target, source revision, manifest and all eight approved asset pins, selected immutable mechanism/destination, any tag creation, publication and independent remote readback. Resolve publication-time license delivery and applicable NOTICE requirements. Local branch/commit/no-ff authority is not publication authority; credentials or approval tokens must not be recorded here."
+      },
+      "publication": {
+        "status": "NOT RUN",
+        "tag_creation": "NOT RUN",
+        "mechanism": "UNESTABLISHED",
+        "immutable_locator": "UNESTABLISHED",
+        "operation_identity_status": "UNESTABLISHED",
+        "operation_id": null,
+        "started_at": null,
+        "finished_at": null,
+        "evidence_locator": null,
+        "required_prerequisites": [
+          "/slots/candidate_content/local_candidate_prerequisites/status = PASS with unchanged exact pins",
+          "/slots/candidate_content/authorization/status = PASS for the exact proposed effects",
+          "Owner-selected immutable mechanism, destination and immutability evidence established",
+          "Publication-time approved-byte, disclosure, license-delivery and applicable third-party/NOTICE checks established",
+          "Publish exactly the approved inventory without regeneration, overwrite, unreviewed additions or prior-release mutation"
+        ]
+      },
+      "immutable_readback": {
+        "status": "NOT RUN",
+        "immutable_locator": "UNESTABLISHED",
+        "operation_identity_status": "UNESTABLISHED",
+        "operation_id": null,
+        "started_at": null,
+        "finished_at": null,
+        "observed_release_identity": null,
+        "observed_source_binding": null,
+        "remote_bytes_status": "UNESTABLISHED",
+        "asset_results": [],
+        "checksum_verification": "NOT RUN",
+        "provenance_verification": "NOT RUN",
+        "immutability_verification": "NOT RUN",
+        "evidence_locator": null,
+        "required_prerequisites": [
+          "/slots/candidate_content/publication/status = PASS for this exact release",
+          "/slots/candidate_content/authorization/status = PASS including independent remote readback"
+        ],
+        "required_evidence": "Independently retrieve this Candidate release's exact eight assets (four schemas and four evidence files) and compare every byte size/SHA-256 to this slot's inventory. Separately establish and verify this Candidate release's license delivery/readback without adding a ninth asset. Record release identity, immutable locators, source revision/Git tree/raw source digest, manifest and all artifact/evidence pins, observed byte results, checksum/provenance and immutability verification, operation identity, actual timestamps, terminal result and evidence locator. Server metadata, upload flags, local bytes and producer claims alone are insufficient."
+      },
+      "result_rule": "This slot may become PASS only after its own exact human authorization, publication and independent immutable byte/evidence/license readback gates PASS. Executed violations are FAIL; unexecuted effects stay NOT RUN; absent required values stay UNESTABLISHED. No sibling-slot result or local PASS substitutes for those gates.",
+      "required_other_release_results": [],
+      "future_update_scope": "T032 updates only /slots/candidate_content; preserve the other slot byte-for-byte in meaning and pins."
+    },
+    "core_api_handoff": {
+      "status": "NOT RUN",
+      "owner_repository": "studious-lamp",
+      "future_owner_task": "T033",
+      "release": {
+        "name": "core-admission",
+        "version": "0.2.0",
+        "tag_target": "core-admission-v0.2.0",
+        "release_id": "core-admission-0.2.0",
+        "source_revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "source_git_tree": "ac9061f59da4466e982e8ce41e78971818e1439a",
+        "source_tree_sha256": "889f54e43e358c960fe66cc3815d4a604430aeca8cf0e6e7006fab709dca409c",
+        "raw_input_count": 11,
+        "raw_input_inventory_pointer": "/source_inputs in the pinned manifest; raw Git-mode/SHA-256/path LF records sorted by unsigned UTF-8 path bytes",
+        "manifest": {
+          "path": "build/releases/core-admission/manifest.json",
+          "byte_size": 3815,
+          "sha256": "23e9e9a4cb2b15fb3e749c9b8aaf51f4b6cc417cae4aa8a7767856aab6289fcf"
+        },
+        "local_output_root": "build/releases/core-admission"
+      },
+      "local_candidate_prerequisites": {
+        "status": "PASS",
+        "owner_task": "T013",
+        "task_commit": "b70d18aa836ec01e04efb37087fe28212353c08e",
+        "merge_commit": "8ce35ef580d2c334bdf925e961020687828d179d",
+        "evidence": {
+          "path": "docs/evidence/umbrella-001/T012-core-admission-api.json",
+          "byte_size": 101238,
+          "sha256": "ef4e30ace09b2ffc8c4c821d751a5c3b73caff73a956e508bd32e952aa6b5981"
+        },
+        "checks": {
+          "exact_clean_source_and_raw_input_binding": "PASS",
+          "two_clean_environment_byte_identical_builds": "PASS",
+          "exact_normative_and_distribution_inventory": "PASS",
+          "positive_negative_local_conformance": "PASS",
+          "canonical_bytes_manifest_checksums_verified_provenance": "PASS",
+          "tracked_license_and_scoped_notice_review": "PASS",
+          "retired_forms_and_disclosure_review": "PASS"
+        },
+        "t014_independent_local_readback": "PASS",
+        "scope": "Original local candidate PASS is bound to the pinned evidence, not re-created by T014. T014 directly re-reads Git source/modes, hashes inventories and manifest/evidence, and runs the original verifier at the retained source root. Two-environment builds are historical same-host evidence; T014 does not rerun them. No local result establishes publication, immutable remote readback or activation."
+      },
+      "inventory_counts": {
+        "total": 8,
+        "normative": 2,
+        "release_evidence": 5,
+        "license": 1
+      },
+      "inventory": [
+        {
+          "path": "build/releases/core-admission/LICENSE",
+          "byte_size": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "relative_locator": "LICENSE",
+          "classification": "license",
+          "media_type": "UNESTABLISHED",
+          "content_format": "UTF-8 text"
+        },
+        {
+          "path": "build/releases/core-admission/checksums.sha256",
+          "byte_size": 595,
+          "sha256": "d3ec90ec99627418e34f833f8fa9f52056c8d3f5109662469d30e68601f0a1a4",
+          "relative_locator": "checksums.sha256",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "UTF-8 text"
+        },
+        {
+          "path": "build/releases/core-admission/conformance/negative.json",
+          "byte_size": 20440,
+          "sha256": "58cc4de32f9dbec347a97ddb7a7fe012882303d5d3c96e4f8dbbe2f79b129c0a",
+          "relative_locator": "conformance/negative.json",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "JCS JSON"
+        },
+        {
+          "path": "build/releases/core-admission/conformance/positive.json",
+          "byte_size": 3210,
+          "sha256": "691919d3d8e50cd945c55347f88b09ea78f728b54c44bd087407ebb7270b3228",
+          "relative_locator": "conformance/positive.json",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "JCS JSON"
+        },
+        {
+          "path": "build/releases/core-admission/handoff-reference.schema.json",
+          "byte_size": 4605,
+          "sha256": "bb8a5edb6c0bd1cad162695990caa3852ed4d5e53085f1d33c4a1f37d4eb1403",
+          "relative_locator": "handoff-reference.schema.json",
+          "classification": "normative",
+          "media_type": "application/schema+json",
+          "content_format": "JCS JSON",
+          "contract_version": "0.2.0"
+        },
+        {
+          "path": "build/releases/core-admission/manifest.json",
+          "byte_size": 3815,
+          "sha256": "23e9e9a4cb2b15fb3e749c9b8aaf51f4b6cc417cae4aa8a7767856aab6289fcf",
+          "relative_locator": "manifest.json",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "JCS JSON"
+        },
+        {
+          "path": "build/releases/core-admission/openapi.yaml",
+          "byte_size": 22681,
+          "sha256": "707260c248a08e8356a41a3331e95eedc2cccc0222cba053bfccd46be95e29ea",
+          "relative_locator": "openapi.yaml",
+          "classification": "normative",
+          "media_type": "application/vnd.oai.openapi+json",
+          "content_format": "JCS JSON",
+          "contract_version": "0.2.0"
+        },
+        {
+          "path": "build/releases/core-admission/provenance.json",
+          "byte_size": 3248,
+          "sha256": "bb7d4a85923d3e16653a324bb5c6a28017a1ffcb6b7c530384796ae13663a09d",
+          "relative_locator": "provenance.json",
+          "classification": "release_evidence",
+          "media_type": "UNESTABLISHED",
+          "content_format": "JCS JSON"
+        }
+      ],
+      "media_type_scope": "Normative media types are literal pinned manifest declarations. Evidence/license media types are not declared in the pinned sources/evidence and remain UNESTABLISHED; content_format describes local bytes, not a selected publication Content-Type or remote observation.",
+      "license_and_distribution": {
+        "local_source_review_status": "PASS",
+        "license": "Apache-2.0",
+        "source_revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "tracked_license": {
+          "path": "LICENSE",
+          "byte_size": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "git_blob": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+        },
+        "readme_declaration": {
+          "path": "README.md",
+          "byte_size": 588,
+          "sha256": "73b0839517a1bd7d509fdb0daeef9570ded8b665c3800ba017acfd04c80cd953"
+        },
+        "local_review_evidence_pointer": "/distribution_verification/licensing",
+        "local_review_evidence": {
+          "path": "docs/evidence/umbrella-001/T012-core-admission-api.json",
+          "byte_size": 101238,
+          "sha256": "ef4e30ace09b2ffc8c4c821d751a5c3b73caff73a956e508bd32e952aa6b5981"
+        },
+        "selected_source_tracked_path_count": 81,
+        "tracked_license_notice_vendor_name_matches": [
+          "LICENSE"
+        ],
+        "applicable_additional_tracked_notice_inputs": [],
+        "review_scope": "All 81 tracked paths, exact 8 distributed assets, root LICENSE/README, Core four raw normative/vector documents and 11 declared source inputs; no tracked NOTICE/third-party/vendor/copying input identified beyond LICENSE. No bundled tool/interpreter/dependency code in outputs.",
+        "distribution_inventory_pointer": "/slots/core_api_handoff/inventory",
+        "license_in_distribution_inventory": true,
+        "publication_time_license_delivery": {
+          "status": "UNESTABLISHED",
+          "mechanism": null,
+          "immutable_locator": null,
+          "readback_status": "NOT RUN",
+          "observed_bytes": null,
+          "constraint": "LICENSE is one of the exact eight assets; publish and independently read back its exact bytes with the other seven assets."
+        },
+        "limitations": "Selected-source and exact local distribution review only, not legal advice, an exhaustive origin or dependency audit, or completed publication compliance. Tools, interpreter and dependencies are build/validation inputs, not redistributed code. Recheck applicable third-party/NOTICE and required license material for the selected publication mechanism; do not invent extra assets."
+      },
+      "authorization": {
+        "status": "NOT RUN",
+        "approval_identity_status": "UNESTABLISHED",
+        "approval_record": null,
+        "approval_actor": null,
+        "approval_text": null,
+        "approved_at": null,
+        "required_scope": "Separate explicit human authorization for T033, naming this exact release/version/tag target, source revision, manifest and all eight approved asset pins, selected immutable mechanism/destination, any tag creation, publication and independent remote readback. Resolve publication-time license delivery and applicable NOTICE requirements. Local branch/commit/no-ff authority is not publication authority; credentials or approval tokens must not be recorded here."
+      },
+      "publication": {
+        "status": "NOT RUN",
+        "tag_creation": "NOT RUN",
+        "mechanism": "UNESTABLISHED",
+        "immutable_locator": "UNESTABLISHED",
+        "operation_identity_status": "UNESTABLISHED",
+        "operation_id": null,
+        "started_at": null,
+        "finished_at": null,
+        "evidence_locator": null,
+        "required_prerequisites": [
+          "/slots/core_api_handoff/local_candidate_prerequisites/status = PASS with unchanged exact pins",
+          "/slots/core_api_handoff/authorization/status = PASS for the exact proposed effects",
+          "Owner-selected immutable mechanism, destination and immutability evidence established",
+          "Publication-time approved-byte, disclosure, license-delivery and applicable third-party/NOTICE checks established",
+          "Publish exactly the approved inventory without regeneration, overwrite, unreviewed additions or prior-release mutation"
+        ]
+      },
+      "immutable_readback": {
+        "status": "NOT RUN",
+        "immutable_locator": "UNESTABLISHED",
+        "operation_identity_status": "UNESTABLISHED",
+        "operation_id": null,
+        "started_at": null,
+        "finished_at": null,
+        "observed_release_identity": null,
+        "observed_source_binding": null,
+        "remote_bytes_status": "UNESTABLISHED",
+        "asset_results": [],
+        "checksum_verification": "NOT RUN",
+        "provenance_verification": "NOT RUN",
+        "immutability_verification": "NOT RUN",
+        "evidence_locator": null,
+        "required_prerequisites": [
+          "/slots/core_api_handoff/publication/status = PASS for this exact release",
+          "/slots/core_api_handoff/authorization/status = PASS including independent remote readback"
+        ],
+        "required_evidence": "Independently retrieve this Core release's exact eight assets (two normative artifacts, five evidence files and LICENSE) and compare every byte size/SHA-256, including LICENSE, to this slot's inventory. Record release identity, immutable locators, source revision/Git tree/raw source digest, manifest and all artifact/evidence pins, observed byte results, checksum/provenance and immutability verification, operation identity, actual timestamps, terminal result and evidence locator. Server metadata, upload flags, local bytes and producer claims alone are insufficient."
+      },
+      "result_rule": "This slot may become PASS only after its own exact human authorization, publication and independent immutable byte/evidence/license readback gates PASS. Executed violations are FAIL; unexecuted effects stay NOT RUN; absent required values stay UNESTABLISHED. No sibling-slot result or local PASS substitutes for those gates.",
+      "required_other_release_results": [],
+      "future_update_scope": "T033 updates only /slots/core_api_handoff; preserve the other slot byte-for-byte in meaning and pins."
+    }
+  },
+  "consumer_gate": {
+    "automatic_owner_task": "T005",
+    "required_release_slot": "candidate_content",
+    "required_results": [
+      "/slots/candidate_content/publication/status = PASS",
+      "/slots/candidate_content/immutable_readback/status = PASS"
+    ],
+    "core_api_handoff_required": false,
+    "activation_status": "NOT RUN",
+    "scope": "Candidate publication/readback PASS is necessary, not automatic acceptance. Automatic must independently retrieve, exact-pin, verify and record owner-local acceptance. Core API/Handoff PASS is not an Automatic T005 dependency. Core/caller acceptance and cross-release compatibility remain separate."
+  },
+  "initialization_validation": {
+    "status": "PASS",
+    "method": "Direct local Git/blob/mode and SHA-256 readback against pinned original evidence; exact eight-file inventories per line; original source-root verifiers; full locked offline pytest.",
+    "full_suite": {
+      "passed": 645,
+      "failed": 0,
+      "command": "PATH=/home/choi-eunchang/.local/bin:$PATH UV_PROJECT_ENVIRONMENT=/tmp/studious-t014-readback-slots/owner-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider",
+      "working_directory": "/tmp/studious-lamp-T042-T043-worktree"
+    },
+    "original_verifiers": [
+      {
+        "slot": "candidate_content",
+        "source_root": "/tmp/studious-t014-readback-slots/candidate-source",
+        "verifier_path": "/tmp/studious-t014-readback-slots/candidate-source/tools/verify_release.py",
+        "result": "PASS",
+        "scope": "byte/source/provenance bindings only; verifier explicitly does not establish the second-environment/candidate gate",
+        "command": "PATH=/home/choi-eunchang/.local/bin:$PATH UV_PROJECT_ENVIRONMENT=/tmp/studious-t014-readback-slots/candidate-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline python /tmp/studious-t014-readback-slots/candidate-source/tools/verify_release.py --source-root /tmp/studious-t014-readback-slots/candidate-source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/candidate-content/0.1.0",
+        "working_directory": "/tmp/studious-t014-readback-slots/candidate-source"
+      },
+      {
+        "slot": "core_api_handoff",
+        "source_root": "/tmp/studious-t014-readback-slots/core-source",
+        "verifier_path": "/tmp/studious-t014-readback-slots/core-source/tools/verify_release.py",
+        "result": "PASS",
+        "scope": "byte/source/provenance bindings only; verifier explicitly does not establish the second-environment/candidate gate",
+        "command": "PATH=/home/choi-eunchang/.local/bin:$PATH UV_PROJECT_ENVIRONMENT=/tmp/studious-t014-readback-slots/core-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline python /tmp/studious-t014-readback-slots/core-source/tools/verify_release.py --source-root /tmp/studious-t014-readback-slots/core-source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission",
+        "working_directory": "/tmp/studious-t014-readback-slots/core-source"
+      }
+    ],
+    "read_only_checklist": {
+      "path": "specs/001-product-runtime/checklists/requirements.md",
+      "checked": 16,
+      "total": 16,
+      "status": "PASS"
+    },
+    "owner_extensions_yml": "ABSENT; no before/after implement hook registered and no file created",
+    "git_hooks": "core.hooksPath unset; only inactive default .sample hooks observed; no bypass",
+    "local_review_root": "/tmp/studious-t014-readback-slots",
+    "latest_local_verification_at": "2026-08-31T05:30:26.536992+00:00",
+    "resumption": {
+      "status": "PASS",
+      "retained_index_sha256": "36cd57c49f37a8552aac3fa31424ab0fa3d7833be1df114d52e06a235357dbda",
+      "retained_index_byte_size": 11075,
+      "restored_tracked_entries": 91,
+      "restored_staged_evidence_sha256": "cb48549d31bc1ba4e1216d2cd571eabd2ab0ef7004a020c3187cb2bf5c371bce",
+      "method": "checkout-index --all without force/update: exact original missing path only; index bytes unchanged; all 91 tracked blobs compared; existing common gitdir reused; no new branch or worktree registration",
+      "missing_prior_temporary_proof": "The interrupted writer and all earlier /tmp source/venv/output/report paths were absent on resumption. They were not treated as existing evidence. The original writer was restored from its retained index; this report root contains newly executed resumption checks, not recovered old temporary proofs.",
+      "historical_results": "Committed T009 and T013 evidence remains byte-identical and is the only cited authority for the historical two-environment candidate gates. This resumption runs one fresh original-source verifier environment per release against the restored owner assets; it does not rerun two builds or claim new candidate reproducibility.",
+      "source_reconstruction": "Two fresh independent ordinary clones from the local saved repository with git clone --no-local --no-checkout, then detached checkout at each exact historical source revision. No network fetch, new owner worktree registration or duplicate task branch.",
+      "runtime": {
+        "python": "Python 3.14.4",
+        "uv": "uv 0.11.32 (x86_64-unknown-linux-gnu)",
+        "dependency_install": "Fresh task-local venvs with uv run --locked --offline using the normal /home/choi-eunchang/.cache/uv cache; no dependency/lock/config change. uv used its automatic full-copy fallback when hardlinking was unavailable."
+      },
+      "spec_kit_recheck": "requirements checklist 16/16 read-only PASS, required feature documents present, owner extensions.yml absent. Missing ignored feature.json was not recreated: check-prerequisites --json --paths-only with explicit feature directory resolved paths without persistence, followed by direct required-file checks.",
+      "commands_and_outputs": [
+        {
+          "command": "PATH=/home/choi-eunchang/.local/bin:$PATH UV_PROJECT_ENVIRONMENT=/tmp/studious-t014-readback-slots/owner-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline pytest -q -p no:cacheprovider",
+          "working_directory": "/tmp/studious-lamp-T042-T043-worktree",
+          "stdout_stderr_log": "/tmp/studious-t014-readback-slots/full.log",
+          "byte_size": 1231,
+          "sha256": "02dd4b61dc0dd09409de6722bb637d53e99b3b16a9b216e57bedbf5e6d37e034",
+          "exit_code": 0,
+          "result": "645 PASS"
+        },
+        {
+          "command": "PATH=/home/choi-eunchang/.local/bin:$PATH UV_PROJECT_ENVIRONMENT=/tmp/studious-t014-readback-slots/candidate-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline python /tmp/studious-t014-readback-slots/candidate-source/tools/verify_release.py --source-root /tmp/studious-t014-readback-slots/candidate-source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/candidate-content/0.1.0",
+          "working_directory": "/tmp/studious-t014-readback-slots/candidate-source",
+          "stdout_stderr_log": "/tmp/studious-t014-readback-slots/candidate.log",
+          "byte_size": 584,
+          "sha256": "36dd87a71474742b8d352a143258f4d7fe65b2654864511f5fe4c723f101ca09",
+          "exit_code": 0,
+          "result": "PASS: byte/source/provenance bindings verified; second-environment/candidate gate NOT RUN"
+        },
+        {
+          "command": "PATH=/home/choi-eunchang/.local/bin:$PATH UV_PROJECT_ENVIRONMENT=/tmp/studious-t014-readback-slots/core-venv UV_CACHE_DIR=/home/choi-eunchang/.cache/uv uv run --locked --offline python /tmp/studious-t014-readback-slots/core-source/tools/verify_release.py --source-root /tmp/studious-t014-readback-slots/core-source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission",
+          "working_directory": "/tmp/studious-t014-readback-slots/core-source",
+          "stdout_stderr_log": "/tmp/studious-t014-readback-slots/core.log",
+          "byte_size": 579,
+          "sha256": "f9d981a340b69f534a58d83b11dca6b4695c0de191190e1404fc3f00a68a66d5",
+          "exit_code": 0,
+          "result": "PASS: byte/source/provenance bindings verified; second-environment/candidate gate NOT RUN"
+        }
+      ]
+    }
+  },
+  "evidence_commit_locator": {
+    "path": "docs/evidence/umbrella-001/T013-release-readback.json",
+    "required_trailer": "Spec-Kit-Task: T014",
+    "rule": "Resolve the unique non-merge commit reachable from main that adds this path (diff status A) with the exact required trailer. Final local report binds the actual task/merge/tree and this evidence SHA-256 after integration; no future self-commit hash is asserted."
+  },
+  "limitations": [
+    "No combined release/publication verdict. Candidate and Core identity, source, manifest, inventory, authority and readback remain independent.",
+    "Historical spec/plan/Umbrella status prose remains historical; current local prerequisites are bound to the exact owner evidence above. Source x-release and conformance NOT RUN/UNESTABLISHED fields are preserved.",
+    "Same-host clean-source reproduction only; no cross-platform, signer, SLSA level, live authentication, replay/CAS, intake/snapshot/storage, runtime, E2E or Alpha claim.",
+    "The single-user oCIS profile provides no oCIS-principal-level Automatic/Core attribution or enforced writer/reader isolation. No oCIS or protected-data access occurred."
+  ],
+  "effects_not_run": [
+    "push",
+    "PR",
+    "tag creation",
+    "publication",
+    "remote readback",
+    "network fetch",
+    "consumer activation",
+    "protected DATA_ROOT or .env or real educational data access",
+    "deploy",
+    "startup",
+    "recovery",
+    "restore",
+    "migration",
+    "promote",
+    "provision",
+    "delete",
+    "branch cleanup"
+  ]
+}

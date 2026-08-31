@@ -1,0 +1,2089 @@
+{
+  "evidence_format_version": "1",
+  "owner": "studious-lamp",
+  "owner_task": "T013",
+  "umbrella_task": "T012",
+  "observed_at": "2026-08-31T02:21:35.253479+00:00",
+  "scope": "Independent Core API/Handoff 0.2.0 local release candidate only; same-host two-clean-environment reproduction and finite source/schema/static conformance/local tooling.",
+  "status": {
+    "local_candidate": "PASS",
+    "source_schema_static_conformance": "PASS",
+    "two_clean_environments_same_host": "PASS",
+    "exact_distribution": "PASS",
+    "license_notice_source_review": "PASS",
+    "tag_creation": "NOT RUN",
+    "publication": "NOT RUN",
+    "remote_readback": "NOT RUN",
+    "immutable_locator": "UNESTABLISHED",
+    "consumer_activation": "NOT RUN",
+    "live_authentication_authorization": "NOT RUN",
+    "replay_store_cas": "NOT RUN",
+    "intake_snapshot_storage": "NOT RUN",
+    "runtime": "NOT RUN",
+    "Alpha": "NOT RUN"
+  },
+  "release": {
+    "name": "core-admission",
+    "release_id": "core-admission-0.2.0",
+    "version": "0.2.0",
+    "tag_target": "core-admission-v0.2.0",
+    "tag_exists": false,
+    "manifest_sha256": "23e9e9a4cb2b15fb3e749c9b8aaf51f4b6cc417cae4aa8a7767856aab6289fcf",
+    "owner_output_root": "build/releases/core-admission"
+  },
+  "selected_source": {
+    "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+    "git_tree": "ac9061f59da4466e982e8ce41e78971818e1439a",
+    "status_at_selection": "clean tracked worktree/index; main; T012 integrated",
+    "t012_task_commit": "4816a09bd4b0358368b83a511db561b83891b42c",
+    "source_tree_sha256": "889f54e43e358c960fe66cc3815d4a604430aeca8cf0e6e7006fab709dca409c",
+    "framing": "<git-mode> <sha256(exact raw Git bytes)> <normalized POSIX relative path><LF>; unsigned UTF-8 path order",
+    "raw_input_count": 11,
+    "raw_inputs": [
+      {
+        "path": ".python-version",
+        "git_mode": "100644",
+        "sha256": "bb90877c5ee8c4703cfd03421e92ef2a17a10b67ecc822524baeea4c8da3dc9f"
+      },
+      {
+        "path": "LICENSE",
+        "git_mode": "100644",
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "path": "contracts/core-admission/conformance/negative.json",
+        "git_mode": "100644",
+        "sha256": "b7aadbd76fd0d78cd5095260b2ddab14b6e3b7d63906888f2a20fa600691a61e"
+      },
+      {
+        "path": "contracts/core-admission/conformance/positive.json",
+        "git_mode": "100644",
+        "sha256": "0d40258426ff9bd3375e74709e942d2753de65051ad73882f298ac4af3ddc9df"
+      },
+      {
+        "path": "contracts/core-admission/handoff-reference.schema.json",
+        "git_mode": "100644",
+        "sha256": "acdef4afb1b78ebb84298b623d6e4b080d5fefbc3511ad4917fab2b100ebe158"
+      },
+      {
+        "path": "contracts/core-admission/openapi.yaml",
+        "git_mode": "100644",
+        "sha256": "0b4c13c339fcc74c433d4e162d917cd152ebf671d606894af0beb1fbfaa65350"
+      },
+      {
+        "path": "pyproject.toml",
+        "git_mode": "100644",
+        "sha256": "29011048ee5357af099375788d080713eb8e2e0d633841e0c2e9800af1262b57"
+      },
+      {
+        "path": "tools/build_candidate_content_release.py",
+        "git_mode": "100644",
+        "sha256": "19f1b4babd86eaacc8336a4b2bda7f034764be449847bdccb2dfc238db1cd0a2"
+      },
+      {
+        "path": "tools/build_core_admission_release.py",
+        "git_mode": "100644",
+        "sha256": "8df7e1ead0ad21b7bcb33ec529fccf644a1884c89fe735ce8eed7e2c7b030d31"
+      },
+      {
+        "path": "tools/verify_release.py",
+        "git_mode": "100644",
+        "sha256": "e7178fbf5ea037365951ab3b91fda2a00fc19c1990fe4f72546eef40c34a52aa"
+      },
+      {
+        "path": "uv.lock",
+        "git_mode": "100644",
+        "sha256": "fc0c042941e56199912d6dd34f87d64bd7c9f169fd70c5bb9221f3bfb0de624b"
+      }
+    ],
+    "executing_tool_paths": [
+      "tools/build_core_admission_release.py",
+      "tools/verify_release.py",
+      "tools/build_candidate_content_release.py"
+    ],
+    "authentication": "Each clone detached at exact revision/tree; all 81 tracked files verified against selected Git blobs/modes. Original authenticated builder/verifier/helper in each clean clone, separate outputs, no source alteration. Output/evidence commit revision must never substitute for selected raw source."
+  },
+  "validation_only_inputs": {
+    "scope": "Not public distribution or raw generation inputs. All frozen/new tests plus local domain/application policy/model and Candidate/internal service sources read by validation. Each record binds selected revision, Git mode/blob, raw SHA-256 and size.",
+    "files": [
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/candidate-content/candidate.schema.json",
+        "git_mode": "100644",
+        "git_blob": "3d62c41788a3674d5df440e2c48f2fb1d398ba5c",
+        "sha256": "f767aee0d5ba7e7fbd80f926ca1731dcb83350d5c40fc08c975e15b6d1230ed8",
+        "byte_size": 2944
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/candidate-content/conformance/negative.json",
+        "git_mode": "100644",
+        "git_blob": "4933bd64e616ef2ce36d8e487e714210cff4cda0",
+        "sha256": "03730476df3312b32f26905b5931309429f7bef1bc75027cdf8ad5d2ac134752",
+        "byte_size": 22714
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/candidate-content/conformance/positive.json",
+        "git_mode": "100644",
+        "git_blob": "c479f6a2150d057948e3e55cc60dd296c501862d",
+        "sha256": "6bb0f2fc16b4b7c9722d4127b82e185bed3a6ecb33b23f15aeb12669b589815e",
+        "byte_size": 40485
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/candidate-content/processing-profile.schema.json",
+        "git_mode": "100644",
+        "git_blob": "d8329259cb0fb4a4d93f3cf39ef369276987116c",
+        "sha256": "ccdea8f4aef0fcaee23a3e44076373180f3ff9727e8b909980257e7733e5745e",
+        "byte_size": 507
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/candidate-content/provenance.schema.json",
+        "git_mode": "100644",
+        "git_blob": "0b1e244d146418a4a824d2abe861e518e2023f43",
+        "sha256": "72018c2417efb4e409a869395f6dc4f7a2601c725ccb3c931091ee205fe5b188",
+        "byte_size": 438
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/candidate-content/semantic-content.schema.json",
+        "git_mode": "100644",
+        "git_blob": "4032448a6826a77e4a5b52d7acccdc2878430da9",
+        "sha256": "9942ded28a21b92000d3a91309c7d8a58029b85ff67080ec2be1ab4cf099416e",
+        "byte_size": 30130
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/duckdbd/openapi.yaml",
+        "git_mode": "100644",
+        "git_blob": "eff3dc2190cf7bf26ddbd286b50a69e88c75ef3a",
+        "sha256": "ca7cf7e062ab479f25b0874e5dd561410c7f3d2f930dde837cf18aa7c442e1a3",
+        "byte_size": 42302
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "contracts/repositoryd/openapi.yaml",
+        "git_mode": "100644",
+        "git_blob": "3f5971fccd582a178dc17306da5f02a461ff5f68",
+        "sha256": "ff8ac1830f0a9ce23bed32a3a760ab37e1892dbed00d1fe1f9491152435f2bed",
+        "byte_size": 30712
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "src/studious_lamp/application/ports.py",
+        "git_mode": "100644",
+        "git_blob": "3ea0918348d69c56df2e095c55d79923113b5480",
+        "sha256": "b27f951b3f1ad15621c6cd5a5b3baaefa88ca26a8060fdc31535daea4e354ae5",
+        "byte_size": 1188
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "src/studious_lamp/domain/models.py",
+        "git_mode": "100644",
+        "git_blob": "54428fb189144e5a9cc9ce083377ea973ae737e8",
+        "sha256": "dee9124489a1bba08786207ff739a9e44fa2a67ff29fe24d79c5f26211b523d8",
+        "byte_size": 714
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "src/studious_lamp/domain/policy.py",
+        "git_mode": "100644",
+        "git_blob": "3c4e69c3e9fb4ab1ed8d58ec128588c366af49d0",
+        "sha256": "14485d53b9285f5640905d765011511b1602a2016bbd69c9fdd2b07469cda8eb",
+        "byte_size": 627
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "tests/contracts/test_candidate_content.py",
+        "git_mode": "100644",
+        "git_blob": "99bf35a5494f4d4b874b6b93dd409aabc57d497f",
+        "sha256": "db886b7db8f2d180cda0121931857e82ac838b7c5d8d3fdb525dd1e636cc5d08",
+        "byte_size": 25479
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "tests/contracts/test_candidate_content_release.py",
+        "git_mode": "100644",
+        "git_blob": "315d181ac64fdb9d196d5208d0024f0af64709e8",
+        "sha256": "87814e629038d8a035e6e839e41ca7e4f351079878f36d15861fae4b40416d65",
+        "byte_size": 25734
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "tests/contracts/test_core_admission.py",
+        "git_mode": "100644",
+        "git_blob": "618280877d4be6ef4f1ad70a0b43805793492bf1",
+        "sha256": "bff5b4652e0a9168612c57b687ead3b53cd6143d7c73212b17c0921297f8813b",
+        "byte_size": 24264
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "tests/contracts/test_core_admission_release.py",
+        "git_mode": "100644",
+        "git_blob": "f13dad50378e67f6b3f1544704b69df6b78603b3",
+        "sha256": "52e18d8125fb3a0b3857b47e891ec20a0153ca762828a178e594a53fbd09d0cc",
+        "byte_size": 24967
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "tests/test_architecture.py",
+        "git_mode": "100644",
+        "git_blob": "60ca2d889c29f255ddd2efeed67c58123b281fef",
+        "sha256": "436fed339b77fd9ad02372452fa9c52a97ccf194bb834c988f5e23c9e299e33a",
+        "byte_size": 8104
+      }
+    ]
+  },
+  "environments": {
+    "status": "PASS",
+    "environments": [
+      {
+        "root": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "source": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "venv": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "output": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "git_tree": "ac9061f59da4466e982e8ce41e78971818e1439a",
+        "detached": true,
+        "git_status_porcelain": "",
+        "git_directory_is_local": true,
+        "alternates_absent": true,
+        "regular_files_nlink_one": true,
+        "file_counts": {
+          "source": 81,
+          "git_objects": 333,
+          "venv": 528
+        },
+        "venv_symlinks": {
+          "lib64": "lib",
+          "bin/python3.14": "python",
+          "bin/python3": "python",
+          "bin/python": "/usr/bin/python3.14"
+        },
+        "pyvenv_cfg": "home = /usr/bin\nimplementation = CPython\nuv = 0.11.32\nversion_info = 3.14.4\ninclude-system-site-packages = false\nprompt = studious-lamp\n",
+        "tracked_source_files_match_git": 81
+      },
+      {
+        "root": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "source": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "venv": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "output": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "git_tree": "ac9061f59da4466e982e8ce41e78971818e1439a",
+        "detached": true,
+        "git_status_porcelain": "",
+        "git_directory_is_local": true,
+        "alternates_absent": true,
+        "regular_files_nlink_one": true,
+        "file_counts": {
+          "source": 81,
+          "git_objects": 333,
+          "venv": 528
+        },
+        "venv_symlinks": {
+          "lib64": "lib",
+          "bin/python3.14": "python",
+          "bin/python3": "python",
+          "bin/python": "/usr/bin/python3.14"
+        },
+        "pyvenv_cfg": "home = /usr/bin\nimplementation = CPython\nuv = 0.11.32\nversion_info = 3.14.4\ninclude-system-site-packages = false\nprompt = studious-lamp\n",
+        "tracked_source_files_match_git": 81
+      }
+    ],
+    "shared_regular_file_inodes": 0,
+    "limits": "Separate local clones/object stores, venv installs and output roots; same host, OS, /usr/bin/python3.14 CPython 3.14.4 and normal uv cache. Cross-host/platform and independent interpreter/supply-chain reproduction UNESTABLISHED."
+  },
+  "environment_runtime_identity": [
+    {
+      "base_prefix": "/usr",
+      "executable": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python3",
+      "packages": {
+        "Pygments": "2.21.0",
+        "iniconfig": "2.3.0",
+        "packaging": "26.3",
+        "pluggy": "1.6.0",
+        "pytest": "9.1.1",
+        "rfc8785": "0.1.4"
+      },
+      "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+      "prefix": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+      "python": "3.14.4",
+      "real_executable": "/usr/bin/python3.14"
+    },
+    {
+      "base_prefix": "/usr",
+      "executable": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python3",
+      "packages": {
+        "Pygments": "2.21.0",
+        "iniconfig": "2.3.0",
+        "packaging": "26.3",
+        "pluggy": "1.6.0",
+        "pytest": "9.1.1",
+        "rfc8785": "0.1.4"
+      },
+      "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.43",
+      "prefix": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+      "python": "3.14.4",
+      "real_executable": "/usr/bin/python3.14"
+    }
+  ],
+  "tests": {
+    "contracts_per_environment": 639,
+    "full_per_environment": 645,
+    "frozen_pre_T012": 422,
+    "T012_release_regressions": 223,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "xfails": 0,
+    "counts_by_path": {
+      "tests/contracts/test_candidate_content.py": 108,
+      "tests/contracts/test_candidate_content_release.py": 152,
+      "tests/contracts/test_core_admission.py": 156,
+      "tests/contracts/test_core_admission_release.py": 223,
+      "tests/test_architecture.py": 6
+    },
+    "scope": "Full 645 existing checks unchanged. Collection counts are not additional execution. The two runs each pass all cases; sandbox lock-denied attempts executed no tests.",
+    "owner_after_materialization_full": 645,
+    "owner_after_materialization_scope": "Validation only from actual owner checkout at selected base with T013 outputs/evidence/tasks work; not a substitute clean generation source."
+  },
+  "conformance_scope": {
+    "finite_schema": "PASS: documented fail-closed subset reused from test_candidate_content; exact local reference resolution only, format annotation-only; not a complete JSON Schema/OpenAPI validator.",
+    "mandatory_negative": "PASS: closed Handoff/request mandatory field sets, strong version/readback shapes, forbidden disclosure fields, unsupported/coupled versions and bounded synthetic expected-binding checks.",
+    "replay_binding": "PASS only for finite JCS binding comparison and source shape agreement, with two positive and eighteen negative replay cases; no replay database, CAS or dispatch.",
+    "implementation_agreement": "PASS for actual OpenAPI/Handoff finite shape agreement, explicit security declaration and domain Operation AST comparison only. Runtime DTO mapping, enforcement, auth, replay store, dispatch and reconciliation remain NOT RUN.",
+    "complete_vector_packaging": {
+      "positive_replays": 2,
+      "negative_shape": 80,
+      "negative_semantic": 6,
+      "negative_version": 5,
+      "negative_replays": 18
+    },
+    "historical_scope_preserved": "Full source documents packaged, including synthetic pins, current_core_release_identity=UNESTABLISHED and runtime_enforcement=NOT RUN. Source x-release local_candidate=NOT RUN remains historical source status; T013 observation appears only here. Raw-source Handoff test digest substitution is not a runtime released-byte pin."
+  },
+  "distribution_verification": {
+    "status": "PASS",
+    "source_revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+    "source_git_tree": "ac9061f59da4466e982e8ce41e78971818e1439a",
+    "raw_source_tree_sha256": "889f54e43e358c960fe66cc3815d4a604430aeca8cf0e6e7006fab709dca409c",
+    "all_eight_byte_identical": true,
+    "manifest_sha256": "23e9e9a4cb2b15fb3e749c9b8aaf51f4b6cc417cae4aa8a7767856aab6289fcf",
+    "outputs": [
+      {
+        "path": "LICENSE",
+        "byte_size": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "path": "checksums.sha256",
+        "byte_size": 595,
+        "sha256": "d3ec90ec99627418e34f833f8fa9f52056c8d3f5109662469d30e68601f0a1a4"
+      },
+      {
+        "path": "conformance/negative.json",
+        "byte_size": 20440,
+        "sha256": "58cc4de32f9dbec347a97ddb7a7fe012882303d5d3c96e4f8dbbe2f79b129c0a"
+      },
+      {
+        "path": "conformance/positive.json",
+        "byte_size": 3210,
+        "sha256": "691919d3d8e50cd945c55347f88b09ea78f728b54c44bd087407ebb7270b3228"
+      },
+      {
+        "path": "handoff-reference.schema.json",
+        "byte_size": 4605,
+        "sha256": "bb8a5edb6c0bd1cad162695990caa3852ed4d5e53085f1d33c4a1f37d4eb1403"
+      },
+      {
+        "path": "manifest.json",
+        "byte_size": 3815,
+        "sha256": "23e9e9a4cb2b15fb3e749c9b8aaf51f4b6cc417cae4aa8a7767856aab6289fcf"
+      },
+      {
+        "path": "openapi.yaml",
+        "byte_size": 22681,
+        "sha256": "707260c248a08e8356a41a3331e95eedc2cccc0222cba053bfccd46be95e29ea"
+      },
+      {
+        "path": "provenance.json",
+        "byte_size": 3248,
+        "sha256": "bb7d4a85923d3e16653a324bb5c6a28017a1ffcb6b7c530384796ae13663a09d"
+      }
+    ],
+    "environment_checks": [
+      {
+        "root": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "status": "PASS",
+        "inventory_files": 8,
+        "normative": 2,
+        "release_evidence": 5,
+        "license": 1,
+        "jcs_files": 6,
+        "checksum_rows": 7,
+        "provenance_subjects": 6,
+        "source_inputs": 11
+      },
+      {
+        "root": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "status": "PASS",
+        "inventory_files": 8,
+        "normative": 2,
+        "release_evidence": 5,
+        "license": 1,
+        "jcs_files": 6,
+        "checksum_rows": 7,
+        "provenance_subjects": 6,
+        "source_inputs": 11
+      }
+    ],
+    "independent_oracle": "Explicit specification inventories and direct Git/raw SHA-256 bindings; stdlib compact JSON only after checking finite ASCII-key, safe-integer and exact literal-1.5 corpus. No release-tool import, expected_release_files or manifest regeneration. Not a general RFC8785/OpenAPI/JSON Schema implementation.",
+    "vector_catalog": {
+      "positive_replays": 2,
+      "negative_shape": 80,
+      "negative_semantic": 6,
+      "negative_version": 5,
+      "negative_replays": 18
+    },
+    "licensing": {
+      "status": "PASS",
+      "scope": "All 81 tracked paths, exact 8 distributed assets, root LICENSE/README, Core four raw normative/vector documents and 11 declared source inputs; no tracked NOTICE/third-party/vendor/copying input identified beyond LICENSE. No bundled tool/interpreter/dependency code in outputs.",
+      "tracked_notice_name_matches": [
+        "LICENSE"
+      ],
+      "limitations": "Repository/distribution source review only; not legal advice, exhaustive origin audit, dependency redistribution review, or completed publication compliance."
+    }
+  },
+  "materialization": {
+    "status": "PASS",
+    "time": "2026-08-31T02:16:39.050905+00:00",
+    "method": "Physical exclusive-create raw-byte copy, no regeneration or hardlinks",
+    "source": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+    "target": "/tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission",
+    "files": [
+      {
+        "path": "LICENSE",
+        "byte_size": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      },
+      {
+        "path": "checksums.sha256",
+        "byte_size": 595,
+        "sha256": "d3ec90ec99627418e34f833f8fa9f52056c8d3f5109662469d30e68601f0a1a4"
+      },
+      {
+        "path": "conformance/negative.json",
+        "byte_size": 20440,
+        "sha256": "58cc4de32f9dbec347a97ddb7a7fe012882303d5d3c96e4f8dbbe2f79b129c0a"
+      },
+      {
+        "path": "conformance/positive.json",
+        "byte_size": 3210,
+        "sha256": "691919d3d8e50cd945c55347f88b09ea78f728b54c44bd087407ebb7270b3228"
+      },
+      {
+        "path": "handoff-reference.schema.json",
+        "byte_size": 4605,
+        "sha256": "bb8a5edb6c0bd1cad162695990caa3852ed4d5e53085f1d33c4a1f37d4eb1403"
+      },
+      {
+        "path": "manifest.json",
+        "byte_size": 3815,
+        "sha256": "23e9e9a4cb2b15fb3e749c9b8aaf51f4b6cc417cae4aa8a7767856aab6289fcf"
+      },
+      {
+        "path": "openapi.yaml",
+        "byte_size": 22681,
+        "sha256": "707260c248a08e8356a41a3331e95eedc2cccc0222cba053bfccd46be95e29ea"
+      },
+      {
+        "path": "provenance.json",
+        "byte_size": 3248,
+        "sha256": "bb7d4a85923d3e16653a324bb5c6a28017a1ffcb6b7c530384796ae13663a09d"
+      }
+    ],
+    "command": "python3 /tmp/studious-t013-core-candidate/materialize.py",
+    "cwd": "/tmp/studious-lamp-T042-T043-worktree"
+  },
+  "commands": [
+    {
+      "id": "a-clone.1",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "/tmp/studious-lamp-T042-T043-worktree",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source"
+      ],
+      "command": "git clone --no-hardlinks --no-checkout /tmp/studious-lamp-T042-T043-worktree /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "cwd": "/tmp/studious-lamp-T042-T043-worktree",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:10:42.529280+00:00",
+      "duration_seconds": 0.014,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-clone.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-clone.1.stderr",
+        "sha256": "50b3333c453b3d7da2b86a4c777a2755e0448fd22fb704533a70ef7855885c76",
+        "byte_size": 99,
+        "text": "Cloning into '/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source'...\ndone.\n"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-checkout.1",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "e51661b1b6fdf25bb7461052afb793793ef0ea58"
+      ],
+      "command": "git checkout --detach e51661b1b6fdf25bb7461052afb793793ef0ea58",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:10:42.565696+00:00",
+      "duration_seconds": 0.009,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-checkout.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-checkout.1.stderr",
+        "sha256": "da28320f754fd916667328c8cbb1ffddc0f3a257735f5d4012de75134adbe545",
+        "byte_size": 65,
+        "text": "HEAD is now at e51661b Merge T012 Core admission release tooling\n"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-clone.1",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--no-checkout",
+        "/tmp/studious-lamp-T042-T043-worktree",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source"
+      ],
+      "command": "git clone --no-hardlinks --no-checkout /tmp/studious-lamp-T042-T043-worktree /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "cwd": "/tmp/studious-lamp-T042-T043-worktree",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:10:42.603113+00:00",
+      "duration_seconds": 0.01,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-clone.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-clone.1.stderr",
+        "sha256": "931895d651ad97ce67087aeb6244e91297de8a203eabab34a3353bfa90012ecd",
+        "byte_size": 99,
+        "text": "Cloning into '/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source'...\ndone.\n"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-checkout.1",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "e51661b1b6fdf25bb7461052afb793793ef0ea58"
+      ],
+      "command": "git checkout --detach e51661b1b6fdf25bb7461052afb793793ef0ea58",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:10:42.641668+00:00",
+      "duration_seconds": 0.006,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-checkout.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-checkout.1.stderr",
+        "sha256": "da28320f754fd916667328c8cbb1ffddc0f3a257735f5d4012de75134adbe545",
+        "byte_size": 65,
+        "text": "HEAD is now at e51661b Merge T012 Core admission release tooling\n"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-sync.1",
+      "argv": [
+        "uv",
+        "sync",
+        "--locked",
+        "--offline"
+      ],
+      "command": "uv sync --locked --offline",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:10:47.303280+00:00",
+      "duration_seconds": 0.019,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-sync.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-sync.1.stderr",
+        "sha256": "e5f92e24e69aefa7e206acd92d5faea3dc68f333b102e89dceb4be866e3ae44c",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmprvRvSm\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-sync.2",
+      "argv": [
+        "uv",
+        "sync",
+        "--locked",
+        "--offline"
+      ],
+      "command": "uv sync --locked --offline",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:10:59.259352+00:00",
+      "duration_seconds": 0.026,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-sync.2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-sync.2.stderr",
+        "sha256": "972691ac36c18346fc882a0c522ccebd7c37d9fbf73b60e7b329d623b079b96c",
+        "byte_size": 658,
+        "text": "Using CPython 3.14.4 interpreter at: /usr/bin/python3.14\nCreating virtual environment at: /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv\nResolved 8 packages in 0.59ms\nwarning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.\n         If the cache and target directories are on different filesystems, hardlinking may not be supported.\n         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.\nInstalled 6 packages in 6ms\n + iniconfig==2.3.0\n + packaging==26.3\n + pluggy==1.6.0\n + pygments==2.21.0\n + pytest==9.1.1\n + rfc8785==0.1.4\n"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-sync.1",
+      "argv": [
+        "uv",
+        "sync",
+        "--locked",
+        "--offline"
+      ],
+      "command": "uv sync --locked --offline",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:10:59.410300+00:00",
+      "duration_seconds": 0.019,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-sync.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-sync.1.stderr",
+        "sha256": "0a44d0289f22fae374196332115c2522ba9f9b6375770170340a817fd259468c",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpQ9jc0k\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "b-sync.2",
+      "argv": [
+        "uv",
+        "sync",
+        "--locked",
+        "--offline"
+      ],
+      "command": "uv sync --locked --offline",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:11:11.127911+00:00",
+      "duration_seconds": 0.025,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-sync.2.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-sync.2.stderr",
+        "sha256": "eadfef2db9d7a206097020d301b38a3f38525f8ee2cda736c40278e5b0e07ac6",
+        "byte_size": 658,
+        "text": "Using CPython 3.14.4 interpreter at: /usr/bin/python3.14\nCreating virtual environment at: /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv\nResolved 8 packages in 0.75ms\nwarning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.\n         If the cache and target directories are on different filesystems, hardlinking may not be supported.\n         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.\nInstalled 6 packages in 7ms\n + iniconfig==2.3.0\n + packaging==26.3\n + pluggy==1.6.0\n + pygments==2.21.0\n + pytest==9.1.1\n + rfc8785==0.1.4\n"
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-contracts.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/contracts"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider tests/contracts",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:11:11.275501+00:00",
+      "duration_seconds": 0.012,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-contracts.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-contracts.1.stderr",
+        "sha256": "519211969043f6fd467abc51af3a381844a7e00649c474ae9c6e9b66dfed5f5e",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpCCw44P\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-contracts.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/contracts"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider tests/contracts",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:11:24.033598+00:00",
+      "duration_seconds": 38.377,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-contracts.2.stdout",
+        "sha256": "6a7c80eff1622be06ca96a9698e2993716b927047f02f71001712e69c5bf05e3",
+        "byte_size": 741,
+        "text": "........................................................................ [ 11%]\n........................................................................ [ 22%]\n........................................................................ [ 33%]\n........................................................................ [ 45%]\n........................................................................ [ 56%]\n........................................................................ [ 67%]\n........................................................................ [ 78%]\n........................................................................ [ 90%]\n...............................................................          [100%]\n639 passed in 38.05s\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-contracts.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-contracts.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/contracts"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider tests/contracts",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:11:25.266941+00:00",
+      "duration_seconds": 0.013,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-contracts.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-contracts.1.stderr",
+        "sha256": "e31acce17a9fa9117eb8e0129769404211bc1d411f8359ad7f8bf31ff7e274c3",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpT2ziW5\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "b-contracts.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/contracts"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider tests/contracts",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:11:37.275492+00:00",
+      "duration_seconds": 37.696,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-contracts.2.stdout",
+        "sha256": "54e169aabb55e1bcee77e06a30a1cd0b4e4d0f4fdabb632378fa0ffc73fe4eac",
+        "byte_size": 741,
+        "text": "........................................................................ [ 11%]\n........................................................................ [ 22%]\n........................................................................ [ 33%]\n........................................................................ [ 45%]\n........................................................................ [ 56%]\n........................................................................ [ 67%]\n........................................................................ [ 78%]\n........................................................................ [ 90%]\n...............................................................          [100%]\n639 passed in 37.40s\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-contracts.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-environment.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "-c",
+        "import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))"
+      ],
+      "command": "uv run --locked --offline python -c 'import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))'",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:12:18.723990+00:00",
+      "duration_seconds": 0.016,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-environment.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-environment.1.stderr",
+        "sha256": "702cb11c7b880dd6f295389fdc54f65296ed7254098761c984ec0db3e5af3f0f",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpHmCybI\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "b-environment.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "-c",
+        "import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))"
+      ],
+      "command": "uv run --locked --offline python -c 'import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))'",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:12:18.769032+00:00",
+      "duration_seconds": 0.013,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-environment.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-environment.1.stderr",
+        "sha256": "091fa98c0fb029ee2d268c3e2d70cef4ff447d60135bb53b5a6e3954a8d4a064",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpbiCyhP\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-umbrella.1",
+      "argv": [
+        "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella/.venv/bin/python",
+        "-B",
+        "tools/validate_traceability.py"
+      ],
+      "command": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella/.venv/bin/python -B tools/validate_traceability.py",
+      "cwd": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at": "2026-08-31T02:12:18.801709+00:00",
+      "duration_seconds": 0.186,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-umbrella.1.stdout",
+        "sha256": "e678c40d8d77eca51a56d1fe49bb249daba74ba6162f58e5ad251c4cb3791b71",
+        "byte_size": 90,
+        "text": "PASS: coordination schema and graph are valid at c68b20bf863c3da12371bb07e42e8433776b93e3\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-umbrella.1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-candidate-before.1",
+      "argv": [
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python",
+        "-B",
+        "/tmp/studious-t009-repro-a-5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1/source/tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t009-repro-a-5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1/source",
+        "--release",
+        "/tmp/studious-lamp-T042-T043-worktree/build/releases/candidate-content/0.1.0"
+      ],
+      "command": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python -B /tmp/studious-t009-repro-a-5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1/source/tools/verify_release.py --source-root /tmp/studious-t009-repro-a-5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1/source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/candidate-content/0.1.0",
+      "cwd": "/tmp/studious-t009-repro-a-5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:12:19.018229+00:00",
+      "duration_seconds": 0.089,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-candidate-before.1.stdout",
+        "sha256": "0ed31223fdb25c493c6838abcca905b172fb07827a15a510ac834f9fc9a7caa1",
+        "byte_size": 90,
+        "text": "PASS: byte/source/provenance bindings verified; second-environment/candidate gate NOT RUN\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-candidate-before.1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-environment.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "-c",
+        "import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))"
+      ],
+      "command": "uv run --locked --offline python -c 'import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))'",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:12:33.110238+00:00",
+      "duration_seconds": 0.071,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-environment.2.stdout",
+        "sha256": "f6eb8bde866a6fe481242c395f56fcbcca6f542fca9d37a92e3d157d0d41339e",
+        "byte_size": 471,
+        "text": "{\"base_prefix\": \"/usr\", \"executable\": \"/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python3\", \"packages\": {\"Pygments\": \"2.21.0\", \"iniconfig\": \"2.3.0\", \"packaging\": \"26.3\", \"pluggy\": \"1.6.0\", \"pytest\": \"9.1.1\", \"rfc8785\": \"0.1.4\"}, \"platform\": \"Linux-7.0.0-30-generic-x86_64-with-glibc2.43\", \"prefix\": \"/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv\", \"python\": \"3.14.4\", \"real_executable\": \"/usr/bin/python3.14\"}\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-environment.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-environment.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "-c",
+        "import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))"
+      ],
+      "command": "uv run --locked --offline python -c 'import sys,platform,importlib.metadata,json,pathlib; print(json.dumps({\"python\":platform.python_version(),\"executable\":sys.executable,\"real_executable\":str(pathlib.Path(sys.executable).resolve()),\"prefix\":sys.prefix,\"base_prefix\":sys.base_prefix,\"platform\":platform.platform(),\"packages\":{d.metadata[\"Name\"]:d.version for d in importlib.metadata.distributions()}},sort_keys=True))'",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:12:33.200778+00:00",
+      "duration_seconds": 0.065,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-environment.2.stdout",
+        "sha256": "bc2545fda8e35dadbf887218a846c0c14b18ad4142758532b93d9943814b324b",
+        "byte_size": 471,
+        "text": "{\"base_prefix\": \"/usr\", \"executable\": \"/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python3\", \"packages\": {\"Pygments\": \"2.21.0\", \"iniconfig\": \"2.3.0\", \"packaging\": \"26.3\", \"pluggy\": \"1.6.0\", \"pytest\": \"9.1.1\", \"rfc8785\": \"0.1.4\"}, \"platform\": \"Linux-7.0.0-30-generic-x86_64-with-glibc2.43\", \"prefix\": \"/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv\", \"python\": \"3.14.4\", \"real_executable\": \"/usr/bin/python3.14\"}\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-environment.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-full.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:12:37.711739+00:00",
+      "duration_seconds": 0.019,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-full.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-full.1.stderr",
+        "sha256": "670afe82435a4626c18689331f4bb60e8870b38a3c7fe532d40a69c6826e5ec5",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmp3zH3wx\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "b-full.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:12:37.750899+00:00",
+      "duration_seconds": 0.016,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-full.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-full.1.stderr",
+        "sha256": "a02ec1b37c0ba2d23d5321a32bf1813c8f41ac0f74d4fb380254ba6f4ae5fbf3",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpszfnUC\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-full.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:13:08.555572+00:00",
+      "duration_seconds": 37.846,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-full.2.stdout",
+        "sha256": "f6f8112152bcbeacd7c7276c0b01fe7325ec1af94e503688067a1f103188be6f",
+        "byte_size": 741,
+        "text": "........................................................................ [ 11%]\n........................................................................ [ 22%]\n........................................................................ [ 33%]\n........................................................................ [ 44%]\n........................................................................ [ 55%]\n........................................................................ [ 66%]\n........................................................................ [ 78%]\n........................................................................ [ 89%]\n.....................................................................    [100%]\n645 passed in 37.57s\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-full.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-full.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:13:46.421319+00:00",
+      "duration_seconds": 38.513,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-full.2.stdout",
+        "sha256": "e318b43a34dac8983c513666f8da6a7dc3c56f4e0ae15e6ed26ad3ff685c2d89",
+        "byte_size": 741,
+        "text": "........................................................................ [ 11%]\n........................................................................ [ 22%]\n........................................................................ [ 33%]\n........................................................................ [ 44%]\n........................................................................ [ 55%]\n........................................................................ [ 66%]\n........................................................................ [ 78%]\n........................................................................ [ 89%]\n.....................................................................    [100%]\n645 passed in 38.22s\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-full.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-build.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/build_core_admission_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--output",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/build_core_admission_release.py --source-root /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --output /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:14:57.689232+00:00",
+      "duration_seconds": 0.014,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-build.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-build.1.stderr",
+        "sha256": "7eb44f0b4c48700d07a8082ba40a5849487eec104fc735b1a1eb54496416cee1",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpPXXXRH\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "b-build.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/build_core_admission_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--output",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/build_core_admission_release.py --source-root /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --output /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:14:57.722445+00:00",
+      "duration_seconds": 0.014,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-build.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-build.1.stderr",
+        "sha256": "1d365ec08bd4c3bc9dc0e73a6b29f39b0b17f8084842e337a8f95c15bbc965c7",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpMS12ov\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-build.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/build_core_admission_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--output",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/build_core_admission_release.py --source-root /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --output /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:15:08.922700+00:00",
+      "duration_seconds": 0.121,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-build.2.stdout",
+        "sha256": "d1bef0f391b46f749b6fc6d147de3f3407654bee9b09360141cb5a9aa2e39fc5",
+        "byte_size": 74,
+        "text": "PASS: Core release bytes built; second-environment/candidate gate NOT RUN\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-build.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-build.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/build_core_admission_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--output",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/build_core_admission_release.py --source-root /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --output /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:15:09.063124+00:00",
+      "duration_seconds": 0.115,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-build.2.stdout",
+        "sha256": "d1bef0f391b46f749b6fc6d147de3f3407654bee9b09360141cb5a9aa2e39fc5",
+        "byte_size": 74,
+        "text": "PASS: Core release bytes built; second-environment/candidate gate NOT RUN\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-build.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-verify.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:15:09.289704+00:00",
+      "duration_seconds": 0.021,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-verify.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-verify.1.stderr",
+        "sha256": "87c5f9a53e694b46e0f0c0d8b79d2429f8a8fe32f2f89a26da41c2c6d5cc68ce",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpnGyppU\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "b-verify.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:15:09.331567+00:00",
+      "duration_seconds": 0.019,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-verify.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-verify.1.stderr",
+        "sha256": "4c41fd2f63f3bc0912cf5e583347632323d7133ebb055a7c6f5a80dc6805cd5f",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpgWG6m2\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-verify.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:15:23.110017+00:00",
+      "duration_seconds": 0.098,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-verify.2.stdout",
+        "sha256": "0ed31223fdb25c493c6838abcca905b172fb07827a15a510ac834f9fc9a7caa1",
+        "byte_size": 90,
+        "text": "PASS: byte/source/provenance bindings verified; second-environment/candidate gate NOT RUN\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-verify.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-verify.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/output",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:15:23.227128+00:00",
+      "duration_seconds": 0.115,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-verify.2.stdout",
+        "sha256": "0ed31223fdb25c493c6838abcca905b172fb07827a15a510ac834f9fc9a7caa1",
+        "byte_size": 90,
+        "text": "PASS: byte/source/provenance bindings verified; second-environment/candidate gate NOT RUN\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-verify.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-collect.1",
+      "argv": [
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "command": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python -B -m pytest --collect-only -q -p no:cacheprovider",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:16:13.691244+00:00",
+      "duration_seconds": 0.351,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-collect.1.stdout",
+        "sha256": "dae492ebc64554c2bc5a8ad53ab2bb1408f75a777eef18ca79b670e13569cea0",
+        "byte_size": 70370
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-collect.1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-materialized.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:16:39.070092+00:00",
+      "duration_seconds": 0.017,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-materialized.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-materialized.1.stderr",
+        "sha256": "7698ca0c1eed4eb5dd8a833a73a842d70e8b50bfccae150b306663bdf798f966",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpnE2Izn\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "b-materialized.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:16:39.117217+00:00",
+      "duration_seconds": 0.015,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-materialized.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-materialized.1.stderr",
+        "sha256": "68b265d22e39ce4f008f79052f875c41a4cf3115958685a4d0a930b919a8b775",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpmDL6At\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-materialized.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:16:47.883477+00:00",
+      "duration_seconds": 0.103,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-materialized.2.stdout",
+        "sha256": "0ed31223fdb25c493c6838abcca905b172fb07827a15a510ac834f9fc9a7caa1",
+        "byte_size": 90,
+        "text": "PASS: byte/source/provenance bindings verified; second-environment/candidate gate NOT RUN\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-materialized.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "b-materialized.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "python",
+        "tools/verify_release.py",
+        "--source-root",
+        "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+        "--release",
+        "/tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission"
+      ],
+      "command": "uv run --locked --offline python tools/verify_release.py --source-root /tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source --release /tmp/studious-lamp-T042-T043-worktree/build/releases/core-admission",
+      "cwd": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-b-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:16:48.005290+00:00",
+      "duration_seconds": 0.1,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/b-materialized.2.stdout",
+        "sha256": "0ed31223fdb25c493c6838abcca905b172fb07827a15a510ac834f9fc9a7caa1",
+        "byte_size": 90,
+        "text": "PASS: byte/source/provenance bindings verified; second-environment/candidate gate NOT RUN\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/b-materialized.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-ownerfull.1",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider",
+      "cwd": "/tmp/studious-lamp-T042-T043-worktree",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:19:11.952022+00:00",
+      "duration_seconds": 0.026,
+      "exit_code": 2,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-ownerfull.1.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-ownerfull.1.stderr",
+        "sha256": "36a2b4438020d42b3f9bf4af1605e0d13c9bfe87a45c665f84f09309f6f322f5",
+        "byte_size": 175,
+        "text": "error: Could not acquire lock\n  Caused by: Could not create temporary file\n  Caused by: Read-only file system (os error 30) at path \"/home/choi-eunchang/.cache/uv/.tmpYwKc3P\"\n"
+      },
+      "result": "FAIL",
+      "scope": "Sandbox cache lock denial before requested command ran; same argv/cwd/env retried through require_escalated."
+    },
+    {
+      "id": "a-historical-independent.1",
+      "argv": [
+        "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python",
+        "-B",
+        "/tmp/umbrella-orchestration-20260831/verify_t009.py"
+      ],
+      "command": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv/bin/python -B /tmp/umbrella-orchestration-20260831/verify_t009.py",
+      "cwd": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/source",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:19:12.000827+00:00",
+      "duration_seconds": 0.071,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-historical-independent.1.stdout",
+        "sha256": "964719794cc92b9dd6d5b6a38ee383b8ddc04c07734c1d915f2709c543f9de90",
+        "byte_size": 1605,
+        "text": "{\n  \"result\": \"PASS\",\n  \"source_revision\": \"5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1\",\n  \"source_tree_sha256\": \"88bcdc90e94f6ea36b67fe4fc802162a60dc98dc4922ccff74a4010d01f7bc91\",\n  \"source_input_count\": 12,\n  \"two_clean_source_venvs\": \"PASS (same host)\",\n  \"all_eight_bytes_equal\": \"PASS\",\n  \"files\": [\n    {\n      \"name\": \"candidate.schema.json\",\n      \"bytes\": 2046,\n      \"sha256\": \"a8e76903a7404eebfd16238c47e4c430d62575a380fc6dfad3d7640449e1702e\"\n    },\n    {\n      \"name\": \"semantic-content.schema.json\",\n      \"bytes\": 18448,\n      \"sha256\": \"05970859f28fa81e6d01739f3677c54c71ef97fc0be456039f8f3eb87f8f4ec2\"\n    },\n    {\n      \"name\": \"provenance.schema.json\",\n      \"bytes\": 342,\n      \"sha256\": \"6e023c1147ac4f13664fffe9ddd5c12401b7fc4cd0d4ae9d11215bf67935d1eb\"\n    },\n    {\n      \"name\": \"processing-profile.schema.json\",\n      \"bytes\": 403,\n      \"sha256\": \"243a923340eaec7ba809ee45d0d12bcf328664eb9bef4e90bfbc8ba0cf0935bc\"\n    },\n    {\n      \"name\": \"candidate-content.manifest.json\",\n      \"bytes\": 4121,\n      \"sha256\": \"67aca6754c610d48df25836a7fd9dbef90f9a8966741aaeee5cdca0ca7c3685f\"\n    },\n    {\n      \"name\": \"candidate-content.conformance.jsonl\",\n      \"bytes\": 44284,\n      \"sha256\": \"fd18ce40ba3aee22b930f92adf1afa4de758bbc1da8246ec698bbf8e5b55c621\"\n    },\n    {\n      \"name\": \"candidate-content.provenance.intoto.jsonl\",\n      \"bytes\": 3180,\n      \"sha256\": \"1fe1dc2a679548fa2ee4ea4f985778ed04f3d056104e5ecef3a54a54323da312\"\n    },\n    {\n      \"name\": \"SHA256SUMS\",\n      \"bytes\": 677,\n      \"sha256\": \"e83d92a1cec25f8f16494fdf73c82e235d33439eadc5f72f71d55debbdd72469\"\n    }\n  ]\n}\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-historical-independent.1.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    },
+    {
+      "id": "a-ownerfull.2",
+      "argv": [
+        "uv",
+        "run",
+        "--locked",
+        "--offline",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "command": "uv run --locked --offline pytest -q -p no:cacheprovider",
+      "cwd": "/tmp/studious-lamp-T042-T043-worktree",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "UV_PROJECT_ENVIRONMENT": "/tmp/studious-t013-repro-a-e51661b1b6fdf25bb7461052afb793793ef0ea58/venv",
+        "UV_CACHE_DIR": "/home/choi-eunchang/.cache/uv"
+      },
+      "started_at": "2026-08-31T02:19:33.724403+00:00",
+      "duration_seconds": 38.305,
+      "exit_code": 0,
+      "stdout": {
+        "path": "/tmp/studious-t013-core-candidate/a-ownerfull.2.stdout",
+        "sha256": "9f814b487f0b681f4160e945111e51f735561e72ad4a83a63be02649fcb7d49d",
+        "byte_size": 741,
+        "text": "........................................................................ [ 11%]\n........................................................................ [ 22%]\n........................................................................ [ 33%]\n........................................................................ [ 44%]\n........................................................................ [ 55%]\n........................................................................ [ 66%]\n........................................................................ [ 78%]\n........................................................................ [ 89%]\n.....................................................................    [100%]\n645 passed in 38.03s\n"
+      },
+      "stderr": {
+        "path": "/tmp/studious-t013-core-candidate/a-ownerfull.2.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_size": 0,
+        "text": ""
+      },
+      "result": "PASS"
+    }
+  ],
+  "independent_inspections": [
+    {
+      "command": "python3 /tmp/studious-t013-core-candidate/independence.py",
+      "cwd": "/tmp/studious-lamp-T042-T043-worktree",
+      "script_sha256": "2fb3572aea046a78654bf4b92bc5fa3116b6a60235ff8278a43ed46e9cb82160",
+      "result": "PASS",
+      "result_file": "/tmp/studious-t013-core-candidate/independence.json",
+      "result_sha256": "68109289f25d1116de2ed7219e47321c0edb2017e7b18d5b3c612ee2a39719c4"
+    },
+    {
+      "command": "python3 /tmp/studious-t013-core-candidate/check_bundle.py",
+      "cwd": "/tmp/studious-lamp-T042-T043-worktree",
+      "script_sha256": "d9c29d2b0a2d5bf4aa916db8c36e84e8f5d8cf28f1406241f6ea5335245bb686",
+      "result": "PASS",
+      "result_file": "/tmp/studious-t013-core-candidate/bundle-checks.json",
+      "result_sha256": "96863c59a454c2213a8a13120e7723f1e304078b9fff72caf90e6060e4c6dab2"
+    }
+  ],
+  "review_notes": [
+    "Inspection-only /tmp checker initially omitted the standard venv lib64->lib link; inspecting actual links corrected its allowlist without changing source/venv configuration. All source/object/venv regular files have nlink=1 and A/B share no regular-file inode.",
+    "Inspection-only JSON checker initially assumed all numbers were integers. Actual frozen negative vector shape_cases[60].operations[0].value is exactly 1.5; the bounded oracle now explicitly permits this exact binary fraction/JCS literal. No candidate, source, tool, test or vector was modified to obtain PASS.",
+    "Ponytail: reuse accepted builder/verifier/lock. No new repository tool, helper, dependency, test or contract change."
+  ],
+  "preservation": {
+    "candidate_source_revision": "5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1",
+    "candidate_manifest_sha256": "67aca6754c610d48df25836a7fd9dbef90f9a8966741aaeee5cdca0ca7c3685f",
+    "candidate_evidence_path": "docs/evidence/umbrella-001/T011-content-release-candidate.json",
+    "candidate_evidence_sha256": "6680381f24607626d7e66f1da9f728107c70f1210d770aa5d071415ee9e6296e",
+    "candidate_outputs": [
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/SHA256SUMS",
+        "git_mode": "100644",
+        "git_blob": "c31a8893b353e011726f835c9f63a85967fbc918",
+        "sha256": "e83d92a1cec25f8f16494fdf73c82e235d33439eadc5f72f71d55debbdd72469",
+        "byte_size": 677
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/candidate-content.conformance.jsonl",
+        "git_mode": "100644",
+        "git_blob": "87ed8c105432530d0544dd6319ff76bdbca332a7",
+        "sha256": "fd18ce40ba3aee22b930f92adf1afa4de758bbc1da8246ec698bbf8e5b55c621",
+        "byte_size": 44284
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/candidate-content.manifest.json",
+        "git_mode": "100644",
+        "git_blob": "36d80ff6498be5a8251b376c542cab25d23c36d6",
+        "sha256": "67aca6754c610d48df25836a7fd9dbef90f9a8966741aaeee5cdca0ca7c3685f",
+        "byte_size": 4121
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/candidate-content.provenance.intoto.jsonl",
+        "git_mode": "100644",
+        "git_blob": "25b3c875aec00cf57b293b5709f53c354e668af1",
+        "sha256": "1fe1dc2a679548fa2ee4ea4f985778ed04f3d056104e5ecef3a54a54323da312",
+        "byte_size": 3180
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/candidate.schema.json",
+        "git_mode": "100644",
+        "git_blob": "dce166ce43ac6b2a7a3cdd822b4f321814246c78",
+        "sha256": "a8e76903a7404eebfd16238c47e4c430d62575a380fc6dfad3d7640449e1702e",
+        "byte_size": 2046
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/processing-profile.schema.json",
+        "git_mode": "100644",
+        "git_blob": "66fa6df6e719b0d83e8021c556489d71850a83ab",
+        "sha256": "243a923340eaec7ba809ee45d0d12bcf328664eb9bef4e90bfbc8ba0cf0935bc",
+        "byte_size": 403
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/provenance.schema.json",
+        "git_mode": "100644",
+        "git_blob": "723be7d4fdd18d1d873764f82e20e139e51af2ea",
+        "sha256": "6e023c1147ac4f13664fffe9ddd5c12401b7fc4cd0d4ae9d11215bf67935d1eb",
+        "byte_size": 342
+      },
+      {
+        "revision": "e51661b1b6fdf25bb7461052afb793793ef0ea58",
+        "path": "build/releases/candidate-content/0.1.0/semantic-content.schema.json",
+        "git_mode": "100644",
+        "git_blob": "7f73c647dc929d456b1f01ac5b4fca4ff9b5697d",
+        "sha256": "05970859f28fa81e6d01739f3677c54c71ef97fc0be456039f8f3eb87f8f4ec2",
+        "byte_size": 18448
+      }
+    ],
+    "historical_executing_tools": [
+      {
+        "source_revision": "5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1",
+        "path": "/tmp/studious-t009-repro-a-5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1/source/tools/verify_release.py",
+        "sha256": "2f069d51e0e73a9dde0655703af871b9e044f9effcc1ab452f3748387f113041"
+      },
+      {
+        "source_revision": "5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1",
+        "path": "/tmp/studious-t009-repro-a-5f19a7d2ac2510c38c48c9aba0c6213cf89ee4a1/source/tools/build_candidate_content_release.py",
+        "sha256": "19f1b4babd86eaacc8336a4b2bda7f034764be449847bdccb2dfc238db1cd0a2"
+      }
+    ],
+    "method": "Baseline raw-byte comparison for all pre-existing files outside tasks.md; original pinned Candidate verifier, not T012 modified verifier. Existing two Candidate clone/env/output roots retained. Final integration report repeats verification.",
+    "historical_two_clone_inspection": "PASS: existing coordinator verify_t009.py read-only byte/source check across owner and both retained Candidate outputs; actual command/stdout in a-historical-independent.1."
+  },
+  "governance": {
+    "checklist": {
+      "path": "specs/001-product-runtime/checklists/requirements.md",
+      "checked": 16,
+      "total": 16,
+      "unchecked": 0,
+      "status": "PASS",
+      "read_only": true
+    },
+    "extensions_yml": "absent; no before/after implement extension hook registered or added",
+    "git_hooks": "core.hooksPath unset; default hook directory contains only inactive .sample files; commit/merge use normal hooks without bypass",
+    "single_writer": "T012 session 01a0557f-02c9-7500-8321-16d647fdfdc7 completed/idle; this T013 session sole Studious writer in observed app session list; actual existing writer reused",
+    "branch": "codex/T013-core-admission-local-candidate",
+    "owner_root": "/tmp/studious-lamp-T042-T043-worktree",
+    "saved_local": {
+      "branch": "codex/global-skills-environment-config",
+      "revision": "d767483cf19c8c7cbd890d3e13e7377b500e2fa4",
+      "tree": "8271263542ddf9c8a866c11e8d571cbce13525c0",
+      "state": "clean; not used for writes or integration"
+    },
+    "read_only_umbrella_references": [
+      {
+        "root": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+        "revision": "c68b20bf863c3da12371bb07e42e8433776b93e3",
+        "path": "AGENTS.md",
+        "sha256": "cd09d6629542c52e97e96a8c1a577ff06dbaf1d2b73493986b1a8cbde4fca6f9"
+      },
+      {
+        "root": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+        "revision": "c68b20bf863c3da12371bb07e42e8433776b93e3",
+        "path": "docs/task-brief.md",
+        "sha256": "2ea4d7aa51ad95037c8fc704a55d796dcdd20a11b22a90da3f5bfc2a0bbd202a"
+      },
+      {
+        "root": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+        "revision": "c68b20bf863c3da12371bb07e42e8433776b93e3",
+        "path": "specs/001-product-compute-boundaries/contracts/public-contract-release.md",
+        "sha256": "b13aa9c67d4fd607c542fbf0394672c3a0d9078f423c23cf8fa9c16eacd0e3aa"
+      },
+      {
+        "root": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+        "revision": "c68b20bf863c3da12371bb07e42e8433776b93e3",
+        "path": "governance/traceability.json",
+        "sha256": "5f122b23ae37e58d631d744566a20e2069eca1dfa1f243e647fccf1bf3141315"
+      },
+      {
+        "root": "/home/choi-eunchang/Documents/ChatGPT/symmetrical-umbrella",
+        "revision": "c68b20bf863c3da12371bb07e42e8433776b93e3",
+        "path": "tools/validate_traceability.py",
+        "sha256": "dc63d7aee977250a5a2dbfe07292f9bdbce5f37848adf5e7667efe9c038ced7d"
+      }
+    ],
+    "umbrella_validation_scope": "Unchanged central registry schema/graph only; owner candidate evidence is not registered or independently accepted by that command."
+  },
+  "evidence_commit_locator": {
+    "path": "docs/evidence/umbrella-001/T012-core-admission-api.json",
+    "rule": "Resolve the unique non-merge commit reachable from main that adds this path (diff status A) and has exact trailer Spec-Kit-Task: T013. Require uniqueness. Final local report supplies actual task/merge/tree and this evidence SHA-256 after integration.",
+    "required_trailer": "Spec-Kit-Task: T013",
+    "future_commit_hash": "UNESTABLISHED"
+  },
+  "limitations": [
+    "Same host/OS/system Python 3.14.4/normal uv cache; cross-host/platform reproducibility and independent interpreter or wheel-supply-chain attestation UNESTABLISHED. Fresh source/object stores/venvs/outputs are independently materialized.",
+    "Unsigned local in-toto Statement v1/SLSA provenance v1 structure only; no signer, hosted builder or SLSA level.",
+    "License/NOTICE check covers selected tracked source and the eight distributed assets only; tool/dependency packages are not distributed. No legal determination, exhaustive origin audit or actual publication compliance claim.",
+    "The single-user oCIS profile provides no oCIS-principal-level Automatic/Core attribution or enforced writer/reader isolation. No oCIS access performed.",
+    "T014 and T032/T033 are unchanged and not executed. Local release bytes, a commit, and a tag target do not constitute immutable publication or consumer activation."
+  ],
+  "unauthorized_effects": {
+    "push": "NOT RUN",
+    "PR": "NOT RUN",
+    "remote_merge": "NOT RUN",
+    "tag": "NOT RUN",
+    "publication": "NOT RUN",
+    "remote_readback": "NOT RUN",
+    "protected_access": "NOT RUN",
+    "deploy": "NOT RUN",
+    "startup": "NOT RUN",
+    "restore": "NOT RUN",
+    "migrate": "NOT RUN",
+    "promote": "NOT RUN",
+    "provision": "NOT RUN",
+    "delete": "NOT RUN",
+    "branch_cleanup": "NOT RUN",
+    "T014": "NOT RUN",
+    "T032": "NOT RUN",
+    "T033": "NOT RUN"
+  },
+  "local_report_root": "/tmp/studious-t013-core-candidate",
+  "coordinator_intermediate_inspection": {
+    "scope": "Candidate-byte intermediate verification only; no final T013 evidence/commit/merge acceptance claimed",
+    "source_task": "01a053bc-a858-74b3-8438-8b8c5d7f2e77",
+    "files": [
+      {
+        "path": "/tmp/umbrella-orchestration-20260831/verify_t013.py",
+        "sha256": "e11341c98ac9faf0900311465d2fcd22214bae8c99f42f8b12f7de778a08d914"
+      },
+      {
+        "path": "/tmp/umbrella-orchestration-20260831/T013-candidate-independent.json",
+        "sha256": "09f7f5f543ed18708b48c9fff7d43271bd1cd8a33449618b59c96692ae173b9a"
+      }
+    ],
+    "status": "PASS",
+    "manifest_sha256": "23e9e9a4cb2b15fb3e749c9b8aaf51f4b6cc417cae4aa8a7767856aab6289fcf"
+  },
+  "local_observation_cutoff": "2026-08-31T02:21:35.253479+00:00"
+}

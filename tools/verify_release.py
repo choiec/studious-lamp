@@ -173,6 +173,10 @@ def check_provenance(raw: bytes, files: dict[str, bytes], manifest: dict) -> Non
 
 
 def verify_release(release_dir: Path, source_root: Path = release.ROOT) -> None:
+    # Keep Core imports out of the frozen, isolated Candidate twelve-input fixture.
+    if any((release_dir / name).exists() for name in ("manifest.json", "checksums.sha256", "openapi.yaml")):
+        verify_core_release(release_dir, source_root)
+        return
     files = _read_release_files(release_dir)
     _validate_checksum_file(files)
     source, context = release.source_snapshot(source_root)
@@ -186,6 +190,122 @@ def verify_release(release_dir: Path, source_root: Path = release.ROOT) -> None:
     check_manifest(manifest, files, source, context)
     check_conformance(files[release.CONFORMANCE], source)
     check_provenance(files[release.PROVENANCE], files, manifest)
+
+
+def verify_core_release(release_dir: Path, source_root: Path) -> None:
+    import build_core_admission_release as core
+
+    names = ("LICENSE", "checksums.sha256", "conformance/negative.json", "conformance/positive.json",
+             "handoff-reference.schema.json", "manifest.json", "openapi.yaml", "provenance.json")
+    core.output_directory(release_dir, source_root)
+    require(core.inventory(release_dir) == {*names, "conformance/"}, "Core release inventory is not exact")
+    files = {n: core.read_regular(release_dir / n) for n in names}
+    expected_checksums = b"".join(
+        f"{hashlib.sha256(files[n]).hexdigest()}  {n}\n".encode("utf-8")
+        for n in names if n != "checksums.sha256")
+    require(files["checksums.sha256"] == expected_checksums, "wrong Core checksum inventory/bytes")
+    source, context = core.source_snapshot(source_root)
+    require(source["tools/verify_release.py"] == core.read_regular(Path(__file__)),
+            "executing verifier differs from Core source")
+    source_docs = core.source_documents(source)
+    for n in ("openapi.yaml", "handoff-reference.schema.json",
+              "conformance/negative.json", "conformance/positive.json"):
+        canonical_object(files[n])
+        require(files[n] == rfc8785.dumps(source_docs[n]), "incomplete/changed Core source packaging")
+    require(files["LICENSE"] == source["LICENSE"], "wrong released LICENSE bytes")
+    manifest = canonical_object(files["manifest.json"])
+    fixed = {
+        "manifest_format_version": "1", "release_name": "core-admission",
+        "release_id": "core-admission-0.2.0", "release_version": "0.2.0",
+        "release_tag": "core-admission-v0.2.0", "digest_algorithm": "sha256",
+        "schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+        "compatibility_policy": "pre-1.0-hard-cut", "license": "Apache-2.0",
+        "serialization": {
+            "json": "RFC 8785 JCS; UTF-8; no BOM; no trailing newline",
+            "license": "exact tracked bytes",
+            "checksums": "lowercase SHA-256, two spaces, unsigned UTF-8 filename order, LF",
+        },
+        "distributable_inventory": list(names),
+    }
+    require(set(manifest) == set(fixed) | {"source_revision", "source_git_tree", "source_tree_sha256",
+            "source_inputs", "generation_tool_identity", "artifacts", "conformance", "license_artifact"},
+            "wrong Core manifest fields or unsupported claim/circular binding")
+    for key, value in fixed.items():
+        require(manifest[key] == value, "wrong Core manifest " + key)
+    require(manifest["source_revision"] == context["revision"]
+            and manifest["source_git_tree"] == context["git_tree"], "wrong Core source revision/tree")
+    require(manifest["source_inputs"] == context["inputs"], "wrong Core raw source inventory")
+    framed = b"".join((r["git_mode"] + " " + hashlib.sha256(source[r["path"]]).hexdigest()
+                        + " " + r["path"] + "\n").encode("utf-8") for r in context["inputs"])
+    source_digest = hashlib.sha256(framed).hexdigest()
+    require(manifest["source_tree_sha256"] == source_digest, "wrong Core source tree digest")
+    tool = manifest["generation_tool_identity"]
+    check_binding(tool, "tools/build_core_admission_release.py", source["tools/build_core_admission_release.py"])
+    require(set(tool) == {"relative_locator", "byte_size", "sha256", "canonicalizer"}
+            and tool["canonicalizer"] == "rfc8785==0.1.4", "wrong Core builder identity")
+    artifacts = manifest["artifacts"]
+    require(isinstance(artifacts, list) and len(artifacts) == 2, "Core requires exactly two normative artifacts")
+    for name, media, record in zip(("openapi.yaml", "handoff-reference.schema.json"),
+                                  ("application/vnd.oai.openapi+json", "application/schema+json"),
+                                  artifacts, strict=True):
+        check_binding(record, name, files[name])
+        require(set(record) == {"relative_locator", "byte_size", "sha256", "classification",
+                                "contract_version", "media_type"}
+                and record["classification"] == "normative" and record["contract_version"] == "0.2.0"
+                and record["media_type"] == media, "wrong Core normative classification")
+    vectors = manifest["conformance"]
+    require(isinstance(vectors, list) and len(vectors) == 2, "Core requires both complete conformance documents")
+    for name, record in zip(("conformance/negative.json", "conformance/positive.json"), vectors, strict=True):
+        check_binding(record, name, files[name])
+        require(set(record) == {"relative_locator", "byte_size", "sha256", "classification", "scope"}
+                and record["classification"] == "release_evidence"
+                and record["scope"] == "complete-source-vectors; execution-not-attested",
+                "wrong Core conformance scope")
+    license_record = manifest["license_artifact"]
+    check_binding(license_record, "LICENSE", files["LICENSE"])
+    require(set(license_record) == {"relative_locator", "byte_size", "sha256", "classification"}
+            and license_record["classification"] == "license", "wrong Core license classification")
+
+    statement = canonical_object(files["provenance.json"])
+    require(set(statement) == {"_type", "predicateType", "subject", "predicate"}
+            and statement["_type"] == "https://in-toto.io/Statement/v1"
+            and statement["predicateType"] == "https://slsa.dev/provenance/v1", "wrong Core provenance structure")
+    subjects = statement["subject"]
+    preceding = [n for n in names if n not in ("checksums.sha256", "provenance.json")]
+    require(isinstance(subjects, list) and len(subjects) == len(preceding), "wrong Core provenance subjects")
+    for n, record in zip(preceding, subjects, strict=True):
+        require(record == {"name": n, "digest": {"sha256": hashlib.sha256(files[n]).hexdigest()}},
+                "wrong Core provenance output binding")
+    predicate = statement["predicate"]
+    require(isinstance(predicate, dict) and set(predicate) == {"buildDefinition", "runDetails"},
+            "wrong Core provenance predicate or unsupported claim")
+    require(predicate["runDetails"] == {"builder": {"id": "urn:studious-lamp:builder:core-admission:v1"}},
+            "wrong Core builder or unproved run claim")
+    definition = predicate["buildDefinition"]
+    require(isinstance(definition, dict) and set(definition) == {
+        "buildType", "externalParameters", "internalParameters", "resolvedDependencies"},
+        "wrong Core build definition")
+    require(definition["buildType"] == "urn:studious-lamp:build:core-admission:v1", "wrong Core build type")
+    # These bindings come from authenticated raw sources, not from the supplied manifest.
+    require(definition["externalParameters"] == {
+        "release_name": "core-admission", "release_id": "core-admission-0.2.0",
+        "release_version": "0.2.0", "release_tag": "core-admission-v0.2.0",
+        "source_revision": context["revision"], "source_git_tree": context["git_tree"],
+        "source_tree_sha256": source_digest}, "wrong Core provenance identity/source")
+    internal = definition["internalParameters"]
+    require(isinstance(internal, dict) and set(internal) == {"generation_tool_identity"},
+            "wrong Core provenance tool fields")
+    builder_record = internal["generation_tool_identity"]
+    check_binding(builder_record, "tools/build_core_admission_release.py", source["tools/build_core_admission_release.py"])
+    require(set(builder_record) == {"relative_locator", "byte_size", "sha256", "canonicalizer"}
+            and builder_record["canonicalizer"] == "rfc8785==0.1.4", "wrong Core provenance builder")
+    dependencies = definition["resolvedDependencies"]
+    require(isinstance(dependencies, list) and len(dependencies) == len(context["inputs"]),
+            "incomplete Core provenance inputs")
+    for dependency, record in zip(dependencies, context["inputs"], strict=True):
+        require(dependency == {"name": record["path"], "git_mode": record["git_mode"],
+                               "digest": {"sha256": hashlib.sha256(source[record["path"]]).hexdigest()}},
+                "wrong Core provenance raw input binding")
 
 
 def main() -> int:
